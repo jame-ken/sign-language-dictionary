@@ -3,25 +3,96 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Alphabet</title>
+  <title>ASL Alphabet Guide</title>
   <style>
     body {
       font-family: Arial, sans-serif;
-      background: #F7E6CD;
+      background: #F7E6CD; /* Matching your requested color */
       text-align: center;
       padding: 50px;
+      color: #333;
     }
-    h1 { color: #333; }
-    p { color: #555; }
+
+    .nav-links a {
+      font-size: 40px;
+      margin-right: 40px;
+      margin-left: 10px;
+      text-decoration: none;
+      color: #007bff;
+    }
+
+    .alphabet-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      margin-top: 50px;
+    }
+
+    .letter-card {
+      background: rgba(255, 255, 255, 0.5); /* Semi-transparent white */
+      border: 2px solid #333;
+      border-radius: 10px;
+      width: 200px;
+      padding: 15px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .letter-card h2 {
+      font-size: 48px;
+      margin: 10px 0;
+    }
+
+    .img-placeholder {
+      width: 150px;
+      height: 150px;
+      background: #eee;
+      border: 1px dashed #999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 10px;
+    }
+
+    .description {
+      font-size: 14px;
+      color: #555;
+    }
   </style>
 </head>
+<body>
+
+  <nav class="nav-links">
+    <a href="index.html">Home</a>
+    <a href="Numbers.html">Numbers</a>
+    <a href="WordsPhrases.html">Phrases</a>
+  </nav>
+
+  <h1>American Sign Language Alphabet</h1>
+  <p>Each card represents a letter in the ASL manual alphabet.</p>
+
+  <div class="alphabet-container">
+    <div class="letter-card">
+      <h2>A</h2>
+      <div class="img-placeholder">Image Here</div>
+      <p class="description">Fist with thumb on the side.</p>
+    </div>
+
+    <div class="letter-card">
+      <h2>B</h2>
+      <div class="img-placeholder">Image Here</div>
+      <p class="description">Flat palm, thumb tucked.</p>
+    </div>
+
+    <div class="letter-card">
+      <h2>C</h2>
+      <div class="img-placeholder">Image Here</div>
+      <p class="description">Curved hand forming a C.</p>
+    </div>
+
+    </div>
+
 </body>
-  <a href="index.html" style = "font-size: 40px; margin-right: 40px; margin-left: 10px; ">Home</a>
-  <a href="Numbers.html" style = "font-size: 40px; margin-right: 40px; margin-left: 10px; ">Numbers</a>
-  <a href="WordsPhrases.html" style = "font-size: 40px; margin-right: 40px; margin-left: 10px; ">Common Words and Phrases</a>
-  <br>
-  <br>
-  <br>
-  <img src = "https://static.vecteezy.com/system/resources/previews/037/899/180/non_2x/dactylic-alphabet-asl-alphabet-illustration-vector.jpg" alt="ASL Numbers 1 through 20">
-  <p style = "font-size: 40px; text-align:center;">This instructional image illustrates the letters of the ASL manual alphabet used for finger spelling. Each letter requires a specific, static handshape and palm orientation to be clearly understood; for example, 'A' is a fist with the thumb beside the index finger, 'L' forms the letter with the index finger and thumb, and 'N' is a fist with the thumb tucked under the middle and ring fingers. While most letters are static, the letter 'J' is uniquely shown as a movement, beginning as the 'I' handshape before curving down and outward.</p>
 </html>
