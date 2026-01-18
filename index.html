@@ -3,31 +3,174 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Signlingo</title>
+  <title>Signlingo - Home</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: #F7E6CD;
-      padding: 50px;
+    :root {
+      --bg-purple: #f3e5f5;      /* Lightest purple */
+      --card-purple: #e1bee7;    /* Lavender */
+      --nav-purple: #7b1fa2;     /* Deep purple */
+      --text-purple: #4a148c;    /* Dark purple */
+      --accent-purple: #9c27b0;  /* Amethyst */
     }
-    h1 { color: #333; }
-    p { color: #555; }
+
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background-color: var(--bg-purple);
+      color: var(--text-purple);
+      margin: 0;
+      padding-bottom: 50px;
+    }
+
+    /* Dashboard Styling */
+    .dashboard {
+      background-color: var(--nav-purple);
+      padding: 15px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    }
+
+    .nav-links a {
+      color: white;
+      text-decoration: none;
+      font-size: 22px;
+      font-weight: bold;
+      margin-left: 30px;
+    }
+
+    .home-icon { font-size: 32px; color: white; }
+
+    header {
+      text-align: center;
+      padding: 60px 20px;
+    }
+
+    .logo-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 15px;
+      margin-bottom: 20px;
+    }
+
+    .logo-container h1 {
+      font-size: 100px;
+      margin: 0;
+      color: var(--text-purple);
+    }
+
+    /* Content Rows */
+    .info-container {
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
+      padding: 0 5%;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .info-row {
+      display: flex;
+      background-color: var(--card-purple);
+      border: 4px solid var(--accent-purple);
+      border-radius: 25px;
+      padding: 40px;
+      align-items: center;
+      gap: 50px;
+      box-shadow: 0 8px 20px rgba(74, 20, 140, 0.1);
+    }
+
+    .info-image-box {
+      flex: 1;
+      text-align: center;
+    }
+
+    .info-image-box img {
+      width: 100%;
+      max-width: 400px;
+      border-radius: 20px;
+      border: 3px solid var(--nav-purple);
+      background-color: white;
+    }
+
+    .info-text {
+      flex: 1.5;
+      text-align: left;
+    }
+
+    .info-text h2 {
+      font-size: 32px;
+      color: var(--nav-purple);
+      margin-top: 0;
+    }
+
+    .info-text p {
+      font-size: 22px;
+      line-height: 1.6;
+    }
+
+    .disclaimer {
+      margin-top: 40px;
+      font-size: 16px;
+      opacity: 0.7;
+      text-align: center;
+    }
+
+    @media (max-width: 850px) {
+      .info-row { flex-direction: column; text-align: center; }
+      .info-text { text-align: center; }
+      .logo-container h1 { font-size: 60px; }
+    }
   </style>
 </head>
 <body>
-   <div class="nav-container">
-    <a href="Alphabet.html" style = "font-size: 40px; margin-right: 40px; margin-left: 10px; display: inline-block;">Alphabet</a>
-    <a href="Numbers.html" style = "font-size: 40px; margin-right: 40px; margin-left: 10px; display: inline-block;">Numbers</a>
-    <a href="WordsPhrases.html" style = "font-size: 40px; margin-right: 40px; margin-left: 10px; display: inline-block;">Common Words and Phrases</a>
+
+  <nav class="dashboard">
+    <a href="index.html" class="home-icon"><i class="fas fa-house"></i></a>
+    <div class="nav-links">
+      <a href="Alphabet.html">Alphabet</a>
+      <a href="Numbers.html">Numbers</a>
+      <a href="WordsPhrases.html">Phrases</a>
+    </div>
+  </nav>
+
+  <header>
+    <div class="logo-container">
+      <img src="https://www.clipartmax.com/png/full/43-432178_sign-language-number-2.png" alt="Two in ASL" height="120">
+      <h1>Lingo</h1>
+    </div>
+    <p style="font-size: 24px;">Your gateway to learning American Sign Language.</p>
+  </header>
+
+  <div class="info-container">
+    
+    <div class="info-row">
+      <div class="info-text">
+        <h2>Welcome to Signlingo</h2>
+        <p>This is a website designed to help the deaf and those interested in ASL. It has a variety of different learning resources, from a dictionary where people can learn their numbers and alphabets to common words and phrases, providing a fun learning experience for people of all ages.</p>
+      </div>
+    </div>
+
+    <div class="info-row">
+      <div class="info-image-box">
+        <img src="https://www.startasl.com/wp-content/uploads/elementor/thumbs/history-of-american-sign-language-p19m27nm9v1bdpwy1olp8ouku759o10s16yfu7i6f4.jpg" alt="History of ASL">
+      </div>
+      <div class="info-text">
+        <h2>The History of ASL</h2>
+        <p>American Sign Language (ASL) was formally invented in 1817 when Thomas Hopkins Gallaudet and Laurent Clerc founded the American School for the Deaf. It evolved by combining French Sign Language with local American signs, creating the standardized language used today.</p>
+      </div>
+    </div>
+
   </div>
 
-  <div class="container" style="text-align: center;">
-    <img src="https://www.clipartmax.com/png/full/43-432178_sign-language-number-2.png" alt="Two in ASL" width="115" height="160">
-    <span style="font-size: 120px;">Lingo</span>
+  <div class="disclaimer">
+    <p>(This page is hosted on GitHub Pages. This site is in no way associated with Duolingo)</p>
   </div>
-  <p style = "font-size: 40px; text-align:center;">This is a website to help the deaf. It has a variety of different learning resources, from a dictionary where people can learn their numbers and alpabets to common words and phrases to fun learning games, where deaf people of all ages can have a fun learning experience.</p>
-  <p style="font-size: 20px; text-align:center;">(This page is hosted on GitHub Pages. This site is in no way associated with Duolingo)</p>
-  <img src="https://www.startasl.com/wp-content/uploads/elementor/thumbs/history-of-american-sign-language-p19m27nm9v1bdpwy1olp8ouku759o10s16yfu7i6f4.jpg" alt="History of ASL" style="margin-left:0px">
-   <p style = "font-size: 40px; text-align:center;">American Sign Language (ASL) was formally invented in 1817 when Thomas Hopkins Gallaudet and Laurent Clerc founded the American School for the Deaf in Hartford, Connecticut. It was created by combining French Sign Language, brought by Clerc, with local American sign languages and signed English that were already in use. The language evolved as students from different parts of the country brought their own home and community signs, which then mixed with French Sign Language to create a standardized ASL</p>
+
 </body>
 </html>
