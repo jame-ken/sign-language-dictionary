@@ -3,25 +3,210 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Numbers</title>
+  <title>ASL Numbers Guide</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: #f9fafb;
-      text-align: center;
-      padding: 50px;
+    :root {
+      --bg-purple: #f3e5f5;
+      --card-purple: #e1bee7;
+      --nav-purple: #7b1fa2;
+      --text-purple: #4a148c;
+      --accent-purple: #9c27b0;
     }
-    h1 { color: #333; }
-    p { color: #555; }
+
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background-color: var(--bg-purple);
+      color: var(--text-purple);
+      margin: 0;
+      padding-bottom: 50px;
+    }
+
+    .dashboard {
+      background-color: var(--nav-purple);
+      padding: 15px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .nav-links a { color: white; text-decoration: none; font-size: 22px; font-weight: bold; margin-left: 30px; }
+    .home-icon { font-size: 32px; color: white; }
+    header { text-align: center; padding: 40px 20px; }
+
+    .numbers-container {
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+      padding: 0 5%;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .number-row {
+      display: flex;
+      background-color: var(--card-purple);
+      border: 3px solid var(--accent-purple);
+      border-radius: 20px;
+      padding: 30px;
+      align-items: center;
+      gap: 40px;
+    }
+
+    .number-display { flex: 1; text-align: center; }
+    .number-display h2 { font-size: 80px; margin: 0; }
+
+    .asl-image {
+      width: 250px;
+      height: 250px;
+      background-color: white;
+      border-radius: 15px;
+      border: 2px solid var(--nav-purple);
+      object-fit: contain;
+    }
+
+    .details { flex: 2; }
+    .details h3 { font-size: 24px; color: var(--nav-purple); margin-top: 0; }
+    
+    .example-box {
+      background: rgba(255,255,255,0.4);
+      padding: 15px;
+      border-left: 5px solid var(--nav-purple);
+      margin-top: 10px;
+      border-radius: 4px;
+    }
+
+    .rules-section {
+      background-color: white;
+      margin: 50px auto;
+      padding: 40px;
+      max-width: 900px;
+      border-radius: 20px;
+      border: 2px solid var(--nav-purple);
+    }
+
+    .rules-list { text-align: left; line-height: 1.8; }
   </style>
 </head>
+<body>
+
+  <nav class="dashboard">
+    <a href="index.html" class="home-icon"><i class="fas fa-house"></i></a>
+    <div class="nav-links">
+      <a href="Alphabet.html">Alphabet</a>
+      <a href="WordsPhrases.html">Phrases</a>
+    </div>
+  </nav>
+
+  <header>
+    <h1>ASL Numbers & Tens</h1>
+    <p>Understanding the handshapes for cardinal numbers and larger values.</p>
+  </header>
+
+  <div class="numbers-container">
+    
+    <div class="number-row">
+      <div class="number-display">
+        <h2>1-5</h2>
+        <div class="asl-image" style="display:flex; align-items:center; justify-content:center;">[ IMAGE OF 1-5 ]</div>
+      </div>
+      <div class="details">
+        <h3>Counting 1 to 5</h3>
+        <p>For 1 through 5, your palm faces <strong>inward</strong> towards your face. Note that '3' uses the thumb, index, and middle finger.</p>
+        <div class="example-box">
+          <strong>Usage:</strong> Ordering <em>"4 coffees"</em> or saying <em>"I have 2 brothers."</em>
+        </div>
+      </div>
+    </div>
+
+    <div class="number-row">
+      <div class="number-display">
+        <h2>6-9</h2>
+        <div class="asl-image" style="display:flex; align-items:center; justify-content:center;">[ IMAGE OF 6-9 ]</div>
+      </div>
+      <div class="details">
+        <h3>Counting 6 to 9</h3>
+        <p>For 6 through 9, your palm faces <strong>outward</strong>. These are formed by touching a finger to your thumb (6=pinky, 7=ring, 8=middle, 9=index).</p>
+        <div class="example-box">
+          <strong>Usage:</strong> Giving a phone number or saying <em>"The bus arrives in 7 minutes."</em>
+        </div>
+      </div>
+    </div>
+
+    <div class="number-row">
+      <div class="number-display">
+        <h2>10</h2>
+        <div class="asl-image" style="display:flex; align-items:center; justify-content:center;">[ IMAGE OF 10 ]</div>
+      </div>
+      <div class="details">
+        <h3>The Thumb Shake</h3>
+        <p>Extend your thumb up (like a 'thumbs up') and shake your hand side-to-side slightly.</p>
+        <div class="example-box">
+          <strong>Usage:</strong> Stating a quantity of ten or the end of a basic count.
+        </div>
+      </div>
+    </div>
+
+    <div class="number-row">
+      <div class="number-display">
+        <h2>20</h2>
+        <div class="asl-image" style="display:flex; align-items:center; justify-content:center;">[ IMAGE OF 20 ]</div>
+      </div>
+      <div class="details">
+        <h3>The Pinch</h3>
+        <p>Touch your thumb and index finger together repeatedly (like a bird beak pinching).</p>
+        <div class="example-box">
+          <strong>Usage:</strong> Saying <em>"I am 20 years old"</em> or <em>"It costs 20 dollars."</em>
+        </div>
+      </div>
+    </div>
+
+    <div class="number-row">
+      <div class="number-display">
+        <h2>30-60</h2>
+        <div class="asl-image" style="display:flex; align-items:center; justify-content:center;">[ IMAGE OF TENS ]</div>
+      </div>
+      <div class="details">
+        <h3>The "Zero" Ending</h3>
+        <p>Form the base number (3, 4, 5, or 6) and then immediately transition the hand into an 'O' shape for zero.</p>
+        <div class="example-box">
+          <strong>Usage:</strong> Used for ages, prices, and addresses. 30 is <em>'3'</em> then <em>'0'</em>.
+        </div>
+      </div>
+    </div>
+
+    <div class="number-row">
+      <div class="number-display">
+        <h2>100</h2>
+        <div class="asl-image" style="display:flex; align-items:center; justify-content:center;">[ IMAGE OF 100 ]</div>
+      </div>
+      <div class="details">
+        <h3>1 + C</h3>
+        <p>Sign the number '1' and then pull your hand back while changing it into the 'C' handshape (representing the Roman numeral for 100).</p>
+        <div class="example-box">
+          <strong>Usage:</strong> Measuring <em>"100 miles"</em> or counting large sums.
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <section class="rules-section">
+    <h2>ASL Number Rules Summary</h2>
+    <div class="rules-list">
+      <ul>
+        <li><strong>Palm Orientation (1-5):</strong> When counting objects, the palm faces <strong>inward</strong>. If signing a date or time, it may face outward.</li>
+        <li><strong>Palm Orientation (6-9):</strong> The palm always faces <strong>outward</strong> toward the listener.</li>
+        <li><strong>The "3" Rule:</strong> In ASL, the number 3 uses the thumb, index, and middle fingers. Using the index, middle, and ring fingers (the English way) is a common beginner error.</li>
+        <li><strong>The Tens (30-90):</strong> These are signed as two distinct movements: the first digit followed by the 'O' (zero) shape.</li>
+        <li><strong>Movement (20):</strong> Unlike other tens, 20 has a unique "pinching" movement rather than a 2-0 sequence.</li>
+        <li><strong>Hundreds (100+):</strong> Uses the number + the letter 'C' (e.g., 200 is '2' then 'C').</li>
+      </ul>
+    </div>
+  </section>
+
 </body>
-  <a href="index.html" style = "font-size: 40px; margin-right: 40px; margin-left: 10px; ">Home</a>
-  <a href="Alphabet.html" style = "font-size: 40px; margin-right: 40px; margin-left: 10px; ">Alphabet</a>
-  <a href="WordsPhrases.html" style = "font-size: 40px; margin-right: 40px; margin-left: 10px; ">Common Words and Phrases</a>
-  <br>
-  <br>
-  <br>
-  <img src = "https://i.pinimg.com/736x/43/33/ee/4333ee1d5d3b4b283744b494c76a7d8d.jpg" alt="ASL Numbers 1 through 20">
-  <p style = "font-size: 40px; text-align:center;">This chart shows the standard ASL signs for numbers 1–20. In ASL, numbers use specific handshapes, palm orientations, and small movements. Numbers 1–5 usually face toward the signer, while 6–9 use the thumb touching different fingers. The number 10 is made with a small thumb shake. Numbers 11–15 include a repeated downward flicking movement, which helps distinguish them from other signs. These forms are commonly used across the Deaf community and provide the foundation for learning larger numbers and number-based signs in ASL.</p>
 </html>
