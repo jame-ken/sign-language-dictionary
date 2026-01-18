@@ -3,19 +3,19 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ASL Alphabet Dashboard</title>
+  <title>ASL Alphabet Master Guide</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
   <style>
     :root {
-      --bg-purple: #f3e5f5;      /* Lightest purple for background */
-      --card-purple: #e1bee7;    /* Light lavender for cards */
-      --nav-purple: #7b1fa2;     /* Deep purple for dashboard */
-      --text-purple: #4a148c;    /* Dark purple for text */
-      --accent-purple: #9c27b0;  /* Bright purple for icons/accents */
+      --bg-purple: #f3e5f5;      /* Lavender Mist */
+      --card-purple: #e1bee7;    /* Lavender */
+      --nav-purple: #7b1fa2;     /* Deep Purple */
+      --text-purple: #4a148c;    /* Indigo Purple */
+      --accent-purple: #9c27b0;  /* Amethyst */
     }
 
     body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      font-family: 'Segoe UI', Arial, sans-serif;
       background-color: var(--bg-purple);
       color: var(--text-purple);
       margin: 0;
@@ -25,105 +25,107 @@
     /* Dashboard Styling */
     .dashboard {
       background-color: var(--nav-purple);
-      padding: 15px 30px;
+      padding: 15px 40px;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
       position: sticky;
       top: 0;
       z-index: 1000;
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 30px;
-      align-items: center;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
     }
 
     .nav-links a {
       color: white;
       text-decoration: none;
-      font-size: 20px;
+      font-size: 22px;
       font-weight: bold;
-      transition: color 0.3s;
+      margin-left: 30px;
+      transition: opacity 0.3s;
     }
 
-    .nav-links a:hover {
-      color: var(--card-purple);
-    }
+    .nav-links a:hover { opacity: 0.8; }
+    .home-icon { font-size: 32px; color: white; }
 
-    .home-icon {
-      font-size: 30px;
-      color: white;
-    }
+    header { text-align: center; padding: 50px 20px; }
+    h1 { font-size: 3rem; margin-bottom: 10px; }
 
-    header {
-      text-align: center;
-      padding: 40px 20px;
-    }
-
-    h1 {
-      font-size: 2.5rem;
-      color: var(--text-purple);
-    }
-
-    /* Alphabet Horizontal Grid */
-    .alphabet-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-      gap: 20px;
-      padding: 0 40px;
-      max-width: 1200px;
+    /* Single Row Layout */
+    .alphabet-container {
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
+      padding: 0 5%;
+      max-width: 1100px;
       margin: 0 auto;
     }
 
-    .letter-card {
-      background-color: var(--card-purple);
-      border: 2px solid var(--accent-purple);
-      border-radius: 15px;
-      padding: 20px;
-      text-align: center;
-      transition: transform 0.2s;
-    }
-
-    .letter-card:hover {
-      transform: translateY(-5px);
-      background-color: #d1a3d9;
-    }
-
-    .letter-card h2 {
-      font-size: 40px;
-      margin: 0 0 10px 0;
-    }
-
-    .img-placeholder {
-      width: 100%;
-      aspect-ratio: 1 / 1;
-      background-color: white;
-      border-radius: 10px;
-      border: 2px dashed var(--accent-purple);
+    .letter-row {
       display: flex;
+      background-color: var(--card-purple);
+      border: 4px solid var(--accent-purple);
+      border-radius: 25px;
+      padding: 40px;
       align-items: center;
-      justify-content: center;
-      margin-bottom: 10px;
-      color: #999;
-      font-size: 12px;
+      gap: 50px;
+      box-shadow: 0 8px 20px rgba(74, 20, 140, 0.1);
     }
 
-    .description {
-      font-size: 12px;
-      font-weight: 500;
-      line-height: 1.2;
+    .letter-display {
+      flex: 1;
+      text-align: center;
+    }
+
+    .letter-display h2 {
+      font-size: 100px;
+      margin: 0 0 20px 0;
+      color: var(--text-purple);
+    }
+
+    .asl-image {
+      width: 300px;
+      height: 300px;
+      background-color: white;
+      border-radius: 20px;
+      object-fit: contain;
+      border: 3px solid var(--nav-purple);
+    }
+
+    .details {
+      flex: 1.5;
+      text-align: left;
+    }
+
+    .details h3 { 
+      font-size: 28px; 
+      margin-top: 0; 
+      color: var(--nav-purple);
+      border-bottom: 2px solid var(--nav-purple);
+      display: inline-block;
+    }
+    
+    .example-box {
+      background: rgba(255,255,255,0.5);
+      padding: 20px;
+      border-left: 6px solid var(--nav-purple);
+      margin-top: 20px;
+      border-radius: 0 10px 10px 0;
+    }
+
+    .example-box strong { color: var(--nav-purple); }
+
+    /* Responsive adjustments */
+    @media (max-width: 850px) {
+      .letter-row { flex-direction: column; text-align: center; }
+      .details { text-align: center; }
+      .example-box { border-left: none; border-top: 6px solid var(--nav-purple); }
     }
   </style>
 </head>
 <body>
 
   <nav class="dashboard">
-    <a href="index.html" class="home-icon" title="Home">
-      <i class="fas fa-house"></i>
-    </a>
+    <a href="index.html" class="home-icon"><i class="fas fa-house"></i></a>
     <div class="nav-links">
       <a href="Numbers.html">Numbers</a>
       <a href="WordsPhrases.html">Phrases</a>
@@ -131,142 +133,377 @@
   </nav>
 
   <header>
-    <h1>ASL Manual Alphabet</h1>
-    <p>Select a letter to view the finger-spelling handshape.</p>
+    <h1>The ASL Alphabet</h1>
+    <p style="font-size: 20px;">Mastering fingerspelling is the bridge between signs and specific English terms.</p>
   </header>
 
-  <section class="alphabet-grid">
-    <div class="letter-card">
-      <h2>A</h2>
-      <div class="img-placeholder">IMAGE_A</div>
-      <p class="description">Fist, thumb on side</p>
+  <div class="alphabet-container">
+    
+    <div class="letter-row">
+      <div class="letter-display">
+        <h2>A</h2>
+        <img src="http://googleusercontent.com/image_collection/image_retrieval/17145062240666299364_0" alt="ASL A" class="asl-image">
+      </div>
+      <div class="details">
+        <h3>The Fist Shape</h3>
+        <p>Make a tight fist with your thumb resting vertically against the side of your index finger. Ensure your palm faces forward.</p>
+        <div class="example-box">
+          <strong>Usage Example:</strong> Use "A" to spell the name <em>"Anna"</em> or to clarify you mean <em>"Atlanta"</em> rather than another city starting with the same sign.
+        </div>
+      </div>
     </div>
-    <div class="letter-card">
-      <h2>B</h2>
-      <div class="img-placeholder">IMAGE_B</div>
-      <p class="description">Flat palm, thumb in</p>
+
+    <div class="letter-row">
+      <div class="letter-display">
+        <h2>B</h2>
+        <img src="http://googleusercontent.com/image_collection/image_retrieval/8761384499068172452_0" alt="ASL B" class="asl-image">
+      </div>
+      <div class="details">
+        <h3>The Flat Hand</h3>
+        <p>Keep your fingers together and straight up. Fold your thumb across your palm. This is often called the "Closed 5" handshape.</p>
+        <div class="example-box">
+          <strong>Usage Example:</strong> Essential for spelling titles like <em>"The Bible"</em> or brands like <em>"Burger King"</em> which may not have a dedicated regional sign.
+        </div>
+      </div>
     </div>
-    <div class="letter-card">
-      <h2>C</h2>
-      <div class="img-placeholder">IMAGE_C</div>
-      <p class="description">Curved "C" shape</p>
+
+    <div class="letter-row">
+      <div class="letter-display">
+        <h2>C</h2>
+        <img src="http://googleusercontent.com/image_collection/image_retrieval/5956326941877561588_0" alt="ASL C" class="asl-image">
+      </div>
+      <div class="details">
+        <h3>The Curve</h3>
+        <p>Curve your fingers and thumb to literally form the shape of the letter 'C'. Your palm should slightly face the side.</p>
+        <div class="example-box">
+          <strong>Usage Example:</strong> Used when spelling names like <em>"Chris"</em> or countries like <em>"Canada."</em> It is also the base handshape for many signs like "Class."
+        </div>
+      </div>
     </div>
-    <div class="letter-card">
-      <h2>D</h2>
-      <div class="img-placeholder">IMAGE_D</div>
-      <p class="description">Index up, circle base</p>
+
+    <div class="letter-row">
+      <div class="letter-display">
+        <h2>D</h2>
+        <img src="http://googleusercontent.com/image_collection/image_retrieval/8747127876464069373_0" alt="ASL D" class="asl-image">
+      </div>
+      <div class="details">
+        <h3>The Pointer</h3>
+        <p>Point your index finger straight up. Your thumb and other three fingers should touch to form a circle at the base.</p>
+        <div class="example-box">
+          <strong>Usage Example:</strong> Use this to spell out <em>"Denver"</em> or <em>"Dr. Pepper"</em> when specifying a particular drink at a restaurant.
+        </div>
+      </div>
     </div>
-    <div class="letter-card">
-      <h2>E</h2>
-      <div class="img-placeholder">IMAGE_E</div>
-      <p class="description">Fingers on thumb</p>
+
+    <div class="letter-row">
+      <div class="letter-display">
+        <h2>E</h2>
+        <img src="http://googleusercontent.com/image_collection/image_retrieval/8430856620507918154_0" alt="ASL E" class="asl-image">
+      </div>
+      <div class="details">
+        <h3>The Claw</h3>
+        <p>Curl all four fingers inward so the tips are resting on top of your thumb. It looks like a small, tight claw.</p>
+        <div class="example-box">
+          <strong>Usage Example:</strong> Used in names like <em>"Eric"</em> or common English loanwords like <em>"E-M-A-I-L"</em> which is often fingerspelled quickly.
+        </div>
+      </div>
     </div>
-    <div class="letter-card">
-      <h2>F</h2>
-      <div class="img-placeholder">IMAGE_F</div>
-      <p class="description">"OK" sign shape</p>
+
+    <div class="letter-row">
+      <div class="letter-display">
+        <h2>F</h2>
+        <img src="http://googleusercontent.com/image_collection/image_retrieval/14150341054385608488_0" alt="ASL F" class="asl-image">
+      </div>
+      <div class="details">
+        <h3>The OK Sign</h3>
+        <p>Touch your index finger and thumb together in a circle. Keep your other three fingers spread apart and pointing up.</p>
+        <div class="example-box">
+          <strong>Usage Example:</strong> Used for spelling <em>"Florida"</em> or titles like <em>"Ford"</em> when discussing specific car manufacturers.
+        </div>
+      </div>
     </div>
-    <div class="letter-card">
-      <h2>G</h2>
-      <div class="img-placeholder">IMAGE_G</div>
-      <p class="description">Thumb/Index pointing right</p>
+
+    <div class="letter-row">
+      <div class="letter-display">
+        <h2>G</h2>
+        <img src="http://googleusercontent.com/image_collection/image_retrieval/14529382323089492061_0" alt="ASL G" class="asl-image">
+      </div>
+      <div class="details">
+        <h3>The Pinch</h3>
+        <p>Point your index finger and thumb parallel to each other, pointing toward the left (for right-handed signers). It looks like you're measuring a small gap.</p>
+        <div class="example-box">
+          <strong>Usage Example:</strong> Essential for spelling names like <em>"George"</em> or clarifying specific terms like <em>"Gravity"</em> in a science lesson.
+        </div>
+      </div>
     </div>
-    <div class="letter-card">
-      <h2>H</h2>
-      <div class="img-placeholder">IMAGE_H</div>
-      <p class="description">Two fingers pointing right</p>
+
+    <div class="letter-row">
+      <div class="letter-display">
+        <h2>H</h2>
+        <img src="http://googleusercontent.com/image_collection/image_retrieval/17169828302966444729_0" alt="ASL H" class="asl-image">
+      </div>
+      <div class="details">
+        <h3>The Parallel Fingers</h3>
+        <p>Similar to "G," but extend both your index and middle fingers together, pointing horizontally.</p>
+        <div class="example-box">
+          <strong>Usage Example:</strong> Used for <em>"Hawaii"</em> or spelling names like <em>"Henry."</em> It is a very common handshape in motion-based signs as well.
+        </div>
+      </div>
     </div>
-    <div class="letter-card">
-      <h2>I</h2>
-      <div class="img-placeholder">IMAGE_I</div>
-      <p class="description">Pinky finger extended</p>
+
+    <div class="letter-row">
+      <div class="letter-display">
+        <h2>I</h2>
+        <img src="http://googleusercontent.com/image_collection/image_retrieval/14652426402684933484_0" alt="ASL I" class="asl-image">
+      </div>
+      <div class="details">
+        <h3>The Pinky</h3>
+        <p>Make a fist but extend only your pinky finger straight up. Keep your palm facing forward.</p>
+        <div class="example-box">
+          <strong>Usage Example:</strong> Used for <em>"Italy"</em> or short names like <em>"Ian."</em> It is also used to sign the concept of "I" (myself) in some contexts.
+        </div>
+      </div>
     </div>
-    <div class="letter-card">
-      <h2>J</h2>
-      <div class="img-placeholder">IMAGE_J</div>
-      <p class="description">Pinky draws a "J"</p>
+
+    <div class="letter-row">
+      <div class="letter-display">
+        <h2>J</h2>
+        <img src="http://googleusercontent.com/image_collection/image_retrieval/17803929503880049579_0" alt="ASL J" class="asl-image">
+      </div>
+      <div class="details">
+        <h3>The Hook</h3>
+        <p>Start with the "I" handshape and use your pinky to draw the letter 'J' in the air, ending with your palm facing you.</p>
+        <div class="example-box">
+          <strong>Usage Example:</strong> Used for names like <em>"James"</em> or <em>"June."</em> Because it involves movement, it is one of the more unique letters to master.
+        </div>
+      </div>
     </div>
-    <div class="letter-card">
-      <h2>K</h2>
-      <div class="img-placeholder">IMAGE_K</div>
-      <p class="description">V-shape with thumb center</p>
+
+    <div class="letter-row">
+      <div class="letter-display">
+        <h2>K</h2>
+        <img src="http://googleusercontent.com/image_collection/image_retrieval/2991315000603462737_0" alt="ASL K" class="asl-image">
+      </div>
+      <div class="details">
+        <h3>The V-Thumb</h3>
+        <p>Point your index finger up and middle finger out in a "V" shape. Place your thumb on the middle joint of your middle finger.</p>
+        <div class="example-box">
+          <strong>Usage Example:</strong> Used for <em>"Kansas"</em> or spelling <em>"K-O-A-L-A."</em> This handshape is also used for the sign "Keep."
+        </div>
+      </div>
     </div>
-    <div class="letter-card">
-      <h2>L</h2>
-      <div class="img-placeholder">IMAGE_L</div>
-      <p class="description">Index and Thumb "L"</p>
+
+    <div class="letter-row">
+      <div class="letter-display">
+        <h2>L</h2>
+        <img src="http://googleusercontent.com/image_collection/image_retrieval/15482332262403897727_0" alt="ASL L" class="asl-image">
+      </div>
+      <div class="details">
+        <h3>The Angle</h3>
+        <p>Extend your thumb and index finger to form a perfect right angle, mimicking the letter 'L'.</p>
+        <div class="example-box">
+          <strong>Usage Example:</strong> Used for <em>"London"</em> or <em>"Lexus."</em> It's a very clear, easy-to-read sign.
+        </div>
+      </div>
     </div>
-    <div class="letter-card">
-      <h2>M</h2>
-      <div class="img-placeholder">IMAGE_M</div>
-      <p class="description">Thumb under 3 fingers</p>
+
+    <div class="letter-row">
+      <div class="letter-display">
+        <h2>M</h2>
+        <img src="http://googleusercontent.com/image_collection/image_retrieval/9609170413339322693_0" alt="ASL M" class="asl-image">
+      </div>
+      <div class="details">
+        <h3>The Three-Finger Tuck</h3>
+        <p>Tuck your thumb under your index, middle, and ring fingers. Your fingers should drape over the thumb.</p>
+        <div class="example-box">
+          <strong>Usage Example:</strong> Used for <em>"Mexico"</em> or names like <em>"Mary."</em> It is often confused with 'N', so keep the three fingers clear.
+        </div>
+      </div>
     </div>
-    <div class="letter-card">
-      <h2>N</h2>
-      <div class="img-placeholder">IMAGE_N</div>
-      <p class="description">Thumb under 2 fingers</p>
+
+    <div class="letter-row">
+      <div class="letter-display">
+        <h2>N</h2>
+        <img src="http://googleusercontent.com/image_collection/image_retrieval/16074253389423578074_0" alt="ASL N" class="asl-image">
+      </div>
+      <div class="details">
+        <h3>The Two-Finger Tuck</h3>
+        <p>Similar to 'M', but tuck your thumb under only your index and middle fingers.</p>
+        <div class="example-box">
+          <strong>Usage Example:</strong> Used for <em>"Norway"</em> or <em>"Netflix."</em> In fast fingerspelling, the thumb placement is key to distinguish it from 'M'.
+        </div>
+      </div>
     </div>
-    <div class="letter-card">
-      <h2>O</h2>
-      <div class="img-placeholder">IMAGE_O</div>
-      <p class="description">All fingers touch thumb</p>
+
+    <div class="letter-row">
+      <div class="letter-display">
+        <h2>O</h2>
+        <img src="http://googleusercontent.com/image_collection/image_retrieval/7064481859531947926_0" alt="ASL O" class="asl-image">
+      </div>
+      <div class="details">
+        <h3>The Circle</h3>
+        <p>Curve all fingers and thumb so they meet at the tips, forming a circle or the letter 'O'.</p>
+        <div class="example-box">
+          <strong>Usage Example:</strong> Used for <em>"Ohio"</em> or names like <em>"Oscar."</em> It is a foundational shape for signs like "None."
+        </div>
+      </div>
     </div>
-    <div class="letter-card">
-      <h2>P</h2>
-      <div class="img-placeholder">IMAGE_P</div>
-      <p class="description">Downwards "K" shape</p>
+
+    <div class="letter-row">
+      <div class="letter-display">
+        <h2>P</h2>
+        <img src="http://googleusercontent.com/image_collection/image_retrieval/6460916570068134101_0" alt="ASL P" class="asl-image">
+      </div>
+      <div class="details">
+        <h3>The Downward K</h3>
+        <p>Make the "K" handshape but point your index finger horizontally and your middle finger straight down.</p>
+        <div class="example-box">
+          <strong>Usage Example:</strong> Used for <em>"Paris"</em> or <em>"Pepsi."</em> This is one of the letters where the "orientation" (pointing down) is the most important part.
+        </div>
+      </div>
     </div>
-    <div class="letter-card">
-      <h2>Q</h2>
-      <div class="img-placeholder">IMAGE_Q</div>
-      <p class="description">Downwards "G" shape</p>
+
+    <div class="letter-row">
+      <div class="letter-display">
+        <h2>Q</h2>
+        <img src="http://googleusercontent.com/image_collection/image_retrieval/710412873341289827_0" alt="ASL Q" class="asl-image">
+      </div>
+      <div class="details">
+        <h3>The Downward G</h3>
+        <p>Make the "G" handshape but point both your index finger and thumb straight down toward the ground.</p>
+        <div class="example-box">
+          <strong>Usage Example:</strong> Used for spelling <em>"Quebec"</em> or names like <em>"Quincy."</em>
+        </div>
+      </div>
     </div>
-    <div class="letter-card">
-      <h2>R</h2>
-      <div class="img-placeholder">IMAGE_R</div>
-      <p class="description">Index/Middle crossed</p>
+
+    <div class="letter-row">
+      <div class="letter-display">
+        <h2>R</h2>
+        <img src="http://googleusercontent.com/image_collection/image_retrieval/2099349030801643812_0" alt="ASL R" class="asl-image">
+      </div>
+      <div class="details">
+        <h3>The Crossed Fingers</h3>
+        <p>Cross your middle finger over your index finger, like you are wishing for good luck.</p>
+        <div class="example-box">
+          <strong>Usage Example:</strong> Used for <em>"Rome"</em> or names like <em>"Ryan."</em> It's also the sign for "Ready" when shaken slightly.
+        </div>
+      </div>
     </div>
-    <div class="letter-card">
-      <h2>S</h2>
-      <div class="img-placeholder">IMAGE_S</div>
-      <p class="description">Fist, thumb over fingers</p>
+
+    <div class="letter-row">
+      <div class="letter-display">
+        <h2>S</h2>
+        <img src="http://googleusercontent.com/image_collection/image_retrieval/7182918718546615057_0" alt="ASL S" class="asl-image">
+      </div>
+      <div class="details">
+        <h3>The Full Fist</h3>
+        <p>Make a fist and place your thumb directly across the front of your fingers. Do not put it on the side (that would be 'A').</p>
+        <div class="example-box">
+          <strong>Usage Example:</strong> Used for <em>"Seattle"</em> or <em>"Samsung."</em> This is also the handshape for the sign "Work."
+        </div>
+      </div>
     </div>
-    <div class="letter-card">
-      <h2>T</h2>
-      <div class="img-placeholder">IMAGE_T</div>
-      <p class="description">Thumb under index finger</p>
+
+    <div class="letter-row">
+      <div class="letter-display">
+        <h2>T</h2>
+        <img src="http://googleusercontent.com/image_collection/image_retrieval/7445875261880385214_0" alt="ASL T" class="asl-image">
+      </div>
+      <div class="details">
+        <h3>The Single Tuck</h3>
+        <p>Make a fist and tuck your thumb between your index and middle fingers. Only the tip of the thumb should show.</p>
+        <div class="example-box">
+          <strong>Usage Example:</strong> Used for <em>"Texas"</em> or <em>"Toyota."</em>
+        </div>
+      </div>
     </div>
-    <div class="letter-card">
-      <h2>U</h2>
-      <div class="img-placeholder">IMAGE_U</div>
-      <p class="description">Index/Middle together up</p>
+
+    <div class="letter-row">
+      <div class="letter-display">
+        <h2>U</h2>
+        <img src="http://googleusercontent.com/image_collection/image_retrieval/17055485096368196273_0" alt="ASL U" class="asl-image">
+      </div>
+      <div class="details">
+        <h3>The Together Pair</h3>
+        <p>Extend your index and middle fingers straight up and keep them pressed tightly together.</p>
+        <div class="example-box">
+          <strong>Usage Example:</strong> Used for <em>"Utah"</em> or <em>"Uber."</em> If you spread the fingers, it becomes a 'V'.
+        </div>
+      </div>
     </div>
-    <div class="letter-card">
-      <h2>V</h2>
-      <div class="img-placeholder">IMAGE_V</div>
-      <p class="description">Index/Middle spread up</p>
+
+    <div class="letter-row">
+      <div class="letter-display">
+        <h2>V</h2>
+        <img src="http://googleusercontent.com/image_collection/image_retrieval/15753651259097326900_0" alt="ASL V" class="asl-image">
+      </div>
+      <div class="details">
+        <h3>The Spread Pair</h3>
+        <p>Extend your index and middle fingers straight up in a "V" shape, like a peace sign.</p>
+        <div class="example-box">
+          <strong>Usage Example:</strong> Used for <em>"Vermont"</em> or names like <em>"Victor."</em>
+        </div>
+      </div>
     </div>
-    <div class="letter-card">
-      <h2>W</h2>
-      <div class="img-placeholder">IMAGE_W</div>
-      <p class="description">Three fingers spread up</p>
+
+    <div class="letter-row">
+      <div class="letter-display">
+        <h2>W</h2>
+        <img src="http://googleusercontent.com/image_collection/image_retrieval/17215180513649503355_0" alt="ASL W" class="asl-image">
+      </div>
+      <div class="details">
+        <h3>The Three Fingers</h3>
+        <p>Extend your index, middle, and ring fingers up and spread them apart. Your thumb and pinky should touch.</p>
+        <div class="example-box">
+          <strong>Usage Example:</strong> Used for <em>"Washington"</em> or <em>"Walmart."</em> This is also the sign for "Water" when tapped on the chin.
+        </div>
+      </div>
     </div>
-    <div class="letter-card">
-      <h2>X</h2>
-      <div class="img-placeholder">IMAGE_X</div>
-      <p class="description">Index finger hooked</p>
+
+    <div class="letter-row">
+      <div class="letter-display">
+        <h2>X</h2>
+        <img src="http://googleusercontent.com/image_collection/image_retrieval/1329018358071263212_0" alt="ASL X" class="asl-image">
+      </div>
+      <div class="details">
+        <h3>The Hook</h3>
+        <p>Make a fist but extend your index finger and bend it into a hook or a "C" shape.</p>
+        <div class="example-box">
+          <strong>Usage Example:</strong> Used for <em>"X-Ray"</em> or names like <em>"Xavier."</em>
+        </div>
+      </div>
     </div>
-    <div class="letter-card">
-      <h2>Y</h2>
-      <div class="img-placeholder">IMAGE_Y</div>
-      <p class="description">Thumb and pinky out</p>
+
+    <div class="letter-row">
+      <div class="letter-display">
+        <h2>Y</h2>
+        <img src="http://googleusercontent.com/image_collection/image_retrieval/17955801160656379668_0" alt="ASL Y" class="asl-image">
+      </div>
+      <div class="details">
+        <h3>The Horns</h3>
+        <p>Extend your thumb and pinky finger out. Keep your three middle fingers folded into your palm.</p>
+        <div class="example-box">
+          <strong>Usage Example:</strong> Used for <em>"Yellowstone"</em> or names like <em>"Yolanda."</em> This is also the sign for "Same."
+        </div>
+      </div>
     </div>
-    <div class="letter-card">
-      <h2>Z</h2>
-      <div class="img-placeholder">IMAGE_Z</div>
-      <p class="description">Index draws a "Z"</p>
+
+    <div class="letter-row">
+      <div class="letter-display">
+        <h2>Z</h2>
+        <img src="http://googleusercontent.com/image_collection/image_retrieval/15509949531876762437_0" alt="ASL Z" class="asl-image">
+      </div>
+      <div class="details">
+        <h3>The Z-Trace</h3>
+        <p>Use your index finger to "draw" the letter 'Z' in the air in front of you.</p>
+        <div class="example-box">
+          <strong>Usage Example:</strong> Used for <em>"Zimbabwe"</em> or <em>"Zion."</em> Like 'J', this letter is defined by its movement.
+        </div>
+      </div>
     </div>
-  </section>
+
+  </div>
 
 </body>
 </html>
