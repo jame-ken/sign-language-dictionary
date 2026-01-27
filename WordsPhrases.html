@@ -3,25 +3,185 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Common Words and Phrases</title>
+  <title>ASL Phrases Master Guide</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: #F7E6CD;
-      text-align: center;
-      padding: 50px;
+    :root {
+      --bg-purple: #f3e5f5;      /* Lavender Mist */
+      --card-purple: #e1bee7;    /* Lavender */
+      --nav-purple: #7b1fa2;     /* Deep Purple */
+      --text-purple: #4a148c;    /* Indigo Purple */
+      --accent-purple: #9c27b0;  /* Amethyst */
     }
-    h1 { color: #333; }
-    p { color: #555; }
+
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background-color: var(--bg-purple);
+      color: var(--text-purple);
+      margin: 0;
+      padding-bottom: 50px;
+    }
+
+    /* Dashboard Styling */
+    .dashboard {
+      background-color: var(--nav-purple);
+      padding: 15px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    }
+
+    .nav-links a {
+      color: white;
+      text-decoration: none;
+      font-size: 22px;
+      font-weight: bold;
+      margin-left: 30px;
+      transition: opacity 0.3s;
+    }
+
+    .nav-links a:hover { opacity: 0.8; }
+    .home-icon { font-size: 32px; color: white; }
+
+    header { text-align: center; padding: 50px 20px; }
+    h1 { font-size: 3rem; margin-bottom: 10px; }
+
+    /* Single Row Layout */
+    .alphabet-container {
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
+      padding: 0 5%;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .letter-row {
+      display: flex;
+      background-color: var(--card-purple);
+      border: 4px solid var(--accent-purple);
+      border-radius: 25px;
+      padding: 40px;
+      align-items: center;
+      gap: 50px;
+      box-shadow: 0 8px 20px rgba(74, 20, 140, 0.1);
+    }
+
+    .letter-display {
+      flex: 1;
+      text-align: center;
+    }
+
+    .letter-display h2 {
+      font-size: 60px;
+      margin: 0 0 20px 0;
+      color: var(--text-purple);
+    }
+
+    .asl-image {
+      width: 300px;
+      height: 300px;
+      background-color: white;
+      border-radius: 20px;
+      object-fit: contain;
+      border: 3px solid var(--nav-purple);
+    }
+
+    .details {
+      flex: 1.5;
+      text-align: left;
+    }
+
+    .details h3 { 
+      font-size: 28px; 
+      margin-top: 0; 
+      color: var(--nav-purple);
+      border-bottom: 2px solid var(--nav-purple);
+      display: inline-block;
+    }
+    
+    .example-box {
+      background: rgba(255,255,255,0.5);
+      padding: 20px;
+      border-left: 6px solid var(--nav-purple);
+      margin-top: 20px;
+      border-radius: 0 10px 10px 0;
+    }
+
+    .example-box strong { color: var(--nav-purple); }
+
+    /* Responsive adjustments */
+    @media (max-width: 850px) {
+      .letter-row { flex-direction: column; text-align: center; }
+      .details { text-align: center; }
+      .example-box { border-left: none; border-top: 6px solid var(--nav-purple); }
+    }
   </style>
 </head>
+<body>
+
+  <nav class="dashboard">
+    <a href="index.html" class="home-icon"><i class="fas fa-house"></i></a>
+    <div class="nav-links">
+      <a href="Alphabet.html">Alphabet</a>
+      <a href="Numbers.html">Numbers</a>
+    </div>
+  </nav>
+
+  <header>
+    <h1>Common Phrases</h1>
+    <p style="font-size: 20px;">Fundamental high-frequency signs used for greeting and responding politely.</p>
+  </header>
+
+  <div class="alphabet-container">
+    
+    <div class="letter-row">
+      <div class="letter-display">
+        <h2>HELLO</h2>
+        <img src="https://www.lifeprint.com/asl101/gifs/h/hello.gif" alt="ASL Hello" class="asl-image">
+      </div>
+      <div class="details">
+        <h3>The Sign for Hello</h3>
+        <p>A simple greeting performed by touching the tips of your fingers to your forehead and moving the hand outward and away, similar to a salute.</p>
+        <div class="example-box">
+          <strong>Etiquette:</strong> Make eye contact when signing "Hello" to show you are ready to engage in conversation.
+        </div>
+      </div>
+    </div>
+
+    <div class="letter-row">
+      <div class="letter-display">
+        <h2>PLEASE</h2>
+        <img src="https://www.lifeprint.com/asl101/gifs/p/please.gif" alt="ASL Please" class="asl-image">
+      </div>
+      <div class="details">
+        <h3>The Sign for Please</h3>
+        <p>Place your flat hand over your chest and move it in a circular motion. This sign represents a polite request from the heart.</p>
+        <div class="example-box">
+          <strong>Usage Example:</strong> Use this after a request, like "WATER, PLEASE," to maintain social etiquette.
+        </div>
+      </div>
+    </div>
+
+    <div class="letter-row">
+      <div class="letter-display">
+        <h2>THANKS</h2>
+        <img src="https://www.lifeprint.com/asl101/gifs/t/thank-you.gif" alt="ASL Thank You" class="asl-image">
+      </div>
+      <div class="details">
+        <h3>The Sign for Thank You</h3>
+        <p>Touch the fingertips of your flat hand to your chin and then move the hand forward and down toward the person you are thanking.</p>
+        <div class="example-box">
+          <strong>Pro Tip:</strong> Do not use this sign for "Good," which looks similar but involves the hand moving into the palm of the other hand.
+        </div>
+      </div>
+    </div>
+
+  </div>
+
 </body>
-  <a href="index.html" style = "font-size: 40px; margin-right: 40px; margin-left: 10px; ">Home</a>
-  <a href="Alphabet.html" style = "font-size: 40px; margin-right: 40px; margin-left: 10px; ">Alphabet</a>
-  <a href="Numbers.html" style = "font-size: 40px; margin-right: 40px; margin-left: 10px; ">Numbers</a>
-  <br>
-  <br>
-  <br>
-  <img src = "https://www.startasl.com/wp-content/uploads/elementor/thumbs/asl-signs-new-1-pdu2d1bw3nfvstyfk5mib1b8agk3t2b2ywn5ytrz7k.jpeg" alt="ASL Numbers 1 through 20">
-  <p style = "font-size: 40px; text-align:center;">This chart illustrates six common and essential phrases translated into visual hand signs. The signs focus on basic social etiquette: HELLO involves a flat hand moving away from the head; GOODBYE is a basic open-hand wave; PLEASE uses a flat hand circling the chest; THANK YOU moves a flat hand from the chin outward; YES is communicated by a closed hand (S handshape) moving up and down at the wrist; and NO is signed by pinching the fingers and thumb together, then quickly opening them. These illustrations serve as a simple guide to fundamental, high-frequency signs used for greeting and responding politely.</p>
 </html>
