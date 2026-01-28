@@ -41,11 +41,17 @@
       font-size: 22px;
       font-weight: bold;
       margin-left: 30px;
-      transition: opacity 0.3s;
+      transition: color 0.3s ease, opacity 0.3s;
     }
 
-    .nav-links a:hover { opacity: 0.8; }
-    .home-icon { font-size: 32px; color: white; }
+    .nav-links a:hover { 
+      opacity: 0.8; 
+      color: var(--card-purple);
+      text-decoration: underline;
+    }
+
+    .home-icon { font-size: 32px; color: white; transition: opacity 0.3s; }
+    .home-icon:hover { opacity: 0.8; }
 
     header { text-align: center; padding: 50px 20px; }
     h1 { font-size: 3rem; margin-bottom: 10px; }
@@ -77,7 +83,7 @@
     }
 
     .letter-display h2 {
-      font-size: 50px; /* Reduced slightly for longer words */
+      font-size: 50px;
       margin: 0 0 20px 0;
       color: var(--text-purple);
       text-transform: uppercase;
@@ -119,6 +125,7 @@
       .letter-row { flex-direction: column; text-align: center; }
       .details { text-align: center; }
       .example-box { border-left: none; border-top: 6px solid var(--nav-purple); }
+      .nav-links a { font-size: 18px; margin-left: 15px; }
     }
   </style>
 </head>
@@ -129,6 +136,7 @@
     <div class="nav-links">
       <a href="Alphabet.html">Alphabet</a>
       <a href="Numbers.html">Numbers</a>
+      <a href="LearningGames.html"><i class="fas fa-gamepad"></i> Games</a>
     </div>
   </nav>
 
