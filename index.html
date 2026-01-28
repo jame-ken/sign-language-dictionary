@@ -3,14 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ASL Common Words & Phrases</title>
+  <title>Signlingo - Home</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
   <style>
     :root {
-      --bg-purple: #f3e5f5;      /* Lavender Mist */
+      --bg-purple: #f3e5f5;      /* Lightest purple */
       --card-purple: #e1bee7;    /* Lavender */
-      --nav-purple: #7b1fa2;     /* Deep Purple */
-      --text-purple: #4a148c;    /* Indigo Purple */
+      --nav-purple: #7b1fa2;     /* Deep purple */
+      --text-purple: #4a148c;    /* Dark purple */
       --accent-purple: #9c27b0;  /* Amethyst */
     }
 
@@ -27,7 +27,7 @@
       background-color: var(--nav-purple);
       padding: 15px 40px;
       display: flex;
-      justify-content: space-between;
+      justify-content: flex-end; 
       align-items: center;
       position: sticky;
       top: 0;
@@ -41,17 +41,40 @@
       font-size: 22px;
       font-weight: bold;
       margin-left: 30px;
-      transition: opacity 0.3s;
     }
 
-    .nav-links a:hover { opacity: 0.8; }
-    .home-icon { font-size: 32px; color: white; }
+    .nav-links a:hover {
+      text-decoration: underline;
+    }
 
-    header { text-align: center; padding: 50px 20px; }
-    h1 { font-size: 3rem; margin-bottom: 10px; }
+    header {
+      text-align: center;
+      padding: 60px 20px;
+    }
 
-    /* Single Row Layout Container */
-    .phrase-container {
+    .logo-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 25px; 
+      margin-bottom: 20px;
+    }
+
+    /* Mascot sizing for the new URL */
+    .logo-container img {
+      height: 110px; 
+      width: auto;
+      border-radius: 15px; /* Adds a slight curve to the image corners */
+    }
+
+    .logo-container h1 {
+      font-size: 100px;
+      margin: 0;
+      color: var(--text-purple);
+    }
+
+    /* Content Rows */
+    .info-container {
       display: flex;
       flex-direction: column;
       gap: 40px;
@@ -60,7 +83,7 @@
       margin: 0 auto;
     }
 
-    .letter-row {
+    .info-row {
       display: flex;
       background-color: var(--card-purple);
       border: 4px solid var(--accent-purple);
@@ -71,144 +94,93 @@
       box-shadow: 0 8px 20px rgba(74, 20, 140, 0.1);
     }
 
-    .letter-display {
+    .info-image-box {
       flex: 1;
       text-align: center;
     }
 
-    .letter-display h2 {
-      font-size: 50px; /* Reduced slightly for longer words */
-      margin: 0 0 20px 0;
-      color: var(--text-purple);
-      text-transform: uppercase;
-    }
-
-    .asl-image {
-      width: 300px;
-      height: 300px;
-      background-color: white;
+    .info-image-box img {
+      width: 100%;
+      max-width: 400px;
       border-radius: 20px;
-      object-fit: contain;
       border: 3px solid var(--nav-purple);
+      background-color: white;
     }
 
-    .details {
+    .info-text {
       flex: 1.5;
       text-align: left;
     }
 
-    .details h3 { 
-      font-size: 28px; 
-      margin-top: 0; 
+    .info-text h2 {
+      font-size: 32px;
       color: var(--nav-purple);
-      border-bottom: 2px solid var(--nav-purple);
-      display: inline-block;
-    }
-    
-    .example-box {
-      background: rgba(255,255,255,0.5);
-      padding: 20px;
-      border-left: 6px solid var(--nav-purple);
-      margin-top: 20px;
-      border-radius: 0 10px 10px 0;
+      margin-top: 0;
     }
 
-    .example-box strong { color: var(--nav-purple); }
+    .info-text p {
+      font-size: 22px;
+      line-height: 1.6;
+    }
+
+    .disclaimer {
+      margin-top: 40px;
+      font-size: 16px;
+      opacity: 0.7;
+      text-align: center;
+    }
 
     @media (max-width: 850px) {
-      .letter-row { flex-direction: column; text-align: center; }
-      .details { text-align: center; }
-      .example-box { border-left: none; border-top: 6px solid var(--nav-purple); }
+      .info-row { flex-direction: column; text-align: center; }
+      .info-text { text-align: center; }
+      .logo-container h1 { font-size: 60px; }
+      .logo-container img { height: 70px; } 
+      .dashboard { justify-content: center; }
+      .nav-links a { margin: 0 15px; }
     }
   </style>
 </head>
 <body>
 
   <nav class="dashboard">
-    <a href="index.html" class="home-icon"><i class="fas fa-house"></i></a>
     <div class="nav-links">
       <a href="Alphabet.html">Alphabet</a>
       <a href="Numbers.html">Numbers</a>
+      <a href="WordsPhrases.html">Phrases</a>
     </div>
   </nav>
 
   <header>
-    <h1>Words & Phrases</h1>
-    <p style="font-size: 20px;">Master high-frequency signs for daily social interactions.</p>
+    <div class="logo-container">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTpdD5jIt7wigL1lGSbGMTbNkmjMo2Y3stmLA&s" alt="Signlingo Mascot">
+      <h1>Signlingo</h1>
+    </div>
+    <p style="font-size: 24px;">Your gateway to learning American Sign Language.</p>
   </header>
 
-  <div class="phrase-container">
+  <div class="info-container">
     
-    <div class="letter-row">
-      <div class="letter-display">
-        <h2>Hello</h2>
-        <img src="https://www.lifeprint.com/asl101/gifs/h/hello.gif" alt="ASL Hello" class="asl-image">
-      </div>
-      <div class="details">
-        <h3>The Sign for Hello</h3>
-        <p>Touch the tips of your fingers to your forehead near your temple, then move your hand outward and away in a motion similar to a salute.</p>
-        <div class="example-box">
-          <strong>Usage Tip:</strong> This is a formal greeting. For friends, a simple wave (Goodbye shape) is often used as a casual "Hi."
-        </div>
+    <div class="info-row">
+      <div class="info-text">
+        <h2>Welcome to Signlingo</h2>
+        <p>This is a website designed to help the deaf and those interested in ASL. It has a variety of different learning resources, from a dictionary where people can learn their numbers and alphabets to common words and phrases, providing a fun learning experience for people of all ages.</p>
       </div>
     </div>
 
-    <div class="letter-row">
-      <div class="letter-display">
-        <h2>Please</h2>
-        <img src="https://www.lifeprint.com/asl101/gifs/p/please.gif" alt="ASL Please" class="asl-image">
+    <div class="info-row">
+      <div class="info-image-box">
+        <img src="https://www.startasl.com/wp-content/uploads/elementor/thumbs/history-of-american-sign-language-p19m27nm9v1bdpwy1olp8ouku759o10s16yfu7i6f4.jpg" alt="History of ASL">
       </div>
-      <div class="details">
-        <h3>The Sign for Please</h3>
-        <p>Place your flat hand (palm facing in) on the center of your chest and move it in a circular motion clockwise.</p>
-        <div class="example-box">
-          <strong>Usage Tip:</strong> This sign is essential for polite interaction. Using a larger circle can emphasize how much you really want something!
-        </div>
+      <div class="info-text">
+        <h2>The History of ASL</h2>
+        <p>American Sign Language (ASL) was formally invented in 1817 when Thomas Hopkins Gallaudet and Laurent Clerc founded the American School for the Deaf. It evolved by combining French Sign Language with local American signs, creating the standardized language used today.</p>
       </div>
     </div>
 
-    <div class="letter-row">
-      <div class="letter-display">
-        <h2>Thanks</h2>
-        <img src="https://www.lifeprint.com/asl101/gifs/t/thank-you.gif" alt="ASL Thank You" class="asl-image">
-      </div>
-      <div class="details">
-        <h3>The Sign for Thank You</h3>
-        <p>Touch your fingertips to your chin with a flat hand, then move your hand forward and down toward the person you are talking to.</p>
-        <div class="example-box">
-          <strong>Common Error:</strong> Be careful not to start from the lips, as that can be confused with the sign for "Kiss." Start strictly at the chin.
-        </div>
-      </div>
-    </div>
+  </div>
 
-    <div class="letter-row">
-      <div class="letter-display">
-        <h2>Yes</h2>
-        <img src="https://www.lifeprint.com/asl101/gifs/y/yes.gif" alt="ASL Yes" class="asl-image">
-      </div>
-      <div class="details">
-        <h3>The Sign for Yes</h3>
-        <p>Make an "S" handshape (a fist) and tilt it up and down at the wrist, mimicking the motion of a head nodding.</p>
-        <div class="example-box">
-          <strong>Usage Tip:</strong> Always nod your head slightly while signing this to reinforce the affirmative meaning.
-        </div>
-      </div>
-    </div>
-
-    <div class="letter-row">
-      <div class="letter-display">
-        <h2>No</h2>
-        <img src="https://www.lifeprint.com/asl101/gifs/n/no.gif" alt="ASL No" class="asl-image">
-      </div>
-      <div class="details">
-        <h3>The Sign for No</h3>
-        <p>Snap your index and middle fingers down onto your thumb. It looks like a bird's beak snapping shut.</p>
-        <div class="example-box">
-          <strong>Usage Tip:</strong> Give your head a small shake "no" simultaneously to ensure your message is clear.
-        </div>
-      </div>
-    </div>
-
+  <div class="disclaimer">
+    <p>(This page is hosted on GitHub Pages. This site is in no way associated with Duolingo)</p>
   </div>
 
 </body>
