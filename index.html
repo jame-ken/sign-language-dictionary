@@ -27,7 +27,6 @@
       background-color: var(--nav-purple);
       padding: 15px 40px;
       display: flex;
-      /* Changed to flex-end to keep links on the right now that home is gone */
       justify-content: flex-end; 
       align-items: center;
       position: sticky;
@@ -57,8 +56,14 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 15px;
+      gap: 25px; /* Space between mascot and text */
       margin-bottom: 20px;
+    }
+
+    /* Mascot sizing */
+    .logo-container img {
+      height: 120px; 
+      width: auto;
     }
 
     .logo-container h1 {
@@ -128,7 +133,8 @@
       .info-row { flex-direction: column; text-align: center; }
       .info-text { text-align: center; }
       .logo-container h1 { font-size: 60px; }
-      .dashboard { justify-content: center; } /* Center links on mobile */
+      .logo-container img { height: 80px; } /* Smaller mascot for mobile */
+      .dashboard { justify-content: center; }
       .nav-links a { margin: 0 15px; }
     }
   </style>
@@ -145,6 +151,7 @@
 
   <header>
     <div class="logo-container">
+      <img src="mascot.png" alt="Signlingo Mascot">
       <h1>Signlingo</h1>
     </div>
     <p style="font-size: 24px;">Your gateway to learning American Sign Language.</p>
