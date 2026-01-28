@@ -3,6 +3,253 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Learning Games</title>
+  <title>ASL Scenario Game</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <style>
+    :root {
+      --bg-purple: #f3e5f5;
+      --card-purple: #e1bee7;
+      --nav-purple: #7b1fa2;
+      --text-purple: #4a148c;
+      --accent-purple: #9c27b0;
+      --success-green: #2e7d32;
+      --error-red: #c62828;
+    }
+
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background-color: var(--bg-purple);
+      color: var(--text-purple);
+      margin: 0;
+      padding-bottom: 50px;
+    }
+
+    /* Navigation */
+    .dashboard {
+      background-color: var(--nav-purple);
+      padding: 15px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    .nav-links a { color: white; text-decoration: none; font-size: 22px; font-weight: bold; margin-left: 30px; }
+    .home-icon { font-size: 32px; color: white; }
+
+    header { text-align: center; padding: 40px 20px; }
+
+    /* Game Container */
+    .game-container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+      background: white;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      border: 3px solid var(--accent-purple);
+      text-align: center;
+    }
+
+    .scenario-box {
+      background: var(--bg-purple);
+      padding: 20px;
+      border-radius: 15px;
+      margin-bottom: 30px;
+      font-size: 1.2rem;
+      border-left: 8px solid var(--nav-purple);
+    }
+
+    /* Selection Area */
+    .sequence-display {
+      min-height: 120px;
+      border: 2px dashed var(--accent-purple);
+      margin-bottom: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 15px;
+      padding: 10px;
+      border-radius: 15px;
+      background: #fafafa;
+    }
+
+    .sign-card {
+      width: 100px;
+      height: 120px;
+      background: var(--card-purple);
+      border-radius: 10px;
+      cursor: pointer;
+      transition: transform 0.2s, background 0.2s;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      border: 2px solid transparent;
+    }
+
+    .sign-card:hover { transform: translateY(-5px); background: #d1a3d6; }
+    .sign-card img { width: 70px; height: 70px; object-fit: contain; }
+    .sign-card span { font-weight: bold; margin-top: 5px; font-size: 0.9rem; }
+
+    .options-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+      gap: 15px;
+      margin-top: 20px;
+    }
+
+    /* Controls */
+    .controls { margin-top: 30px; display: flex; justify-content: center; gap: 20px; }
+    button {
+      padding: 12px 30px;
+      font-size: 18px;
+      font-weight: bold;
+      border-radius: 50px;
+      border: none;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    .btn-check { background: var(--nav-purple); color: white; }
+    .btn-check:hover { background: var(--accent-purple); }
+    .btn-reset { background: #eee; color: #666; }
+
+    #feedback { margin-top: 20px; font-weight: bold; font-size: 1.1rem; }
+    .success { color: var(--success-green); }
+    .error { color: var(--error-red); }
+
+  </style>
+</head>
+<body>
+
+  <nav class="dashboard">
+    <a href="index.html" class="home-icon"><i class="fas fa-house"></i></a>
+    <div class="nav-links">
+      <a href="Alphabet.html">Alphabet</a>
+      <a href="WordsPhrases.html">Phrases</a>
+    </div>
+  </nav>
+
+  <header>
+    <h1>Scenario Challenge</h1>
+    <p>Apply your skills: Communicate effectively in social situations.</p>
+  </header>
+
+  <div class="game-container">
+    <div id="game-ui">
+      <div class="scenario-box">
+        <h3 id="scenario-title">Scenario 1: At the Cafe</h3>
+        <p id="scenario-desc">You want to order <strong>"Two Coffees"</strong>. Select the signs in the correct order.</p>
+      </div>
+
+      <p>Your Sequence:</p>
+      <div class="sequence-display" id="player-sequence">
+        <span style="color: #999;">Click signs below to build your sentence...</span>
+      </div>
+
+      <div class="options-grid" id="options-bin">
+        </div>
+
+      <div class="controls">
+        <button class="btn-reset" onclick="resetSequence()">Reset</button>
+        <button class="btn-check" onclick="checkAnswer()">Check Answer</button>
+      </div>
+      <div id="feedback"></div>
+    </div>
+  </div>
+
+  <script>
+    const scenarios = [
+      {
+        title: "Scenario 1: At the Cafe",
+        desc: "You want to order <strong>'2 Coffees'</strong>.",
+        correctOrder: ["2", "Coffee"],
+        options: [
+          {id: "Coffee", img: "https://img.icons8.com/ios/100/4a148c/coffee-beans.png", label: "COFFEE"},
+          {id: "2", img: "https://o.quizlet.com/p8vVnE-V6.Wf-vY-4.8.fA.jpg", label: "TWO"},
+          {id: "Please", img: "https://img.icons8.com/ios/100/4a148c/hand.png", label: "PLEASE"},
+          {id: "10", img: "https://i.pinimg.com/736x/2d/22/92/2d2292c3d8418ca133ded9902dd365a0.jpg", label: "TEN"}
+        ]
+      },
+      {
+        title: "Scenario 2: Meeting a Friend",
+        desc: "Tell someone <strong>'I am 20'</strong>.",
+        correctOrder: ["I", "20"],
+        options: [
+          {id: "20", img: "https://o.quizlet.com/lb28rV2gRt4cWBhJT.5ZoA.jpg", label: "TWENTY"},
+          {id: "I", img: "https://img.icons8.com/ios/100/4a148c/pointing-up.png", label: "I/ME"},
+          {id: "3", img: "https://ecdn.teacherspayteachers.com/cdn-cgi/image/format=avif,quality=70,onerror=redirect/thumbitem/Numbers-1-5-visual-2098774-1500873693/750f-2098774-1.jpg", label: "THREE"},
+          {id: "Hello", img: "https://img.icons8.com/ios/100/4a148c/waving-hand.png", label: "HELLO"}
+        ]
+      }
+    ];
+
+    let currentScenario = 0;
+    let playerSeq = [];
+
+    function loadScenario() {
+      const s = scenarios[currentScenario];
+      document.getElementById('scenario-title').innerText = s.title;
+      document.getElementById('scenario-desc').innerHTML = s.desc;
+      document.getElementById('feedback').innerText = "";
+      playerSeq = [];
+      updateDisplay();
+      
+      const bin = document.getElementById('options-bin');
+      bin.innerHTML = "";
+      s.options.forEach(opt => {
+        const div = document.createElement('div');
+        div.className = "sign-card";
+        div.onclick = () => addToSequence(opt.id, opt.img, opt.label);
+        div.innerHTML = `<img src="${opt.img}" alt="${opt.label}"><span>${opt.label}</span>`;
+        bin.appendChild(div);
+      });
+    }
+
+    function addToSequence(id, img, label) {
+      playerSeq.push(id);
+      updateDisplay();
+    }
+
+    function updateDisplay() {
+      const display = document.getElementById('player-sequence');
+      if(playerSeq.length === 0) {
+        display.innerHTML = '<span style="color: #999;">Click signs below to build your sentence...</span>';
+        return;
+      }
+      
+      display.innerHTML = playerSeq.map(id => {
+        const item = scenarios[currentScenario].options.find(o => o.id === id);
+        return `<div class="sign-card" style="cursor:default"><img src="${item.img}"><span>${item.label}</span></div>`;
+      }).join('');
+    }
+
+    function resetSequence() {
+      playerSeq = [];
+      updateDisplay();
+      document.getElementById('feedback').innerText = "";
+    }
+
+    function checkAnswer() {
+      const correct = scenarios[currentScenario].correctOrder;
+      const feedback = document.getElementById('feedback');
+      
+      if(JSON.stringify(playerSeq) === JSON.stringify(correct)) {
+        feedback.className = "success";
+        feedback.innerText = "Correct! Well signed!";
+        setTimeout(() => {
+          currentScenario++;
+          if(currentScenario < scenarios.length) loadScenario();
+          else feedback.innerText = "🎉 You've completed all scenarios!";
+        }, 1500);
+      } else {
+        feedback.className = "error";
+        feedback.innerText = "Not quite. Check the sign order and try again!";
+      }
+    }
+
+    loadScenario();
+  </script>
 </body>
 </html>
