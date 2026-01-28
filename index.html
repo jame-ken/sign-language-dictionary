@@ -3,215 +3,114 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SignLingo | Home</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <title>Common Words and Phrases</title>
   <style>
     :root {
-      --bg-purple: #f8f1fb;
-      --card-purple: #ffffff;
-      --nav-purple: #6a1b9a;
-      --text-purple: #2e004f;
-      --accent-purple: #9c27b0;
+      --bg-purple: #f3e5f5;
+      --nav-purple: #7b1fa2;
+      --text-purple: #4a148c;
     }
 
     body {
-      font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-      background-color: var(--bg-purple);
-      color: var(--text-purple);
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background: #F7E6CD; /* Keeping your original background color */
+      text-align: center;
+      padding: 50px;
       margin: 0;
-      line-height: 1.6;
     }
 
-    /* Navigation */
-    .dashboard {
-      background-color: var(--nav-purple);
-      padding: 15px 40px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-    }
+    h1 { color: #333; font-size: 3rem; margin-bottom: 10px; }
+    p { color: #555; line-height: 1.6; }
 
-    .nav-links a {
-      color: white;
-      text-decoration: none;
-      font-size: 20px;
-      font-weight: 600;
-      margin-left: 30px;
-      transition: all 0.3s ease;
-    }
-
-    .nav-links a:hover { color: var(--card-purple); opacity: 0.8; }
-    .home-icon { font-size: 28px; color: white; }
-
-    /* Hero/Welcome Section */
-    .welcome-section {
-      text-align: center;
-      padding: 80px 10%;
-      background: white;
-      border-radius: 0 0 50px 50px;
+    .nav-bar {
       margin-bottom: 40px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.05);
     }
 
-    .welcome-section h1 {
+    .nav-link {
+      font-size: 40px; 
+      margin-right: 20px; 
+      margin-left: 20px; 
+      text-decoration: none;
       color: var(--nav-purple);
-      font-size: 3.5rem;
-      margin-bottom: 20px;
+      font-weight: bold;
     }
 
-    .welcome-section p {
-      font-size: 1.25rem;
-      max-width: 800px;
+    .nav-link:hover {
+      text-decoration: underline;
+    }
+
+    .main-image {
+      max-width: 90%;
+      height: auto;
+      border-radius: 15px;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+      margin: 30px 0;
+    }
+
+    .content-container {
+      max-width: 1000px;
       margin: 0 auto;
-      color: #555;
-    }
-
-    /* History Section */
-    .history-section {
-      padding: 60px 10%;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-
-    .history-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 30px;
-      margin-top: 30px;
-    }
-
-    .history-card {
-      background: var(--card-purple);
-      padding: 30px;
-      border-radius: 20px;
-      border-left: 8px solid var(--accent-purple);
-      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-    }
-
-    .history-card h4 {
-      margin-top: 0;
-      color: var(--nav-purple);
-      font-size: 1.4rem;
-    }
-
-    /* Tips Section */
-    .tips-section {
-      background: var(--nav-purple);
-      color: white;
-      padding: 80px 10%;
-      margin-top: 60px;
-      text-align: center;
-    }
-
-    .tips-container {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 40px;
-      margin-top: 40px;
-    }
-
-    .tip-item {
-      width: 280px;
-      padding: 20px;
-      transition: transform 0.3s ease;
-    }
-
-    .tip-item:hover { transform: translateY(-10px); }
-
-    .tip-item i {
-      font-size: 3rem;
-      margin-bottom: 20px;
-      color: #e1bee7;
-    }
-
-    footer {
-      text-align: center;
+      background: rgba(255, 255, 255, 0.5);
       padding: 40px;
-      font-size: 0.9rem;
-      color: #888;
+      border-radius: 20px;
     }
 
-    @media (max-width: 850px) {
-      .history-grid { grid-template-columns: 1fr; }
-      .welcome-section h1 { font-size: 2.5rem; }
+    .history-section {
+      text-align: left;
+      margin-top: 40px;
+      padding: 20px;
+      border-top: 2px solid #333;
     }
   </style>
 </head>
 <body>
 
-  <nav class="dashboard">
-    <a href="index.html" class="home-icon"><i class="fas fa-house"></i></a>
-    <div class="nav-links">
-      <a href="Alphabet.html">Alphabet</a>
-      <a href="Numbers.html">Numbers</a>
-      <a href="WordsPhrases.html">Phrases</a>
-    </div>
-  </nav>
+  <div class="nav-bar">
+    <a href="index.html" class="nav-link">Home</a>
+    <a href="Alphabet.html" class="nav-link">Alphabet</a>
+    <a href="Numbers.html" class="nav-link">Numbers</a>
+  </div>
 
-  <section class="welcome-section">
+  <div class="content-container">
     <h1>Welcome to SignLingo</h1>
-    <p>
-      SignLingo is your interactive gateway to the vibrant world of <strong>American Sign Language (ASL)</strong>. 
-      We break down communication barriers by providing a structured, visual platform designed to help you start your 
-      signing journey with confidence and cultural respect.
-    </p>
-  </section>
+    
+    <img src="https://www.startasl.com/wp-content/uploads/elementor/thumbs/asl-signs-new-1-pdu2d1bw3nfvstyfk5mib1b8agk3t2b2ywn5ytrz7k.jpeg" 
+         alt="ASL Numbers 1 through 20" class="main-image">
 
-  <section class="history-section">
-    <h2 style="font-size: 2.5rem; border-bottom: 4px solid var(--accent-purple); display: inline-block; margin-bottom: 20px;">The Roots of ASL</h2>
-    <p style="font-size: 1.1rem;">
-      American Sign Language is a <strong>complete, natural language</strong> with its own unique grammar and syntax, 
-      distinct from English. Its history is a powerful story of community and resilience.
+    <p style="font-size: 28px; text-align: center; font-weight: 500;">
+      SignLingo is your gateway to American Sign Language. This chart illustrates essential phrases for daily etiquette: 
+      <strong>HELLO</strong> (a salute from the head), <strong>GOODBYE</strong> (an open wave), <strong>PLEASE</strong> 
+      (a circular chest motion), <strong>THANK YOU</strong> (chin outward), <strong>YES</strong> (nodding fist), and 
+      <strong>NO</strong> (fingers snapping to thumb). Mastering these basics opens the door to meaningful connection.
     </p>
 
-    <div class="history-grid">
-      <div class="history-card">
-        <h4>Origins & Influence</h4>
-        <p>
-          In 1817, <strong>Thomas Hopkins Gallaudet</strong> and <strong>Laurent Clerc</strong> (a deaf educator from France) 
-          founded the first school for the deaf in Hartford, CT. ASL evolved from a beautiful blend of French Sign Language (LSF) 
-          and various indigenous "village signs" used across early America.
-        </p>
-      </div>
-      <div class="history-card">
-        <h4>Cultural Identity</h4>
-        <p>
-          ASL is the heart of <strong>Deaf Culture</strong>. Despite historical attempts to suppress signing in favor of 
-          speech, the Deaf community has fought to preserve ASL as a sophisticated linguistic system. It is a visual 
-          expression of identity, history, and shared experience.
-        </p>
-      </div>
-    </div>
-  </section>
+    <hr>
 
-  <section class="tips-section">
-    <h2>Pro-Tips for New Signers</h2>
-    <div class="tips-container">
-      <div class="tip-item">
-        <i class="fas fa-eye"></i>
-        <h4>Eye Contact</h4>
-        <p>In ASL, eye contact is grammar. Looking away during a conversation is considered dismissive, much like walking away mid-sentence.</p>
-      </div>
-      <div class="tip-item">
-        <i class="fas fa-face-smile"></i>
-        <h4>Use Your Face</h4>
-        <p>Facial expressions act as the "adverbs" and "adjectives" of ASL. Your face tells the listener if you are asking a question or making a statement.</p>
-      </div>
-      <div class="tip-item">
-        <i class="fas fa-hand-sparkles"></i>
-        <h4>Dominant Hand</h4>
-        <p>Consistency is key. Use your writing hand for primary movements. Switching hands mid-conversation is like changing your accent every five seconds!</p>
-      </div>
+    <div class="history-section">
+      <h2 style="color: var(--nav-purple);">The Rich History of ASL</h2>
+      <p style="font-size: 20px;">
+        American Sign Language (ASL) is not just English on the hands—it is a complete, natural language with its own complex grammar. 
+        Its journey began in <strong>1817</strong> when <strong>Thomas Hopkins Gallaudet</strong> and <strong>Laurent Clerc</strong> 
+        founded the first school for the deaf in Hartford, Connecticut. 
+      </p>
+      <p style="font-size: 20px;">
+        ASL was born from a mix of French Sign Language (LSF) and local American "village signs." For years, the language 
+        faced "Oralism," where signing was banned in schools to force speech. However, the Deaf community fought for their 
+        linguistic rights, culminating in the <strong>"Deaf President Now"</strong> movement of 1988, which solidified ASL's 
+        place as a sophisticated and respected language in academia and culture.
+      </p>
+      
+      <h2 style="color: var(--nav-purple); margin-top: 30px;">Key Beginner Tips</h2>
+      <ul style="text-align: left; font-size: 20px; color: #444;">
+        <li><strong>Eye Contact:</strong> In ASL, eye contact is as important as the signs themselves. Looking away is like walking away during a conversation.</li>
+        <li><strong>Facial Grammar:</strong> Your eyebrows and mouth act as the "tone" of your voice. A raised eyebrow can change a statement into a question.</li>
+        <li><strong>Dominant Hand:</strong> Always use your primary hand (the one you write with) to lead your signs to avoid confusing the viewer.</li>
+      </ul>
     </div>
-  </section>
+  </div>
 
-  <footer>
-    <p>&copy; 2024 SignLingo. Dedicated to inclusive communication.</p>
+  <footer style="margin-top: 50px; color: #888;">
+    <p>&copy; 2026 SignLingo Project</p>
   </footer>
 
 </body>
