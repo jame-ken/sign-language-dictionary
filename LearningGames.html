@@ -28,7 +28,6 @@
       text-align: center;
     }
 
-    /* Navigation */
     .dashboard {
       background-color: var(--nav-purple);
       padding: 15px 40px;
@@ -40,14 +39,10 @@
       z-index: 1000;
       color: white;
     }
-    .nav-links a { color: white; text-decoration: none; font-size: 22px; font-weight: bold; margin-left: 30px; }
-    .home-icon { font-size: 32px; color: white; }
-
-    header { padding: 40px 20px; }
 
     .game-container {
       max-width: 800px;
-      margin: 0 auto 20px auto;
+      margin: 20px auto;
       padding: 25px;
       background: white;
       border-radius: 25px;
@@ -55,7 +50,6 @@
       border: 3px solid var(--accent-purple);
     }
 
-    /* Monster Battle UI */
     .boss-container {
       background: #fafafa;
       border: 4px solid var(--nav-purple);
@@ -63,15 +57,14 @@
       padding: 30px;
       margin-bottom: 20px;
       transition: all 0.3s ease;
-      position: relative;
     }
+
     .boss-level-bg { border-color: var(--boss-red) !important; background: #ffebee !important; }
     
     .boss-sprite { 
       font-size: 100px; 
       margin: 15px 0; 
       animation: float 3s ease-in-out infinite; 
-      display: block;
     }
     @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-15px); } }
 
@@ -84,14 +77,12 @@
       gap: 12px;
       margin: 20px 0;
       flex-wrap: wrap;
-      min-height: 60px;
     }
 
     .slot {
       width: 50px; height: 65px; border: 2px solid var(--nav-purple);
       border-radius: 12px; display: flex; align-items: center; justify-content: center;
       font-size: 28px; font-weight: bold; background: #eee; color: transparent;
-      transition: all 0.2s;
     }
     .slot.active { background: white; color: var(--nav-purple); border-width: 4px; transform: scale(1.15); box-shadow: 0 0 15px var(--accent-purple); }
     .slot.revealed { background: #c8e6c9; color: var(--text-purple); border-color: #4caf50; }
@@ -100,7 +91,6 @@
       display: grid; 
       grid-template-columns: repeat(auto-fit, minmax(110px, 1fr)); 
       gap: 15px; 
-      margin-top: 25px; 
     }
 
     .attack-btn {
@@ -109,55 +99,58 @@
       transition: 0.2s; box-shadow: 0 5px 0 var(--accent-purple);
       display: flex; flex-direction: column; align-items: center;
     }
-    .attack-btn:hover { transform: translateY(-3px); background: var(--bg-purple); }
-    .attack-btn:active { transform: translateY(2px); box-shadow: none; }
+    .attack-btn:hover { transform: translateY(-3px); }
     .attack-btn img { width: 80px; height: 80px; object-fit: contain; pointer-events: none; }
 
-    #battle-log { font-weight: bold; min-height: 30px; margin-top: 15px; font-size: 1.2rem; }
+    #battle-log { font-weight: bold; font-size: 1.2rem; margin-top: 15px; }
+    
+    .victory-screen { display: none; padding: 50px; }
+    .victory-screen i { font-size: 80px; color: gold; margin-bottom: 20px; }
   </style>
 </head>
 <body>
 
   <nav class="dashboard">
-    <a href="index.html" class="home-icon"><i class="fas fa-house"></i></a>
+    <a href="#" onclick="location.reload()" style="color:white;"><i class="fas fa-redo"></i></a>
     <div style="font-size: 1.2rem; font-weight: bold;">
         Stage: <span id="lvl-display">1</span> | Unlocked: <span id="col-count">0</span>/26
     </div>
-    <div class="nav-links">
-      <a href="Alphabet.html">Alphabet</a>
-      <a href="WordsPhrases.html">Phrases</a>
-    </div>
+    <div style="font-weight:bold;">DEFENSE ARENA</div>
   </nav>
 
-  <header>
-    <h1>Monster Defense Arena</h1>
-    <p>Defeat the monsters by matching the ASL hand signs!</p>
-  </header>
+  <div id="game-ui">
+    <header>
+      <h1>Monster Defense Arena</h1>
+      <p>Master the alphabet to defeat the horde!</p>
+    </header>
 
-  <div class="game-container">
-    <div class="timer-bar"><div id="timer-fill"></div></div>
-    
-    <div class="boss-container" id="boss-box">
-      <h2 id="m-name" style="margin-top: 0;">Wandering Slime</h2>
-      <div class="boss-sprite" id="m-sprite">👾</div>
-      <div id="battle-log">Pick a starting sign to begin!</div>
-      <div class="sequence-tracker" id="seq-tracker"></div>
+    <div class="game-container">
+      <div class="timer-bar"><div id="timer-fill"></div></div>
+      
+      <div class="boss-container" id="boss-box">
+        <h2 id="m-name">Wandering Slime</h2>
+        <div class="boss-sprite" id="m-sprite">👾</div>
+        <div id="battle-log">Choose a starter sign!</div>
+        <div class="sequence-tracker" id="seq-tracker"></div>
+      </div>
+
+      <div class="attack-grid" id="attack-options"></div>
     </div>
+  </div>
 
-    <div class="attack-grid" id="attack-options"></div>
+  <div id="victory-ui" class="victory-screen">
+    <i class="fas fa-trophy"></i>
+    <h1>ALPHABET MASTERED!</h1>
+    <p>You have successfully unlocked and signed every letter in the alphabet.</p>
+    <button onclick="location.reload()" style="padding: 15px 30px; border-radius: 50px; cursor:pointer; background:var(--nav-purple); color:white; border:none; font-weight:bold;">PLAY AGAIN</button>
   </div>
 
   <script>
     const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
-    
     const enemies = [
-      { name: "Wandering Slime", emoji: "👾", baseLen: 2 },
-      { name: "Cursed Totem", emoji: "🗿", baseLen: 3 },
-      { name: "Angry Cactus", emoji: "🌵", baseLen: 3 },
-      { name: "Deep Sea Terror", emoji: "🐙", baseLen: 4 },
-      { name: "Magma Golem", emoji: "🌋", baseLen: 4 },
-      { name: "Void Wraith", emoji: "👻", baseLen: 5 },
-      { name: "Ancient Dragon", emoji: "🐲", baseLen: 5 }
+      { name: "Slime", emoji: "👾" }, { name: "Golem", emoji: "🌋" }, 
+      { name: "Cactus", emoji: "🌵" }, { name: "Wraith", emoji: "👻" },
+      { name: "Kraken", emoji: "🐙" }, { name: "Dragon", emoji: "🐲" }
     ];
 
     let unlockedSigns = [];
@@ -171,55 +164,52 @@
     function setupStarter() {
       const grid = document.getElementById('attack-options');
       grid.innerHTML = "";
-      // Give the player a choice of their first letter to master
       ["A", "B", "C"].forEach(letter => {
         const btn = document.createElement('div');
         btn.className = 'attack-btn';
         btn.innerHTML = `<img src="https://www.lifeprint.com/asl101/fingerspelling/abc-gifs/${letter.toLowerCase()}.gif"><div>Unlock ${letter}</div>`;
-        btn.onclick = () => {
-          unlockedSigns.push(letter);
-          startStage();
-        };
+        btn.onclick = () => { unlockedSigns.push(letter); startStage(); };
         grid.appendChild(btn);
       });
     }
 
     function startStage() {
+      // Check for Game Completion
+      if (unlockedSigns.length >= 26 && level > 26) {
+          showFinalVictory();
+          return;
+      }
+
       currentIndex = 0;
       const isBoss = level % 5 === 0;
-      const enemyData = isBoss ? 
-        { name: "BOSS: DRAGON KING", emoji: "👹", baseLen: 6 } : 
-        enemies[(level - 1) % enemies.length];
+      const enemyIdx = (level - 1) % enemies.length;
       
-      const box = document.getElementById('boss-box');
-      box.className = isBoss ? "boss-container boss-level-bg" : "boss-container";
-      
-      document.getElementById('m-name').innerText = enemyData.name;
-      document.getElementById('m-sprite').innerText = enemyData.emoji;
+      document.getElementById('boss-box').className = isBoss ? "boss-container boss-level-bg" : "boss-container";
+      document.getElementById('m-name').innerText = isBoss ? "ELITE " + enemies[enemyIdx].name : enemies[enemyIdx].name;
+      document.getElementById('m-sprite').innerText = enemies[enemyIdx].emoji;
       document.getElementById('lvl-display').innerText = level;
       document.getElementById('col-count').innerText = unlockedSigns.length;
 
-      // Difficulty Scaling: Timer gets tighter as levels increase
-      timeLimit = Math.max(4, 16 - (level * 1.0));
-      if(isBoss) timeLimit -= 1; 
+      // Timer tightens as level increases
+      timeLimit = Math.max(3, 15 - (level * 0.4));
       timeLeft = timeLimit;
       
-      generateSequence(enemyData.baseLen + Math.floor(level/4));
+      generateSequence();
       renderBattle();
       startTimer();
     }
 
-    function generateSequence(len) {
+    function generateSequence() {
       currentSequence = [];
+      // Sequence gets longer every 3 levels
+      let len = 2 + Math.floor(level / 3);
       for(let i=0; i<len; i++) {
         currentSequence.push(unlockedSigns[Math.floor(Math.random() * unlockedSigns.length)]);
       }
     }
 
     function renderBattle() {
-      const tracker = document.getElementById('seq-tracker');
-      // Letters are transparent unless they have the 'active' or 'revealed' class
-      tracker.innerHTML = currentSequence.map((char, i) => `
+      document.getElementById('seq-tracker').innerHTML = currentSequence.map((char, i) => `
         <div class="slot ${i === 0 ? 'active' : ''}" id="slot-${i}">${char}</div>
       `).join('');
 
@@ -232,60 +222,56 @@
         btn.onclick = () => handleAttack(char);
         grid.appendChild(btn);
       });
-      document.getElementById('battle-log').innerText = "Defend! Sign: " + currentSequence[0];
+      document.getElementById('battle-log').innerText = "Target: " + currentSequence[0];
     }
 
     function handleAttack(char) {
       if(char === currentSequence[currentIndex]) {
         document.getElementById(`slot-${currentIndex}`).className = "slot revealed";
         currentIndex++;
-        
         if(currentIndex < currentSequence.length) {
           document.getElementById(`slot-${currentIndex}`).className = "slot active";
-          document.getElementById('battle-log').innerText = "Hit! Next: " + currentSequence[currentIndex];
-        } else {
-          victory();
-        }
+          document.getElementById('battle-log').innerText = "Target: " + currentSequence[currentIndex];
+        } else { victory(); }
       } else {
-        timeLeft -= 1.5; // Penalty for wrong choice
-        document.getElementById('battle-log').innerText = "Miss! -1.5s";
+        timeLeft -= 1.0;
+        document.getElementById('battle-log').innerText = "WRONG! -1s";
       }
     }
 
     function victory() {
       clearInterval(timerInterval);
-      const isBoss = level % 5 === 0;
       level++;
       
-      let unlocksGained = isBoss ? 2 : 1;
-      let newLetters = [];
+      const remaining = alphabet.filter(l => !unlockedSigns.includes(l));
+      let unlockMsg = "";
 
-      for(let i=0; i<unlocksGained; i++) {
-        const remaining = alphabet.filter(l => !unlockedSigns.includes(l));
-        if(remaining.length > 0) {
-          const gain = remaining[Math.floor(Math.random() * remaining.length)];
-          unlockedSigns.push(gain);
-          newLetters.push(gain);
-        }
+      if(remaining.length > 0) {
+        const gain = remaining[0]; // Unlocks in alphabetical order for clarity
+        unlockedSigns.push(gain);
+        unlockMsg = " | Unlocked: " + gain;
       }
       
-      document.getElementById('battle-log').innerText = `Enemy Defeated! New signs: ${newLetters.join(", ")}`;
-      setTimeout(startStage, 2000);
+      document.getElementById('battle-log').innerText = "VICTORY!" + unlockMsg;
+      setTimeout(startStage, 1500);
     }
 
     function startTimer() {
       clearInterval(timerInterval);
       timerInterval = setInterval(() => {
         timeLeft -= 0.1;
-        const percent = (timeLeft / timeLimit) * 100;
-        document.getElementById('timer-fill').style.width = percent + "%";
-        
+        document.getElementById('timer-fill').style.width = (timeLeft / timeLimit) * 100 + "%";
         if(timeLeft <= 0) {
           clearInterval(timerInterval);
-          document.getElementById('battle-log').innerText = "The monster got away! Try again.";
+          document.getElementById('battle-log').innerText = "GAME OVER!";
           setTimeout(() => location.reload(), 2000);
         }
       }, 100);
+    }
+
+    function showFinalVictory() {
+        document.getElementById('game-ui').style.display = 'none';
+        document.getElementById('victory-ui').style.display = 'block';
     }
 
     setupStarter();
