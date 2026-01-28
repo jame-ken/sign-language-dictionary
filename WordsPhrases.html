@@ -89,7 +89,7 @@
     }
     .slot.active { background: white; color: var(--nav-purple); border-width: 4px; }
     .slot.revealed { background: #c8e6c9; color: var(--text-purple); border-color: #4caf50; }
-    .ultra-mode .slot.active { color: #00ffcc; background: #222; }
+    .ultra-mode .slot.active { color: #00ffcc; background: #222; border-color: #00ffcc; }
 
     .attack-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(80px, 1fr)); gap: 10px; margin-top: 20px; }
 
@@ -133,7 +133,7 @@
     <div class="boss-container" id="boss-box">
       <h2 id="m-name" style="margin: 0;">??</h2>
       <div class="boss-sprite" id="m-sprite">❓</div>
-      <div id="battle-log">Match the signs to defeat the monster!</div>
+      <div id="battle-log">Identify the hand signs to strike!</div>
       <div class="sequence-tracker" id="seq-tracker"></div>
     </div>
 
@@ -190,7 +190,8 @@
 
       currentIndex = 0;
       const isBoss = isUltraMode || level % 5 === 0;
-      const monster = monsters[Math.floor(Math.random() * monsters.length)];
+      const monsterIdx = Math.floor(Math.random() * monsters.length);
+      const monster = monsters[monsterIdx];
       
       document.getElementById('m-name').innerText = isBoss ? "BOSS " + monster.name : monster.name;
       document.getElementById('m-sprite').innerText = isUltraMode ? "💀" : monster.icon;
@@ -222,6 +223,7 @@
 
       const grid = document.getElementById('attack-options');
       grid.innerHTML = "";
+      // Order is preserved by gained sequence
       unlockedSigns.forEach(char => {
         const btn = document.createElement('div');
         btn.className = 'attack-btn';
@@ -229,7 +231,7 @@
         btn.onclick = () => handleInput(char);
         grid.appendChild(btn);
       });
-      document.getElementById('battle-log').innerText = "Watch the sequence and sign back!";
+      document.getElementById('battle-log').innerText = "Sign the letters shown in the sequence slots!";
     }
 
     function handleInput(char) {
@@ -246,7 +248,7 @@
         }
       } else {
         timeLeft -= 1.5;
-        document.getElementById('battle-log').innerText = "MISMATCH! -1.5s";
+        document.getElementById('battle-log').innerText = "WRONG SIGN! -1.5s";
       }
     }
 
@@ -263,9 +265,9 @@
         const randIdx = Math.floor(Math.random() * alphabetPool.length);
         const gain = alphabetPool.splice(randIdx, 1)[0];
         unlockedSigns.push(gain);
-        document.getElementById('battle-log').innerText = "GESTURE UNLOCKED!";
+        document.getElementById('battle-log').innerText = "NEW SIGN GAINED!";
       } else {
-        document.getElementById('battle-log').innerText = "ENEMY DEFEATED!";
+        document.getElementById('battle-log').innerText = "MONSTER DEFEATED!";
       }
       
       level++;
