@@ -27,7 +27,8 @@
       background-color: var(--nav-purple);
       padding: 15px 40px;
       display: flex;
-      justify-content: space-between;
+      /* Changed to flex-end to keep links on the right now that home is gone */
+      justify-content: flex-end; 
       align-items: center;
       position: sticky;
       top: 0;
@@ -43,7 +44,9 @@
       margin-left: 30px;
     }
 
-    .home-icon { font-size: 32px; color: white; }
+    .nav-links a:hover {
+      text-decoration: underline;
+    }
 
     header {
       text-align: center;
@@ -125,13 +128,14 @@
       .info-row { flex-direction: column; text-align: center; }
       .info-text { text-align: center; }
       .logo-container h1 { font-size: 60px; }
+      .dashboard { justify-content: center; } /* Center links on mobile */
+      .nav-links a { margin: 0 15px; }
     }
   </style>
 </head>
 <body>
 
   <nav class="dashboard">
-    <a href="index.html" class="home-icon"><i class="fas fa-house"></i></a>
     <div class="nav-links">
       <a href="Alphabet.html">Alphabet</a>
       <a href="Numbers.html">Numbers</a>
