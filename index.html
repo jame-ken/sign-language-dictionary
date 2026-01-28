@@ -3,114 +3,176 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Common Words and Phrases</title>
+  <title>SignLingo | Master ASL Phrases</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
   <style>
     :root {
-      --bg-purple: #f3e5f5;
-      --nav-purple: #7b1fa2;
-      --text-purple: #4a148c;
+      --bg-purple: #f3e5f5;      /* Lavender Mist */
+      --card-purple: #e1bee7;    /* Lavender */
+      --nav-purple: #7b1fa2;     /* Deep Purple */
+      --text-purple: #4a148c;    /* Indigo Purple */
+      --accent-purple: #9c27b0;  /* Amethyst */
     }
 
     body {
       font-family: 'Segoe UI', Arial, sans-serif;
-      background: #F7E6CD; /* Keeping your original background color */
-      text-align: center;
-      padding: 50px;
+      background-color: var(--bg-purple);
+      color: var(--text-purple);
       margin: 0;
+      padding-bottom: 50px;
     }
 
-    h1 { color: #333; font-size: 3rem; margin-bottom: 10px; }
-    p { color: #555; line-height: 1.6; }
-
-    .nav-bar {
-      margin-bottom: 40px;
+    /* Dashboard Styling */
+    .dashboard {
+      background-color: var(--nav-purple);
+      padding: 15px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
     }
 
-    .nav-link {
-      font-size: 40px; 
-      margin-right: 20px; 
-      margin-left: 20px; 
+    .nav-links a {
+      color: white;
       text-decoration: none;
-      color: var(--nav-purple);
+      font-size: 22px;
       font-weight: bold;
+      margin-left: 30px;
+      transition: opacity 0.3s;
     }
 
-    .nav-link:hover {
-      text-decoration: underline;
-    }
+    .nav-links a:hover { opacity: 0.8; }
+    .home-icon { font-size: 32px; color: white; }
 
-    .main-image {
-      max-width: 90%;
-      height: auto;
-      border-radius: 15px;
-      box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-      margin: 30px 0;
-    }
+    header { text-align: center; padding: 50px 20px; }
+    h1 { font-size: 3.5rem; margin-bottom: 10px; }
 
-    .content-container {
-      max-width: 1000px;
+    .main-container {
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
+      padding: 0 5%;
+      max-width: 1100px;
       margin: 0 auto;
-      background: rgba(255, 255, 255, 0.5);
-      padding: 40px;
-      border-radius: 20px;
     }
 
-    .history-section {
-      text-align: left;
-      margin-top: 40px;
-      padding: 20px;
-      border-top: 2px solid #333;
+    /* Welcome/Intro Section */
+    .intro-box {
+      background-color: white;
+      border-radius: 25px;
+      padding: 40px;
+      text-align: center;
+      box-shadow: 0 8px 20px rgba(74, 20, 140, 0.1);
+    }
+
+    .intro-box p {
+      font-size: 22px;
+      line-height: 1.6;
+      color: #333;
+    }
+
+    .main-asl-chart {
+      width: 100%;
+      max-width: 800px;
+      border-radius: 15px;
+      margin: 20px 0;
+      border: 5px solid var(--accent-purple);
+    }
+
+    /* History & Tips Section */
+    .info-row {
+      display: flex;
+      background-color: var(--card-purple);
+      border: 4px solid var(--accent-purple);
+      border-radius: 25px;
+      padding: 40px;
+      gap: 50px;
+      align-items: flex-start;
+    }
+
+    .info-column {
+      flex: 1;
+    }
+
+    .info-column h3 {
+      font-size: 28px;
+      border-bottom: 2px solid var(--nav-purple);
+      display: inline-block;
+      margin-bottom: 15px;
+    }
+
+    .info-column p, .info-column li {
+      font-size: 18px;
+      line-height: 1.5;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 850px) {
+      .info-row { flex-direction: column; }
     }
   </style>
 </head>
 <body>
 
-  <div class="nav-bar">
-    <a href="index.html" class="nav-link">Home</a>
-    <a href="Alphabet.html" class="nav-link">Alphabet</a>
-    <a href="Numbers.html" class="nav-link">Numbers</a>
-  </div>
-
-  <div class="content-container">
-    <h1>Welcome to SignLingo</h1>
-    
-    <img src="https://www.startasl.com/wp-content/uploads/elementor/thumbs/asl-signs-new-1-pdu2d1bw3nfvstyfk5mib1b8agk3t2b2ywn5ytrz7k.jpeg" 
-         alt="ASL Numbers 1 through 20" class="main-image">
-
-    <p style="font-size: 28px; text-align: center; font-weight: 500;">
-      SignLingo is your gateway to American Sign Language. This chart illustrates essential phrases for daily etiquette: 
-      <strong>HELLO</strong> (a salute from the head), <strong>GOODBYE</strong> (an open wave), <strong>PLEASE</strong> 
-      (a circular chest motion), <strong>THANK YOU</strong> (chin outward), <strong>YES</strong> (nodding fist), and 
-      <strong>NO</strong> (fingers snapping to thumb). Mastering these basics opens the door to meaningful connection.
-    </p>
-
-    <hr>
-
-    <div class="history-section">
-      <h2 style="color: var(--nav-purple);">The Rich History of ASL</h2>
-      <p style="font-size: 20px;">
-        American Sign Language (ASL) is not just English on the hands—it is a complete, natural language with its own complex grammar. 
-        Its journey began in <strong>1817</strong> when <strong>Thomas Hopkins Gallaudet</strong> and <strong>Laurent Clerc</strong> 
-        founded the first school for the deaf in Hartford, Connecticut. 
-      </p>
-      <p style="font-size: 20px;">
-        ASL was born from a mix of French Sign Language (LSF) and local American "village signs." For years, the language 
-        faced "Oralism," where signing was banned in schools to force speech. However, the Deaf community fought for their 
-        linguistic rights, culminating in the <strong>"Deaf President Now"</strong> movement of 1988, which solidified ASL's 
-        place as a sophisticated and respected language in academia and culture.
-      </p>
-      
-      <h2 style="color: var(--nav-purple); margin-top: 30px;">Key Beginner Tips</h2>
-      <ul style="text-align: left; font-size: 20px; color: #444;">
-        <li><strong>Eye Contact:</strong> In ASL, eye contact is as important as the signs themselves. Looking away is like walking away during a conversation.</li>
-        <li><strong>Facial Grammar:</strong> Your eyebrows and mouth act as the "tone" of your voice. A raised eyebrow can change a statement into a question.</li>
-        <li><strong>Dominant Hand:</strong> Always use your primary hand (the one you write with) to lead your signs to avoid confusing the viewer.</li>
-      </ul>
+  <nav class="dashboard">
+    <a href="index.html" class="home-icon"><i class="fas fa-house"></i></a>
+    <div class="nav-links">
+      <a href="Alphabet.html">Alphabet</a>
+      <a href="Numbers.html">Numbers</a>
     </div>
+  </nav>
+
+  <header>
+    <h1>Welcome to SignLingo</h1>
+    <p style="font-size: 20px; font-weight: bold;">Empowering connection through American Sign Language.</p>
+  </header>
+
+  <div class="main-container">
+    
+    <div class="intro-box">
+      <img src="https://www.startasl.com/wp-content/uploads/elementor/thumbs/asl-signs-new-1-pdu2d1bw3nfvstyfk5mib1b8agk3t2b2ywn5ytrz7k.jpeg" alt="ASL Phrases Chart" class="main-asl-chart">
+      <p>
+        SignLingo is your interactive gateway to the vibrant world of <strong>American Sign Language (ASL)</strong>. 
+        The chart above illustrates six essential phrases: <strong>HELLO</strong> involves a flat hand saluting from the head; 
+        <strong>GOODBYE</strong> is an open-hand wave; <strong>PLEASE</strong> uses a circular motion on the chest; 
+        <strong>THANK YOU</strong> moves from the chin outward; <strong>YES</strong> is a nodding fist; and 
+        <strong>NO</strong> is a quick snap of the fingers. Mastering these is the first step toward polite conversation.
+      </p>
+    </div>
+
+    <div class="info-row">
+      <div class="info-column">
+        <h3>The Roots of ASL</h3>
+        <p>
+          ASL is a <strong>complete, natural language</strong> with its own grammar, distinct from English. 
+          It was born in 1817 when <strong>Thomas Gallaudet</strong> and <strong>Laurent Clerc</strong> 
+          established the first school for the deaf in Hartford, CT. 
+        </p>
+        <p>
+          It evolved from a blend of French Sign Language (LSF) and local American village signs. 
+          For decades, the language was suppressed, but the 1988 "Deaf President Now" movement 
+          solidified ASL as a respected pillar of <strong>Deaf Culture</strong>.
+        </p>
+      </div>
+
+      <div class="info-column">
+        <h3>Essential Signing Tips</h3>
+        <ul style="padding-left: 20px;">
+          <li><strong>Eye Contact:</strong> In ASL, looking away is like walking out of a room while someone is speaking. Always maintain eye contact.</li>
+          <li><strong>Facial Grammar:</strong> Your eyebrows act as your "punctuation." Raised brows often indicate a question.</li>
+          <li><strong>Dominant Hand:</strong> Use the hand you write with for most signs. Consistency helps the viewer understand you clearly.</li>
+          <li><strong>Body Shift:</strong> Slight movements of your shoulders can indicate different people speaking in a story.</li>
+        </ul>
+      </div>
+    </div>
+
   </div>
 
-  <footer style="margin-top: 50px; color: #888;">
-    <p>&copy; 2026 SignLingo Project</p>
+  <footer style="text-align: center; margin-top: 50px; color: var(--nav-purple);">
+    <p>&copy; 2026 SignLingo Educational Project</p>
   </footer>
 
 </body>
