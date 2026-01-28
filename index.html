@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SignLingo | Master ASL Phrases</title>
+  <title>ASL Common Words & Phrases</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
   <style>
     :root {
@@ -48,9 +48,10 @@
     .home-icon { font-size: 32px; color: white; }
 
     header { text-align: center; padding: 50px 20px; }
-    h1 { font-size: 3.5rem; margin-bottom: 10px; }
+    h1 { font-size: 3rem; margin-bottom: 10px; }
 
-    .main-container {
+    /* Single Row Layout Container */
+    .phrase-container {
       display: flex;
       flex-direction: column;
       gap: 40px;
@@ -59,59 +60,65 @@
       margin: 0 auto;
     }
 
-    /* Welcome/Intro Section */
-    .intro-box {
-      background-color: white;
-      border-radius: 25px;
-      padding: 40px;
-      text-align: center;
-      box-shadow: 0 8px 20px rgba(74, 20, 140, 0.1);
-    }
-
-    .intro-box p {
-      font-size: 22px;
-      line-height: 1.6;
-      color: #333;
-    }
-
-    .main-asl-chart {
-      width: 100%;
-      max-width: 800px;
-      border-radius: 15px;
-      margin: 20px 0;
-      border: 5px solid var(--accent-purple);
-    }
-
-    /* History & Tips Section */
-    .info-row {
+    .letter-row {
       display: flex;
       background-color: var(--card-purple);
       border: 4px solid var(--accent-purple);
       border-radius: 25px;
       padding: 40px;
+      align-items: center;
       gap: 50px;
-      align-items: flex-start;
+      box-shadow: 0 8px 20px rgba(74, 20, 140, 0.1);
     }
 
-    .info-column {
+    .letter-display {
       flex: 1;
+      text-align: center;
     }
 
-    .info-column h3 {
-      font-size: 28px;
+    .letter-display h2 {
+      font-size: 50px; /* Reduced slightly for longer words */
+      margin: 0 0 20px 0;
+      color: var(--text-purple);
+      text-transform: uppercase;
+    }
+
+    .asl-image {
+      width: 300px;
+      height: 300px;
+      background-color: white;
+      border-radius: 20px;
+      object-fit: contain;
+      border: 3px solid var(--nav-purple);
+    }
+
+    .details {
+      flex: 1.5;
+      text-align: left;
+    }
+
+    .details h3 { 
+      font-size: 28px; 
+      margin-top: 0; 
+      color: var(--nav-purple);
       border-bottom: 2px solid var(--nav-purple);
       display: inline-block;
-      margin-bottom: 15px;
+    }
+    
+    .example-box {
+      background: rgba(255,255,255,0.5);
+      padding: 20px;
+      border-left: 6px solid var(--nav-purple);
+      margin-top: 20px;
+      border-radius: 0 10px 10px 0;
     }
 
-    .info-column p, .info-column li {
-      font-size: 18px;
-      line-height: 1.5;
-    }
+    .example-box strong { color: var(--nav-purple); }
 
-    /* Responsive adjustments */
     @media (max-width: 850px) {
-      .info-row { flex-direction: column; }
+      .letter-row { flex-direction: column; text-align: center; }
+      .details { text-align: center; }
+      .example-box { border-left: none; border-top: 6px solid var(--nav-purple); }
     }
   </style>
 </head>
@@ -126,54 +133,83 @@
   </nav>
 
   <header>
-    <h1>Welcome to SignLingo</h1>
-    <p style="font-size: 20px; font-weight: bold;">Empowering connection through American Sign Language.</p>
+    <h1>Words & Phrases</h1>
+    <p style="font-size: 20px;">Master high-frequency signs for daily social interactions.</p>
   </header>
 
-  <div class="main-container">
+  <div class="phrase-container">
     
-    <div class="intro-box">
-      <img src="https://www.startasl.com/wp-content/uploads/elementor/thumbs/asl-signs-new-1-pdu2d1bw3nfvstyfk5mib1b8agk3t2b2ywn5ytrz7k.jpeg" alt="ASL Phrases Chart" class="main-asl-chart">
-      <p>
-        SignLingo is your interactive gateway to the vibrant world of <strong>American Sign Language (ASL)</strong>. 
-        The chart above illustrates six essential phrases: <strong>HELLO</strong> involves a flat hand saluting from the head; 
-        <strong>GOODBYE</strong> is an open-hand wave; <strong>PLEASE</strong> uses a circular motion on the chest; 
-        <strong>THANK YOU</strong> moves from the chin outward; <strong>YES</strong> is a nodding fist; and 
-        <strong>NO</strong> is a quick snap of the fingers. Mastering these is the first step toward polite conversation.
-      </p>
+    <div class="letter-row">
+      <div class="letter-display">
+        <h2>Hello</h2>
+        <img src="https://www.lifeprint.com/asl101/gifs/h/hello.gif" alt="ASL Hello" class="asl-image">
+      </div>
+      <div class="details">
+        <h3>The Sign for Hello</h3>
+        <p>Touch the tips of your fingers to your forehead near your temple, then move your hand outward and away in a motion similar to a salute.</p>
+        <div class="example-box">
+          <strong>Usage Tip:</strong> This is a formal greeting. For friends, a simple wave (Goodbye shape) is often used as a casual "Hi."
+        </div>
+      </div>
     </div>
 
-    <div class="info-row">
-      <div class="info-column">
-        <h3>The Roots of ASL</h3>
-        <p>
-          ASL is a <strong>complete, natural language</strong> with its own grammar, distinct from English. 
-          It was born in 1817 when <strong>Thomas Gallaudet</strong> and <strong>Laurent Clerc</strong> 
-          established the first school for the deaf in Hartford, CT. 
-        </p>
-        <p>
-          It evolved from a blend of French Sign Language (LSF) and local American village signs. 
-          For decades, the language was suppressed, but the 1988 "Deaf President Now" movement 
-          solidified ASL as a respected pillar of <strong>Deaf Culture</strong>.
-        </p>
+    <div class="letter-row">
+      <div class="letter-display">
+        <h2>Please</h2>
+        <img src="https://www.lifeprint.com/asl101/gifs/p/please.gif" alt="ASL Please" class="asl-image">
       </div>
+      <div class="details">
+        <h3>The Sign for Please</h3>
+        <p>Place your flat hand (palm facing in) on the center of your chest and move it in a circular motion clockwise.</p>
+        <div class="example-box">
+          <strong>Usage Tip:</strong> This sign is essential for polite interaction. Using a larger circle can emphasize how much you really want something!
+        </div>
+      </div>
+    </div>
 
-      <div class="info-column">
-        <h3>Essential Signing Tips</h3>
-        <ul style="padding-left: 20px;">
-          <li><strong>Eye Contact:</strong> In ASL, looking away is like walking out of a room while someone is speaking. Always maintain eye contact.</li>
-          <li><strong>Facial Grammar:</strong> Your eyebrows act as your "punctuation." Raised brows often indicate a question.</li>
-          <li><strong>Dominant Hand:</strong> Use the hand you write with for most signs. Consistency helps the viewer understand you clearly.</li>
-          <li><strong>Body Shift:</strong> Slight movements of your shoulders can indicate different people speaking in a story.</li>
-        </ul>
+    <div class="letter-row">
+      <div class="letter-display">
+        <h2>Thanks</h2>
+        <img src="https://www.lifeprint.com/asl101/gifs/t/thank-you.gif" alt="ASL Thank You" class="asl-image">
+      </div>
+      <div class="details">
+        <h3>The Sign for Thank You</h3>
+        <p>Touch your fingertips to your chin with a flat hand, then move your hand forward and down toward the person you are talking to.</p>
+        <div class="example-box">
+          <strong>Common Error:</strong> Be careful not to start from the lips, as that can be confused with the sign for "Kiss." Start strictly at the chin.
+        </div>
+      </div>
+    </div>
+
+    <div class="letter-row">
+      <div class="letter-display">
+        <h2>Yes</h2>
+        <img src="https://www.lifeprint.com/asl101/gifs/y/yes.gif" alt="ASL Yes" class="asl-image">
+      </div>
+      <div class="details">
+        <h3>The Sign for Yes</h3>
+        <p>Make an "S" handshape (a fist) and tilt it up and down at the wrist, mimicking the motion of a head nodding.</p>
+        <div class="example-box">
+          <strong>Usage Tip:</strong> Always nod your head slightly while signing this to reinforce the affirmative meaning.
+        </div>
+      </div>
+    </div>
+
+    <div class="letter-row">
+      <div class="letter-display">
+        <h2>No</h2>
+        <img src="https://www.lifeprint.com/asl101/gifs/n/no.gif" alt="ASL No" class="asl-image">
+      </div>
+      <div class="details">
+        <h3>The Sign for No</h3>
+        <p>Snap your index and middle fingers down onto your thumb. It looks like a bird's beak snapping shut.</p>
+        <div class="example-box">
+          <strong>Usage Tip:</strong> Give your head a small shake "no" simultaneously to ensure your message is clear.
+        </div>
       </div>
     </div>
 
   </div>
-
-  <footer style="text-align: center; margin-top: 50px; color: var(--nav-purple);">
-    <p>&copy; 2026 SignLingo Educational Project</p>
-  </footer>
 
 </body>
 </html>
