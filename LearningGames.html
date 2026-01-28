@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ASL Hero: Chaos Gauntlet</title>
+  <title>ASL Hero: Ghost Gauntlet</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
   <style>
     :root {
@@ -17,6 +17,7 @@
       --timer-gold: #ffd700;
       --boss-red: #d32f2f;
       --hell-bg: #1a0000;
+      --ultra-bg: #000000;
     }
 
     body {
@@ -26,10 +27,11 @@
       margin: 0;
       padding-bottom: 50px;
       user-select: none;
-      transition: background-color 1s ease;
+      transition: all 1s ease;
     }
 
     body.hell-mode { background-color: var(--hell-bg); color: #ff4d4d; }
+    body.ultra-mode { background: var(--ultra-bg); color: #00ffcc; }
 
     /* DASHBOARD */
     .dashboard {
@@ -48,7 +50,6 @@
     .nav-link { color: white; text-decoration: none; font-weight: bold; }
     .home-icon { font-size: 1.8rem; color: white; }
 
-    /* GAME UI */
     .game-container {
       max-width: 900px;
       margin: 30px auto;
@@ -60,6 +61,7 @@
       text-align: center;
     }
     .hell-mode .game-container { background: #2b0000; border-color: #ff0000; }
+    .ultra-mode .game-container { background: #0a0a0a; border-color: #00ffcc; box-shadow: 0 0 50px #00ffcc33; }
 
     .boss-container {
       background: #fafafa;
@@ -69,6 +71,7 @@
       margin-bottom: 20px;
     }
     .hell-mode .boss-container { background: #400000; border-color: #ff4d4d; }
+    .ultra-mode .boss-container { background: #111; border-color: #00ffcc; }
 
     .boss-sprite { font-size: 80px; margin: 10px 0; animation: float 3s ease-in-out infinite; }
     @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
@@ -84,28 +87,25 @@
       border-radius: 10px; display: flex; align-items: center; justify-content: center;
       font-size: 24px; font-weight: bold; background: #eee; color: transparent;
     }
-    .slot.active { background: white; color: var(--nav-purple); border-width: 4px; transform: scale(1.1); }
+    .slot.active { background: white; color: var(--nav-purple); border-width: 4px; }
     .slot.revealed { background: #c8e6c9; color: var(--text-purple); border-color: #4caf50; }
+    .ultra-mode .slot.active { color: #00ffcc; background: #222; }
 
-    .attack-grid { 
-      display: grid; 
-      grid-template-columns: repeat(auto-fit, minmax(90px, 1fr)); 
-      gap: 12px; 
-      margin-top: 20px;
-    }
+    .attack-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(80px, 1fr)); gap: 10px; margin-top: 20px; }
 
     .attack-btn {
       background: white; border: 2px solid var(--accent-purple);
-      border-radius: 12px; padding: 8px; cursor: pointer;
+      border-radius: 12px; padding: 10px; cursor: pointer;
       display: flex; flex-direction: column; align-items: center;
       box-shadow: 0 4px 0 var(--accent-purple);
       transition: 0.1s;
     }
     .attack-btn:active { transform: translateY(3px); box-shadow: none; }
     .attack-btn img { width: 60px; height: 60px; object-fit: contain; }
-    .attack-btn span { font-weight: bold; font-size: 0.8rem; margin-top: 5px; color: var(--text-purple); }
+    /* Removed letter labels as requested */
 
     #battle-log { font-weight: bold; font-size: 1.2rem; min-height: 30px; }
+    #score-display { color: #ffd700; font-size: 1.5rem; text-shadow: 0 0 10px rgba(255,215,0,0.5); }
   </style>
 </head>
 <body>
@@ -113,8 +113,9 @@
   <nav class="dashboard">
     <div class="nav-left">
       <a href="index.html" class="home-icon"><i class="fas fa-house-chimney"></i></a>
-      <div id="mode-tag" style="font-weight: 900; color: #ffd700;">ARENA MODE</div>
+      <div id="mode-tag" style="font-weight: 900; color: #ffd700;">NORMAL MODE</div>
     </div>
+    <div id="score-display">SCORE: 0</div>
     <div class="nav-right">
       <a href="Alphabet.html" class="nav-link">ALPHABET</a>
       <a href="Numbers.html" class="nav-link">NUMBERS</a>
@@ -124,8 +125,8 @@
 
   <div class="game-container">
     <div class="stats-row">
-      <div>STAGE: <span id="lvl-display">1</span></div>
-      <div>LETTERS UNLOCKED: <span id="col-count">0</span>/26</div>
+      <div id="stage-text">STAGE: <span id="lvl-display">1</span></div>
+      <div>UNLOCKED: <span id="col-count">0</span>/26</div>
     </div>
 
     <div class="timer-bar"><div id="timer-fill"></div></div>
@@ -133,7 +134,7 @@
     <div class="boss-container" id="boss-box">
       <h2 id="m-name" style="margin: 0;">??</h2>
       <div class="boss-sprite" id="m-sprite">❓</div>
-      <div id="battle-log">Unlock your first letter!</div>
+      <div id="battle-log">Choose your starter gesture!</div>
       <div class="sequence-tracker" id="seq-tracker"></div>
     </div>
 
@@ -145,13 +146,16 @@
     const monsters = [
       { name: "Slime", icon: "👾" }, { name: "Gargoyle", icon: "🗿" },
       { name: "Spike-Plant", icon: "🌵" }, { name: "Ghost", icon: "👻" },
-      { name: "Kraken", icon: "🐙" }, { name: "Hydra", icon: "🐲" }
+      { name: "Kraken", icon: "🐙" }, { name: "Hydra", icon: "🐲" },
+      { name: "Void Lord", icon: "👁️" }, { name: "Cyber Demon", icon: "🤖" }
     ];
 
-    let unlockedSigns = []; // Will store letters in the exact order they are gained
+    let unlockedSigns = [];
     let currentSequence = [];
     let currentIndex = 0;
     let level = 1;
+    let score = 0;
+    let isUltraMode = false;
     let timeLeft = 0;
     let timeLimit = 10;
     let timerInterval;
@@ -159,7 +163,6 @@
     function init() {
       const grid = document.getElementById('attack-options');
       grid.innerHTML = "";
-      // Initial Choice - we pick 3 random ones from the pool to start
       const starters = [];
       for(let i=0; i<3; i++) {
           let idx = Math.floor(Math.random() * alphabetPool.length);
@@ -169,34 +172,35 @@
       starters.forEach(l => {
         const btn = document.createElement('div');
         btn.className = 'attack-btn';
-        btn.innerHTML = `<img src="https://www.lifeprint.com/asl101/fingerspelling/abc-gifs/${l.toLowerCase()}.gif"><span>START ${l}</span>`;
+        btn.innerHTML = `<img src="https://www.lifeprint.com/asl101/fingerspelling/abc-gifs/${l.toLowerCase()}.gif">`;
         btn.onclick = () => { unlockedSigns.push(l); startLevel(); };
         grid.appendChild(btn);
       });
     }
 
     function startLevel() {
+      // Check for Ultra Mode Transition
       if (level > 26) {
-        alert("ALPHABET MASTERED!");
-        location.reload();
-        return;
-      }
-
-      if (level >= 21) {
-        document.body.classList.add('hell-mode');
-        document.getElementById('mode-tag').innerText = "🔥 HELL MODE 🔥";
+          isUltraMode = true;
+          document.body.className = "ultra-mode";
+          document.getElementById('mode-tag').innerText = "💀 ULTRA MODE: BOSS GAUNTLET 💀";
+          document.getElementById('stage-text').innerText = "WAVE: " + (level - 26);
+      } else if (level >= 21) {
+          document.body.className = "hell-mode";
+          document.getElementById('mode-tag').innerText = "🔥 HELL MODE 🔥";
       }
 
       currentIndex = 0;
-      const isBoss = level % 5 === 0 || level === 26;
-      const monster = monsters[(level - 1) % monsters.length];
+      const isBoss = isUltraMode || level % 5 === 0;
+      const monster = monsters[Math.floor(Math.random() * monsters.length)];
       
-      document.getElementById('m-name').innerText = (isBoss ? "BOSS " : "") + monster.name;
-      document.getElementById('m-sprite').innerText = (isBoss && level === 26) ? "👑" : monster.icon;
-      document.getElementById('lvl-display').innerText = level;
+      document.getElementById('m-name').innerText = isBoss ? "BOSS " + monster.name : monster.name;
+      document.getElementById('m-sprite').innerText = isUltraMode ? "💀" : monster.icon;
+      document.getElementById('lvl-display').innerText = isUltraMode ? (level - 26) : level;
       document.getElementById('col-count').innerText = unlockedSigns.length;
 
-      timeLimit = Math.max(2.2, 14 - (level * 0.45));
+      // Tighten timer based on score and level
+      timeLimit = isUltraMode ? Math.max(2.0, 6 - ((level-26) * 0.2)) : Math.max(2.2, 14 - (level * 0.45));
       timeLeft = timeLimit;
 
       generateLevelSequence();
@@ -206,8 +210,9 @@
 
     function generateLevelSequence() {
       currentSequence = [];
-      let len = 2 + Math.floor(level / 3);
+      let len = isUltraMode ? (6 + Math.floor((level-26)/2)) : (2 + Math.floor(level / 3));
       if (level === 26) len = 12; 
+      
       for(let i=0; i<len; i++) {
         currentSequence.push(unlockedSigns[Math.floor(Math.random() * unlockedSigns.length)]);
       }
@@ -220,48 +225,54 @@
 
       const grid = document.getElementById('attack-options');
       grid.innerHTML = "";
-      // This is the key: we iterate through unlockedSigns which preserves Gain Order
       unlockedSigns.forEach(char => {
         const btn = document.createElement('div');
         btn.className = 'attack-btn';
-        btn.innerHTML = `<img src="https://www.lifeprint.com/asl101/fingerspelling/abc-gifs/${char.toLowerCase()}.gif"><span>${char}</span>`;
+        btn.innerHTML = `<img src="https://www.lifeprint.com/asl101/fingerspelling/abc-gifs/${char.toLowerCase()}.gif">`;
         btn.onclick = () => handleInput(char);
         grid.appendChild(btn);
       });
-      document.getElementById('battle-log').innerText = "Next Sign: " + currentSequence[0];
+      document.getElementById('battle-log').innerText = "Match the Gesture!";
     }
 
     function handleInput(char) {
       if(char === currentSequence[currentIndex]) {
         document.getElementById(`slot-${currentIndex}`).className = "slot revealed";
+        score += isUltraMode ? 50 : 10;
+        updateScore();
+        
         currentIndex++;
         if(currentIndex < currentSequence.length) {
           document.getElementById(`slot-${currentIndex}`).className = "slot active";
-          document.getElementById('battle-log').innerText = "Next Sign: " + currentSequence[currentIndex];
         } else {
           winLevel();
         }
       } else {
-        timeLeft -= 1.0;
-        document.getElementById('battle-log').innerText = "WRONG! -1s";
+        timeLeft -= 1.5; // Heavier penalty for no labels
+        document.getElementById('battle-log').innerText = "INCORRECT! -1.5s";
       }
+    }
+
+    function updateScore() {
+        document.getElementById('score-display').innerText = "SCORE: " + score;
     }
 
     function winLevel() {
       clearInterval(timerInterval);
-      
-      // Unlock a RANDOM letter from the remaining pool
+      score += (level * 100); // Level completion bonus
+      updateScore();
+
       if(alphabetPool.length > 0) {
         const randIdx = Math.floor(Math.random() * alphabetPool.length);
         const gain = alphabetPool.splice(randIdx, 1)[0];
-        unlockedSigns.push(gain); // Added to the end of the gain order
-        document.getElementById('battle-log').innerText = "VICTORY! LEARNED " + gain;
+        unlockedSigns.push(gain);
+        document.getElementById('battle-log').innerText = "LEARNED NEW GESTURE!";
       } else {
-        document.getElementById('battle-log').innerText = "VICTORY!";
+        document.getElementById('battle-log').innerText = "BOSS DEFEATED!";
       }
       
       level++;
-      setTimeout(startLevel, 1500);
+      setTimeout(startLevel, 1200);
     }
 
     function runTimer() {
@@ -271,8 +282,8 @@
         document.getElementById('timer-fill').style.width = (timeLeft / timeLimit) * 100 + "%";
         if(timeLeft <= 0) {
           clearInterval(timerInterval);
-          document.getElementById('battle-log').innerText = "DEFEATED!";
-          setTimeout(() => location.reload(), 2000);
+          alert("GAUNTLET FAILED! Final Score: " + score);
+          location.reload();
         }
       }, 100);
     }
