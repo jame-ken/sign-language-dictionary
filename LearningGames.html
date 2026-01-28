@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ASL Hero: Monster Defense Arena</title>
+  <title>ASL Hero: Final Descent</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
   <style>
     :root {
@@ -16,6 +16,7 @@
       --error-red: #c62828;
       --timer-gold: #ffd700;
       --boss-red: #d32f2f;
+      --hell-bg: #2b0000;
     }
 
     body {
@@ -26,6 +27,13 @@
       padding-bottom: 50px;
       user-select: none;
       text-align: center;
+      transition: background-color 1s ease, color 1s ease;
+    }
+
+    /* Hell Mode Modifier */
+    body.hell-mode {
+      background-color: var(--hell-bg);
+      color: #ff4d4d;
     }
 
     .dashboard {
@@ -38,17 +46,21 @@
       top: 0;
       z-index: 1000;
       color: white;
+      transition: background 1s ease;
     }
+    .hell-mode .dashboard { background-color: #610000; }
 
     .game-container {
-      max-width: 800px;
+      max-width: 900px;
       margin: 20px auto;
       padding: 25px;
       background: white;
       border-radius: 25px;
       box-shadow: 0 10px 30px rgba(0,0,0,0.1);
       border: 3px solid var(--accent-purple);
+      transition: all 0.5s ease;
     }
+    .hell-mode .game-container { background: #1a0000; border-color: #ff0000; box-shadow: 0 0 40px #ff000044; }
 
     .boss-container {
       background: #fafafa;
@@ -56,104 +68,89 @@
       border-radius: 20px;
       padding: 30px;
       margin-bottom: 20px;
-      transition: all 0.3s ease;
     }
+    .hell-mode .boss-container { background: #330000; border-color: #ff4d4d; }
 
-    .boss-level-bg { border-color: var(--boss-red) !important; background: #ffebee !important; }
-    
-    .boss-sprite { 
-      font-size: 100px; 
-      margin: 15px 0; 
-      animation: float 3s ease-in-out infinite; 
-    }
+    .boss-sprite { font-size: 100px; margin: 15px 0; animation: float 3s ease-in-out infinite; }
     @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-15px); } }
 
     .timer-bar { width: 100%; height: 18px; background: #ddd; border-radius: 10px; overflow: hidden; margin-bottom: 25px; }
     #timer-fill { width: 100%; height: 100%; background: var(--timer-gold); transition: width 0.1s linear; }
 
-    .sequence-tracker {
-      display: flex;
-      justify-content: center;
-      gap: 12px;
-      margin: 20px 0;
-      flex-wrap: wrap;
-    }
-
+    .sequence-tracker { display: flex; justify-content: center; gap: 10px; margin: 20px 0; flex-wrap: wrap; }
     .slot {
-      width: 50px; height: 65px; border: 2px solid var(--nav-purple);
-      border-radius: 12px; display: flex; align-items: center; justify-content: center;
-      font-size: 28px; font-weight: bold; background: #eee; color: transparent;
+      width: 45px; height: 60px; border: 2px solid var(--nav-purple);
+      border-radius: 10px; display: flex; align-items: center; justify-content: center;
+      font-size: 24px; font-weight: bold; background: #eee; color: transparent;
     }
-    .slot.active { background: white; color: var(--nav-purple); border-width: 4px; transform: scale(1.15); box-shadow: 0 0 15px var(--accent-purple); }
+    .slot.active { background: white; color: var(--nav-purple); border-width: 4px; transform: scale(1.1); }
     .slot.revealed { background: #c8e6c9; color: var(--text-purple); border-color: #4caf50; }
 
     .attack-grid { 
       display: grid; 
-      grid-template-columns: repeat(auto-fit, minmax(110px, 1fr)); 
-      gap: 15px; 
+      grid-template-columns: repeat(auto-fit, minmax(90px, 1fr)); 
+      gap: 12px; 
     }
 
     .attack-btn {
       background: white; border: 2px solid var(--accent-purple);
-      border-radius: 15px; padding: 10px; cursor: pointer;
-      transition: 0.2s; box-shadow: 0 5px 0 var(--accent-purple);
+      border-radius: 12px; padding: 8px; cursor: pointer;
+      transition: 0.2s; box-shadow: 0 4px 0 var(--accent-purple);
       display: flex; flex-direction: column; align-items: center;
     }
     .attack-btn:hover { transform: translateY(-3px); }
-    .attack-btn img { width: 80px; height: 80px; object-fit: contain; pointer-events: none; }
+    .attack-btn img { width: 60px; height: 60px; object-fit: contain; }
+    .attack-btn span { font-weight: bold; font-size: 0.9rem; margin-top: 5px; }
 
-    #battle-log { font-weight: bold; font-size: 1.2rem; margin-top: 15px; }
+    #battle-log { font-weight: bold; font-size: 1.3rem; margin-top: 15px; }
     
-    .victory-screen { display: none; padding: 50px; }
-    .victory-screen i { font-size: 80px; color: gold; margin-bottom: 20px; }
+    .victory-screen { display: none; padding: 100px 20px; }
+    .victory-screen i { font-size: 100px; color: gold; text-shadow: 0 0 20px orange; }
   </style>
 </head>
 <body>
 
   <nav class="dashboard">
-    <a href="#" onclick="location.reload()" style="color:white;"><i class="fas fa-redo"></i></a>
     <div style="font-size: 1.2rem; font-weight: bold;">
-        Stage: <span id="lvl-display">1</span> | Unlocked: <span id="col-count">0</span>/26
+        Stage: <span id="lvl-display">1</span> | Letters: <span id="col-count">0</span>/26
     </div>
-    <div style="font-weight:bold;">DEFENSE ARENA</div>
+    <div id="mode-text" style="font-weight:900; letter-spacing: 2px;">NORMAL MODE</div>
   </nav>
 
   <div id="game-ui">
     <header>
-      <h1>Monster Defense Arena</h1>
-      <p>Master the alphabet to defeat the horde!</p>
+      <h1>ASL Hero: Final Descent</h1>
+      <p>Unlock the full alphabet to become a legend.</p>
     </header>
 
     <div class="game-container">
       <div class="timer-bar"><div id="timer-fill"></div></div>
-      
       <div class="boss-container" id="boss-box">
-        <h2 id="m-name">Wandering Slime</h2>
-        <div class="boss-sprite" id="m-sprite">👾</div>
-        <div id="battle-log">Choose a starter sign!</div>
+        <h2 id="m-name" style="margin-top: 0;">??</h2>
+        <div class="boss-sprite" id="m-sprite">❓</div>
+        <div id="battle-log">Choose your first letter!</div>
         <div class="sequence-tracker" id="seq-tracker"></div>
       </div>
-
       <div class="attack-grid" id="attack-options"></div>
     </div>
   </div>
 
   <div id="victory-ui" class="victory-screen">
-    <i class="fas fa-trophy"></i>
-    <h1>ALPHABET MASTERED!</h1>
-    <p>You have successfully unlocked and signed every letter in the alphabet.</p>
-    <button onclick="location.reload()" style="padding: 15px 30px; border-radius: 50px; cursor:pointer; background:var(--nav-purple); color:white; border:none; font-weight:bold;">PLAY AGAIN</button>
+    <i class="fas fa-crown"></i>
+    <h1 style="font-size: 3rem;">ALPHABET GOD</h1>
+    <p>Every letter signed. Every monster defeated.</p>
+    <button onclick="location.reload()" style="padding: 20px 40px; font-size: 1.2rem; border-radius: 50px; cursor:pointer; background:var(--nav-purple); color:white; border:none; font-weight:bold; box-shadow: 0 5px 15px rgba(0,0,0,0.3);">ASCEND AGAIN</button>
   </div>
 
   <script>
     const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
     const enemies = [
-      { name: "Slime", emoji: "👾" }, { name: "Golem", emoji: "🌋" }, 
-      { name: "Cactus", emoji: "🌵" }, { name: "Wraith", emoji: "👻" },
-      { name: "Kraken", emoji: "🐙" }, { name: "Dragon", emoji: "🐲" }
+      { name: "Slime", emoji: "👾" }, { name: "Stone Golem", emoji: "🗿" }, 
+      { name: "Cactus King", emoji: "🌵" }, { name: "Void Wraith", emoji: "👻" },
+      { name: "Abyssal Octopus", emoji: "🐙" }, { name: "Inferno Dragon", emoji: "🐲" }
     ];
 
-    let unlockedSigns = [];
+    let unlockedSigns = []; // This maintains the "Unlock Order"
     let currentSequence = [];
     let currentIndex = 0;
     let level = 1;
@@ -167,31 +164,38 @@
       ["A", "B", "C"].forEach(letter => {
         const btn = document.createElement('div');
         btn.className = 'attack-btn';
-        btn.innerHTML = `<img src="https://www.lifeprint.com/asl101/fingerspelling/abc-gifs/${letter.toLowerCase()}.gif"><div>Unlock ${letter}</div>`;
-        btn.onclick = () => { unlockedSigns.push(letter); startStage(); };
+        btn.innerHTML = `<img src="https://www.lifeprint.com/asl101/fingerspelling/abc-gifs/${letter.toLowerCase()}.gif"><span>PICK ${letter}</span>`;
+        btn.onclick = () => { 
+            unlockedSigns.push(letter); 
+            startStage(); 
+        };
         grid.appendChild(btn);
       });
     }
 
     function startStage() {
-      // Check for Game Completion
-      if (unlockedSigns.length >= 26 && level > 26) {
+      if (level > 26) {
           showFinalVictory();
           return;
       }
 
+      // Hell Mode Check
+      if (level >= 21) {
+          document.body.classList.add('hell-mode');
+          document.getElementById('mode-text').innerText = "🔥 HELL MODE 🔥";
+      }
+
       currentIndex = 0;
-      const isBoss = level % 5 === 0;
+      const isBoss = level % 5 === 0 || level === 26;
       const enemyIdx = (level - 1) % enemies.length;
       
       document.getElementById('boss-box').className = isBoss ? "boss-container boss-level-bg" : "boss-container";
-      document.getElementById('m-name').innerText = isBoss ? "ELITE " + enemies[enemyIdx].name : enemies[enemyIdx].name;
-      document.getElementById('m-sprite').innerText = enemies[enemyIdx].emoji;
+      document.getElementById('m-name').innerText = (isBoss ? "ELITE " : "") + enemies[enemyIdx].name;
+      document.getElementById('m-sprite').innerText = isBoss && level === 26 ? "👑" : enemies[enemyIdx].emoji;
       document.getElementById('lvl-display').innerText = level;
       document.getElementById('col-count').innerText = unlockedSigns.length;
 
-      // Timer tightens as level increases
-      timeLimit = Math.max(3, 15 - (level * 0.4));
+      timeLimit = Math.max(2.5, 14 - (level * 0.45)); 
       timeLeft = timeLimit;
       
       generateSequence();
@@ -201,8 +205,8 @@
 
     function generateSequence() {
       currentSequence = [];
-      // Sequence gets longer every 3 levels
       let len = 2 + Math.floor(level / 3);
+      if (level === 26) len = 12; // Final Boss Length
       for(let i=0; i<len; i++) {
         currentSequence.push(unlockedSigns[Math.floor(Math.random() * unlockedSigns.length)]);
       }
@@ -213,12 +217,16 @@
         <div class="slot ${i === 0 ? 'active' : ''}" id="slot-${i}">${char}</div>
       `).join('');
 
+      // Grid stays in ORDER of unlock
       const grid = document.getElementById('attack-options');
       grid.innerHTML = "";
       unlockedSigns.forEach(char => {
         const btn = document.createElement('div');
         btn.className = 'attack-btn';
-        btn.innerHTML = `<img src="https://www.lifeprint.com/asl101/fingerspelling/abc-gifs/${char.toLowerCase()}.gif">`;
+        btn.innerHTML = `
+            <img src="https://www.lifeprint.com/asl101/fingerspelling/abc-gifs/${char.toLowerCase()}.gif">
+            <span>${char}</span>
+        `;
         btn.onclick = () => handleAttack(char);
         grid.appendChild(btn);
       });
@@ -227,32 +235,37 @@
 
     function handleAttack(char) {
       if(char === currentSequence[currentIndex]) {
-        document.getElementById(`slot-${currentIndex}`).className = "slot revealed";
+        const currentSlot = document.getElementById(`slot-${currentIndex}`);
+        if(currentSlot) currentSlot.className = "slot revealed";
+        
         currentIndex++;
         if(currentIndex < currentSequence.length) {
-          document.getElementById(`slot-${currentIndex}`).className = "slot active";
-          document.getElementById('battle-log').innerText = "Target: " + currentSequence[currentIndex];
-        } else { victory(); }
+          const nextSlot = document.getElementById(`slot-${currentIndex}`);
+          if(nextSlot) nextSlot.className = "slot active";
+          document.getElementById('battle-log').innerText = "Next: " + currentSequence[currentIndex];
+        } else { 
+            victory(); 
+        }
       } else {
-        timeLeft -= 1.0;
-        document.getElementById('battle-log').innerText = "WRONG! -1s";
+        timeLeft -= 1.2;
+        document.getElementById('battle-log').innerText = "MISS! -1.2s";
       }
     }
 
     function victory() {
       clearInterval(timerInterval);
-      level++;
       
       const remaining = alphabet.filter(l => !unlockedSigns.includes(l));
       let unlockMsg = "";
 
       if(remaining.length > 0) {
-        const gain = remaining[0]; // Unlocks in alphabetical order for clarity
-        unlockedSigns.push(gain);
-        unlockMsg = " | Unlocked: " + gain;
+        const nextLetter = remaining[0];
+        unlockedSigns.push(nextLetter);
+        unlockMsg = " | Unlocked " + nextLetter + "!";
       }
       
       document.getElementById('battle-log').innerText = "VICTORY!" + unlockMsg;
+      level++;
       setTimeout(startStage, 1500);
     }
 
@@ -263,15 +276,17 @@
         document.getElementById('timer-fill').style.width = (timeLeft / timeLimit) * 100 + "%";
         if(timeLeft <= 0) {
           clearInterval(timerInterval);
-          document.getElementById('battle-log').innerText = "GAME OVER!";
+          document.getElementById('battle-log').innerText = "DEFEATED...";
           setTimeout(() => location.reload(), 2000);
         }
       }, 100);
     }
 
     function showFinalVictory() {
+        clearInterval(timerInterval);
         document.getElementById('game-ui').style.display = 'none';
         document.getElementById('victory-ui').style.display = 'block';
+        document.body.style.backgroundColor = "black";
     }
 
     setupStarter();
