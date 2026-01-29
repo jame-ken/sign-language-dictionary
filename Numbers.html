@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ASL Numbers Guide</title>
+  <title>ASL Phrases Guide</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
   <style>
     :root {
@@ -34,89 +34,50 @@
       box-shadow: 0 4px 10px rgba(0,0,0,0.2);
     }
 
-    .asl-image img {
-        max-width: 100%;
-        max-height: 100%;
-        object-fit: contain;
-      }
-
-    .nav-links {
-      display: flex;
-      align-items: center;
-    }
-
+    .nav-links { display: flex; align-items: center; }
     .nav-links a { 
-      color: white; 
-      text-decoration: none; 
-      font-size: 22px; 
-      font-weight: bold; 
-      margin-left: 30px; 
-      transition: opacity 0.3s;
+      color: white; text-decoration: none; font-size: 22px; 
+      font-weight: bold; margin-left: 30px; transition: opacity 0.3s;
     }
-
     .nav-links a:hover { opacity: 0.8; }
-    
     .home-icon { font-size: 32px; color: white; transition: opacity 0.3s; }
     .home-icon:hover { opacity: 0.8; }
 
     header { text-align: center; padding: 40px 20px; }
 
-    .numbers-container {
-      display: flex;
-      flex-direction: column;
-      gap: 30px;
-      padding: 0 5%;
-      max-width: 1100px;
-      margin: 0 auto;
+    .category-divider { text-align: center; margin: 40px 0 20px; }
+    .category-divider h2 {
+      background: var(--nav-purple); color: white;
+      display: inline-block; padding: 10px 30px; border-radius: 50px;
     }
 
-    .number-row {
-      display: flex;
-      background-color: var(--card-purple);
-      border: 3px solid var(--accent-purple);
-      border-radius: 20px;
-      padding: 30px;
-      align-items: center;
-      gap: 40px;
+    .phrases-container {
+      display: flex; flex-direction: column; gap: 30px;
+      padding: 0 5%; max-width: 1100px; margin: 0 auto;
+    }
+
+    .phrase-row {
+      display: flex; background-color: var(--card-purple);
+      border: 3px solid var(--accent-purple); border-radius: 20px;
+      padding: 30px; align-items: center; gap: 40px;
       box-shadow: 0 8px 20px rgba(74, 20, 140, 0.1);
     }
 
-    .number-display { flex: 1; text-align: center; }
-    .number-display h2 { font-size: 80px; margin: 0; }
+    .phrase-display { flex: 1; text-align: center; }
+    .phrase-display h3 { font-size: 32px; margin: 0 0 15px 0; }
 
     .asl-image {
-      width: 250px;
-      height: 250px;
-      background-color: white;
-      border-radius: 15px;
-      border: 2px solid var(--nav-purple);
-      object-fit: contain;
+      width: 250px; height: 250px; background-color: white;
+      border-radius: 15px; border: 2px solid var(--nav-purple);
+      display: flex; align-items: center; justify-content: center;
+      overflow: hidden; margin: 0 auto;
     }
 
+    .asl-image img { max-width: 90%; max-height: 90%; object-fit: contain; }
     .details { flex: 2; }
-    .details h3 { font-size: 24px; color: var(--nav-purple); margin-top: 0; }
     
-    .example-box {
-      background: rgba(255,255,255,0.4);
-      padding: 15px;
-      border-left: 5px solid var(--nav-purple);
-      margin-top: 10px;
-      border-radius: 4px;
-    }
-
-    .rules-section {
-      background-color: white;
-      margin: 50px auto;
-      padding: 40px;
-      max-width: 900px;
-      border-radius: 20px;
-      border: 2px solid var(--nav-purple);
-    }
-
-    .rules-list { text-align: left; line-height: 1.8; }
-
     @media (max-width: 850px) {
-      .number-row { flex-direction: column; text-align: center; }
+      .phrase-row { flex-direction: column; text-align: center; }
       .nav-links a { font-size: 18px; margin-left: 15px; }
     }
   </style>
@@ -127,133 +88,66 @@
     <a href="index.html" class="home-icon"><i class="fas fa-house"></i></a>
     <div class="nav-links">
       <a href="Alphabet.html">Alphabet</a>
+      <a href="Numbers.html">Numbers</a>
       <a href="WordsPhrases.html">Phrases</a>
       <a href="LearningGames.html"><i class="fas fa-gamepad"></i> Games</a>
     </div>
   </nav>
 
   <header>
-    <h1>ASL Numbers & Tens</h1>
-    <p>Understanding the handshapes for cardinal numbers and larger values.</p>
+    <h1>34 Essential Signs</h1>
+    <p>A comprehensive library of core vocabulary and everyday actions.</p>
   </header>
 
-  <div class="numbers-container">
-    
-    <div class="number-row">
-      <div class="number-display">
-        <h2>1-5</h2>
-        <div class="asl-image" style="display:flex; align-items:center; justify-content:center;">
-          <img src="ASLOnethroughFive.png" alt="ASL Numbers 1 to 5">
-        </div>
-      </div>
-      <div class="details">
-        <h3>Counting 1 to 5</h3>
-        <p>For 1 through 5, your palm faces <strong>inward</strong> towards your face. Note that '3' uses the thumb, index, and middle finger.</p>
-        <div class="example-box">
-          <strong>Usage:</strong> Ordering <em>"4 coffees"</em> or saying <em>"I have 2 brothers."</em>
-        </div>
-      </div>
-    </div>
-
-    
-
-    <div class="number-row">
-      <div class="number-display">
-        <h2>6-9</h2>
-        <div class="asl-image" style="display:flex; align-items:center; justify-content:center;">
-          <img src="ASLSixthroughNine.png" alt="ASL Numbers 6 to 9" style="object-position: bottom;">
-        </div>
-      </div>
-      <div class="details">
-        <h3>Counting 6 to 9</h3>
-        <p>For 6 through 9, your palm faces <strong>outward</strong>. These are formed by touching a finger to your thumb (6=pinky, 7=ring, 8=middle, 9=index).</p>
-        <div class="example-box">
-          <strong>Usage:</strong> Giving a phone number or saying <em>"The bus arrives in 7 minutes."</em>
-        </div>
-      </div>
-    </div>
-
-    
-
-    <div class="number-row">
-      <div class="number-display">
-        <h2>10</h2>
-        <div class="asl-image" style="display:flex; align-items:center; justify-content:center;">
-          <img src="ASLTen.png" alt="ASL 10">
-        </div>
-      </div>
-      <div class="details">
-        <h3>The Thumb Shake</h3>
-        <p>Extend your thumb up (like a 'thumbs up') and shake your hand side-to-side slightly.</p>
-        <div class="example-box">
-          <strong>Usage:</strong> Stating a quantity of ten or the end of a basic count.
-        </div>
-      </div>
-    </div>
-
-    <div class="number-row">
-      <div class="number-display">
-        <h2>20</h2>
-        <div class="asl-image" style="display:flex; align-items:center; justify-content:center;">
-          <img src="ASLTwenty.png" alt="ASL 20">
-        </div>
-      </div>
-      <div class="details">
-        <h3>The Pinch</h3>
-        <p>Touch your thumb and index finger together repeatedly (like a bird beak pinching).</p>
-        <div class="example-box">
-          <strong>Usage:</strong> Saying <em>"I am 20 years old"</em> or <em>"It costs 20 dollars."</em>
-        </div>
-      </div>
-    </div>
-
-    <div class="number-row">
-      <div class="number-display">
-        <h2>30-60</h2>
-        <div class="asl-image" style="display:flex; align-items:center; justify-content:center;">
-              <img src="ASLThirtySixty.png" alt="ASL 30-60 Tens">
-        </div>
-      </div>
-      <div class="details">
-        <h3>The "Zero" Ending</h3>
-        <p>Form the base number (3, 4, 5, or 6) and then immediately transition the hand into an 'O' shape for zero.</p>
-        <div class="example-box">
-          <strong>Usage:</strong> Used for ages, prices, and addresses. 30 is <em>'3'</em> then <em>'0'</em>.
-        </div>
-      </div>
-    </div>
-
-    <div class="number-row">
-      <div class="number-display">
-        <h2>100</h2>
-        <div class="asl-image" style="display:flex; align-items:center; justify-content:center;">
-          <img src="ASLHundred.png" alt="ASL 100">
-        </div>
-      </div>
-      <div class="details">
-        <h3>1 + C</h3>
-        <p>Sign the number '1' and then pull your hand back while changing it into the 'C' handshape (representing the Roman numeral for 100).</p>
-        <div class="example-box">
-          <strong>Usage:</strong> Measuring <em>"100 miles"</em> or counting large sums.
-        </div>
-      </div>
-    </div>
-
+  <div class="category-divider"><h2>Greetings & Basics</h2></div>
+  <div class="phrases-container">
+    <div class="phrase-row"><div class="phrase-display"><h3>Hello</h3><div class="asl-image"><img src="https://res.cloudinary.com/spiralyze/image/upload/f_auto,w_1414/BabySignLanguage/DictionaryPages/hello-webp.webp"></div></div><div class="details"><p>Standard greeting. Move your flat hand from your forehead outward.</p></div></div>
+    <div class="phrase-row"><div class="phrase-display"><h3>Please</h3><div class="asl-image"><img src="https://res.cloudinary.com/spiralyze/image/upload/f_auto,w_1414/BabySignLanguage/DictionaryPages/please-webp.webp"></div></div><div class="details"><p>Circular motion with a flat palm on the chest.</p></div></div>
+    <div class="phrase-row"><div class="phrase-display"><h3>Thank You</h3><div class="asl-image"><img src="https://res.cloudinary.com/spiralyze/image/upload/f_auto,w_1414/BabySignLanguage/DictionaryPages/thank_you-webp.webp"></div></div><div class="details"><p>Move fingertips from chin forward.</p></div></div>
+    <div class="phrase-row"><div class="phrase-display"><h3>Sorry</h3><div class="asl-image"><img src="https://res.cloudinary.com/spiralyze/image/upload/f_auto,w_1414/BabySignLanguage/DictionaryPages/sorry-webp.webp"></div></div><div class="details"><p>Circular motion with a fist (A-handshape) on the chest.</p></div></div>
+    <div class="phrase-row"><div class="phrase-display"><h3>Yes</h3><div class="asl-image"><img src="https://res.cloudinary.com/spiralyze/image/upload/f_auto,w_1414/BabySignLanguage/DictionaryPages/yes-webp.webp"></div></div><div class="details"><p>Nod your fist up and down like a head nodding.</p></div></div>
+    <div class="phrase-row"><div class="phrase-display"><h3>No</h3><div class="asl-image"><img src="https://res.cloudinary.com/spiralyze/image/upload/f_auto,w_1414/BabySignLanguage/DictionaryPages/no-webp.webp"></div></div><div class="details"><p>Snap index and middle finger down to the thumb.</p></div></div>
+    <div class="phrase-row"><div class="phrase-display"><h3>Goodbye</h3><div class="asl-image"><img src="https://res.cloudinary.com/spiralyze/image/upload/f_auto,w_1414/BabySignLanguage/DictionaryPages/goodbye-webp.webp"></div></div><div class="details"><p>A standard wave motion.</p></div></div>
+    <div class="phrase-row"><div class="phrase-display"><h3>Good Morning</h3><div class="asl-image"><img src="https://res.cloudinary.com/spiralyze/image/upload/f_auto,w_1414/BabySignLanguage/DictionaryPages/good_morning-webp.webp"></div></div><div class="details"><p>Sign "Good" then move the arm up like a rising sun.</p></div></div>
+    <div class="phrase-row"><div class="phrase-display"><h3>Good Night</h3><div class="asl-image"><img src="https://res.cloudinary.com/spiralyze/image/upload/f_auto,w_1414/BabySignLanguage/DictionaryPages/good_night-webp.webp"></div></div><div class="details"><p>Sign "Good" then arch your hand over the other arm like a setting sun.</p></div></div>
+    <div class="phrase-row"><div class="phrase-display"><h3>Want</h3><div class="asl-image"><img src="https://res.cloudinary.com/spiralyze/image/upload/f_auto,w_1414/BabySignLanguage/DictionaryPages/want-webp.webp"></div></div><div class="details"><p>Pull your hands toward your body with clawed fingers.</p></div></div>
+    <div class="phrase-row"><div class="phrase-display"><h3>Excuse Me</h3><div class="asl-image"><img src="https://res.cloudinary.com/spiralyze/image/upload/f_auto,w_1414/BabySignLanguage/DictionaryPages/excuse_me-webp.webp"></div></div><div class="details"><p>Brush fingertips of one hand across the palm of the other.</p></div></div>
+    <div class="phrase-row"><div class="phrase-display"><h3>I Love You</h3><div class="asl-image"><img src="http://res.cloudinary.com/spiralyze/image/upload/f_auto,w_1414/BabySignLanguage/DictionaryPages/i_love_you-webp.webp"></div></div><div class="details"><p>The combination of letters I, L, and Y.</p></div></div>
   </div>
 
-  <section class="rules-section">
-    <h2>ASL Number Rules Summary</h2>
-    <div class="rules-list">
-      <ul>
-        <li><strong>Palm Orientation (1-5):</strong> When counting objects, the palm faces <strong>inward</strong>. If signing a date or time, it may face outward.</li>
-        <li><strong>Palm Orientation (6-9):</strong> The palm always faces <strong>outward</strong> toward the listener.</li>
-        <li><strong>The "3" Rule:</strong> In ASL, the number 3 uses the thumb, index, and middle fingers. Using the index, middle, and ring fingers (the English way) is a common beginner error.</li>
-        <li><strong>The Tens (30-90):</strong> These are signed as two distinct movements: the first digit followed by the 'O' (zero) shape.</li>
-        <li><strong>Movement (20):</strong> Unlike other tens, 20 has a unique "pinching" movement rather than a 2-0 sequence.</li>
-        <li><strong>Hundreds (100+):</strong> Uses the number + the letter 'C' (e.g., 200 is '2' then 'C').</li>
-      </ul>
-    </div>
-  </section>
+  <div class="category-divider"><h2>Family & Pets</h2></div>
+  <div class="phrases-container">
+    <div class="phrase-row"><div class="phrase-display"><h3>Mother</h3><div class="asl-image"><img src="https://res.cloudinary.com/spiralyze/image/upload/f_auto,w_1414/BabySignLanguage/DictionaryPages/mommy-webp.webp"></div></div><div class="details"><p>Thumb to chin with open fingers.</p></div></div>
+    <div class="phrase-row"><div class="phrase-display"><h3>Father</h3><div class="asl-image"><img src="https://res.cloudinary.com/spiralyze/image/upload/f_auto,w_1414/BabySignLanguage/DictionaryPages/daddy-webp.webp"></div></div><div class="details"><p>Thumb to forehead with open fingers.</p></div></div>
+    <div class="phrase-row"><div class="phrase-display"><h3>Brother</h3><div class="asl-image"><img src="https://res.cloudinary.com/spiralyze/image/upload/f_auto,w_1414/BabySignLanguage/DictionaryPages/brother-webp.webp"></div></div><div class="details"><p>Combination of "Boy" and "Same."</p></div></div>
+    <div class="phrase-row"><div class="phrase-display"><h3>Sister</h3><div class="asl-image"><img src="https://res.cloudinary.com/spiralyze/image/upload/f_auto,w_1414/BabySignLanguage/DictionaryPages/sister-webp.webp"></div></div><div class="details"><p>Combination of "Girl" and "Same."</p></div></div>
+    <div class="phrase-row"><div class="phrase-display"><h3>Uncle</h3><div class="asl-image"><img src="https://res.cloudinary.com/spiralyze/image/upload/f_auto,w_1414/BabySignLanguage/DictionaryPages/uncle-webp.webp"></div></div><div class="details"><p>Shake a "U" handshape near the temple.</p></div></div>
+    <div class="phrase-row"><div class="phrase-display"><h3>Aunt</h3><div class="asl-image"><img src="https://res.cloudinary.com/spiralyze/image/upload/f_auto,w_1414/BabySignLanguage/DictionaryPages/aunt-webp.webp"></div></div><div class="details"><p>Shake an "A" handshape near the jaw.</p></div></div>
+    <div class="phrase-row"><div class="phrase-display"><h3>Grandmother</h3><div class="asl-image"><img src="https://res.cloudinary.com/spiralyze/image/upload/f_auto,w_1414/BabySignLanguage/DictionaryPages/grandmother-webp.webp"></div></div><div class="details"><p>Sign "Mother" but bounce the hand forward twice.</p></div></div>
+    <div class="phrase-row"><div class="phrase-display"><h3>Grandfather</h3><div class="asl-image"><img src="https://res.cloudinary.com/spiralyze/image/upload/f_auto,w_1414/BabySignLanguage/DictionaryPages/grandfather-webp.webp"></div></div><div class="details"><p>Sign "Father" but bounce the hand forward twice.</p></div></div>
+    <div class="phrase-row"><div class="phrase-display"><h3>Dog</h3><div class="asl-image"><img src="https://res.cloudinary.com/spiralyze/image/upload/f_auto,w_1414/BabySignLanguage/DictionaryPages/dog-webp.webp"></div></div><div class="details"><p>Snap fingers or pat your leg.</p></div></div>
+    <div class="phrase-row"><div class="phrase-display"><h3>Cat</h3><div class="asl-image"><img src="https://res.cloudinary.com/spiralyze/image/upload/f_auto,w_1414/BabySignLanguage/DictionaryPages/cat-webp.webp"></div></div><div class="details"><p>Pinch thumb and index near cheek like whiskers.</p></div></div>
+  </div>
+
+  <div class="category-divider"><h2>Daily Actions</h2></div>
+  <div class="phrases-container">
+    <div class="phrase-row"><div class="phrase-display"><h3>Eat</h3><div class="asl-image"><img src="https://res.cloudinary.com/spiralyze/image/upload/f_auto,w_1414/BabySignLanguage/DictionaryPages/eat-webp.webp"></div></div><div class="details"><p>Tap your mouth with a squished "O" handshape.</p></div></div>
+    <div class="phrase-row"><div class="phrase-display"><h3>Drink</h3><div class="asl-image"><img src="https://res.cloudinary.com/spiralyze/image/upload/f_auto,w_1414/BabySignLanguage/DictionaryPages/drink-webp.webp"></div></div><div class="details"><p>Mimic holding and drinking from a cup.</p></div></div>
+    <div class="phrase-row"><div class="phrase-display"><h3>Study</h3><div class="asl-image"><img src="https://res.cloudinary.com/spiralyze/image/upload/f_auto,w_1414/BabySignLanguage/DictionaryPages/study-webp.webp"></div></div><div class="details"><p>Wiggle fingers over the other palm like reading intensely.</p></div></div>
+    <div class="phrase-row"><div class="phrase-display"><h3>Sleep</h3><div class="asl-image"><img src="https://res.cloudinary.com/spiralyze/image/upload/f_auto,w_1414/BabySignLanguage/DictionaryPages/sleep-webp.webp"></div></div><div class="details"><p>Pull your hand down over your face as eyes close.</p></div></div>
+    <div class="phrase-row"><div class="phrase-display"><h3>Potty</h3><div class="asl-image"><img src="https://res.cloudinary.com/spiralyze/image/upload/f_auto,w_1414/BabySignLanguage/DictionaryPages/potty-webp.webp"></div></div><div class="details"><p>Shake a "T" handshape.</p></div></div>
+    <div class="phrase-row"><div class="phrase-display"><h3>Shower</h3><div class="asl-image"><img src="https://res.cloudinary.com/spiralyze/image/upload/f_auto,w_1414/BabySignLanguage/DictionaryPages/shower-webp.webp"></div></div><div class="details"><p>Open and close hand above head like water spraying.</p></div></div>
+    <div class="phrase-row"><div class="phrase-display"><h3>Brush Teeth</h3><div class="asl-image"><img src="https://res.cloudinary.com/spiralyze/image/upload/f_auto,w_1414/BabySignLanguage/DictionaryPages/brush_teeth-webp.webp"></div></div><div class="details"><p>Mimic brushing teeth with index finger.</p></div></div>
+  </div>
+
+  <div class="category-divider"><h2>Phrases & Objects</h2></div>
+  <div class="phrases-container">
+    <div class="phrase-row"><div class="phrase-display"><h3>Hungry</h3><div class="asl-image"><img src="https://res.cloudinary.com/spiralyze/image/upload/f_auto,w_1414/BabySignLanguage/DictionaryPages/hungry-webp.webp"></div></div><div class="details"><p>Slide a "C" hand down the center of the chest.</p></div></div>
+    <div class="phrase-row"><div class="phrase-display"><h3>Bathroom</h3><div class="asl-image"><img src="https://res.cloudinary.com/spiralyze/image/upload/f_auto,w_1414/BabySignLanguage/DictionaryPages/bathroom-webp.webp"></div></div><div class="details"><p>Shake a "T" handshape (Similar to Potty).</p></div></div>
+    <div class="phrase-row"><div class="phrase-display"><h3>Time</h3><div class="asl-image"><img src="https://res.cloudinary.com/spiralyze/image/upload/f_auto,w_1414/BabySignLanguage/DictionaryPages/time-webp.webp"></div></div><div class="details"><p>Tap your wrist where a watch would be.</p></div></div>
+    <div class="phrase-row"><div class="phrase-display"><h3>Don't Know</h3><div class="asl-image"><img src="https://res.cloudinary.com/spiralyze/image/upload/f_auto,w_1414/BabySignLanguage/DictionaryPages/don_t_know-webp.webp"></div></div><div class="details"><p>Touch forehead and flick hand away with a "know" motion.</p></div></div>
+    <div class="phrase-row"><div class="phrase-display"><h3>Again</h3><div class="asl-image"><img src="https://res.cloudinary.com/spiralyze/image/upload/f_auto,w_1414/BabySignLanguage/DictionaryPages/again-webp.webp"></div></div><div class="details"><p>Arch fingertips into the other palm.</p></div></div>
+  </div>
 
 </body>
 </html>
