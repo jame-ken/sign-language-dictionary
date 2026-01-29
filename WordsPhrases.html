@@ -8,19 +8,20 @@
   <style>
     :root {
       --bg-purple: #f3e5f5;
+      --card-purple: #e1bee7;
       --nav-purple: #7b1fa2;
       --text-purple: #4a148c;
+      --accent-purple: #9c27b0;
     }
 
     body {
-      font-family: 'Segoe UI', sans-serif;
+      font-family: 'Segoe UI', Arial, sans-serif;
       background-color: var(--bg-purple);
       color: var(--text-purple);
       margin: 0;
-      padding-bottom: 80px;
+      padding-bottom: 50px;
     }
 
-    /* NAVIGATION BAR */
     .dashboard {
       background-color: var(--nav-purple);
       padding: 15px 40px;
@@ -30,68 +31,65 @@
       position: sticky;
       top: 0;
       z-index: 1000;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
     }
 
+    .nav-links { display: flex; align-items: center; }
     .nav-links a { 
-      color: white; 
-      text-decoration: none; 
-      margin-left: 20px; 
-      font-weight: bold; 
+      color: white; text-decoration: none; font-size: 22px; 
+      font-weight: bold; margin-left: 30px; transition: opacity 0.3s;
     }
-
-    .nav-links a:hover { border-bottom: 2px solid white; }
+    .nav-links a:hover { opacity: 0.8; }
+    .home-icon { font-size: 32px; color: white; transition: opacity 0.3s; }
+    .home-icon:hover { opacity: 0.8; }
 
     header { text-align: center; padding: 40px 20px; }
 
-    .category-title {
-      background: var(--nav-purple);
-      color: white;
-      padding: 10px 30px;
-      border-radius: 50px;
-      display: inline-block;
-      margin: 40px 5% 20px;
-      font-size: 1.3rem;
+    .category-divider { text-align: center; margin: 40px 0 20px; }
+    .category-divider h2 {
+      background: var(--nav-purple); color: white;
+      display: inline-block; padding: 10px 30px; border-radius: 50px;
     }
 
-    .phrase-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-      gap: 20px;
-      padding: 0 5%;
+    .phrases-container {
+      display: flex; flex-direction: column; gap: 30px;
+      padding: 0 5%; max-width: 1100px; margin: 0 auto;
     }
 
-    .phrase-card {
-      background: white;
-      border-radius: 15px;
-      padding: 15px;
-      text-align: center;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-      transition: transform 0.2s;
+    .phrase-row {
+      display: flex; background-color: var(--card-purple);
+      border: 3px solid var(--accent-purple); border-radius: 20px;
+      padding: 30px; align-items: center; gap: 40px;
+      box-shadow: 0 8px 20px rgba(74, 20, 140, 0.1);
     }
 
-    .phrase-card:hover { transform: scale(1.03); }
+    .phrase-display { flex: 1; text-align: center; }
+    .phrase-display h3 { font-size: 32px; margin: 0 0 15px 0; }
 
-    .asl-img {
-      width: 100%;
-      height: 180px;
-      object-fit: contain;
-      border-radius: 10px;
-      background: #fff;
+    .asl-image {
+      width: 250px; height: 250px; background-color: white;
+      border-radius: 15px; border: 2px solid var(--nav-purple);
+      display: flex; align-items: center; justify-content: center;
+      overflow: hidden; margin: 0 auto;
     }
 
-    h3 { margin: 10px 0 5px; font-size: 1.1rem; }
-    .placeholder-img { background: #e0e0e0; display: flex; align-items: center; justify-content: center; color: #999; }
+    .asl-image img { max-width: 90%; max-height: 90%; object-fit: contain; }
+    .details { flex: 2; font-size: 1.1rem; }
+    
+    @media (max-width: 850px) {
+      .phrase-row { flex-direction: column; text-align: center; }
+      .nav-links a { font-size: 18px; margin-left: 15px; }
+    }
   </style>
 </head>
 <body>
 
   <nav class="dashboard">
-    <a href="index.html" style="color:white; font-size: 24px;"><i class="fas fa-house"></i></a>
+    <a href="index.html" class="home-icon"><i class="fas fa-house"></i></a>
     <div class="nav-links">
       <a href="Alphabet.html">Alphabet</a>
       <a href="Numbers.html">Numbers</a>
-      <a href="LearningGames.html">Games</a>
+      <a href="LearningGames.html"><i class="fas fa-gamepad"></i> Games</a>
     </div>
   </nav>
 
@@ -100,57 +98,55 @@
     <p>The complete SignLingo library of core vocabulary.</p>
   </header>
 
-  <div class="category-title">Greetings & Basics</div>
-  <div class="phrase-grid">
-    <div class="phrase-card"><img src="https://res.cloudinary.com/spiralyze/image/upload/f_auto,w_1414/BabySignLanguage/DictionaryPages/hello-webp.webp" class="asl-img"><h3>Hello</h3></div>
-    <div class="phrase-card"><img src="https://res.cloudinary.com/spiralyze/image/upload/f_auto,w_1414/BabySignLanguage/DictionaryPages/please-webp.webp" class="asl-img"><h3>Please</h3></div>
-    <div class="phrase-card"><img src="https://res.cloudinary.com/spiralyze/image/upload/f_auto,w_1414/BabySignLanguage/DictionaryPages/thank_you-webp.webp" class="asl-img"><h3>Thank You</h3></div>
-    <div class="phrase-card"><img src="https://res.cloudinary.com/spiralyze/image/upload/f_auto,w_1414/BabySignLanguage/DictionaryPages/sorry-webp.webp" class="asl-img"><h3>Sorry</h3></div>
-    <div class="phrase-card"><img src="https://res.cloudinary.com/spiralyze/image/upload/f_auto,w_1414/BabySignLanguage/DictionaryPages/yes-webp.webp" class="asl-img"><h3>Yes</h3></div>
-    <div class="phrase-card"><img src="https://res.cloudinary.com/spiralyze/image/upload/f_auto,w_1414/BabySignLanguage/DictionaryPages/no-webp.webp" class="asl-img"><h3>No</h3></div>
-    <div class="phrase-card"><img src="https://res.cloudinary.com/spiralyze/image/upload/f_auto,w_1414/BabySignLanguage/DictionaryPages/goodbye-webp.webp" class = "asl-img"><h3>Goodbye</h3></div>
-    <div class="phrase-card"><img src="https://res.cloudinary.com/spiralyze/image/upload/f_auto,w_1414/BabySignLanguage/DictionaryPages/good_morning-webp.webp" class = "asl-img"><h3>Good Morning</h3></div>
-    <div class ="phrase-card"><img src = "https://res.cloudinary.com/spiralyze/image/upload/f_auto,w_1414/BabySignLanguage/DictionaryPages/good_night-webp.webp" class = "asl-img"><h3>Good Night</h3></div>
-    <div class="phrase-card"><img src="https://res.cloudinary.com/spiralyze/image/upload/f_auto,w_1414/BabySignLanguage/DictionaryPages/want-webp.webp" class = "asl-img"><h3>Want</h3></div>
-    <div class="phrase-card"><img src="https://res.cloudinary.com/spiralyze/image/upload/f_auto,w_1414/BabySignLanguage/DictionaryPages/excuse_me-webp.webp" class = "asl-img"><h3>Excuse Me</h3></div>
-    <div class ="phrase-card"><img src = "http://res.cloudinary.com/spiralyze/image/upload/f_auto,w_1414/BabySignLanguage/DictionaryPages/i_love_you-webp.webp" class = "asl-img"><h3>I Love You</h3></div>
+  <div class="category-divider"><h2>Greetings & Basics</h2></div>
+  <div class="phrases-container">
+    <div class="phrase-row"><div class="phrase-display"><h3>Hello</h3><div class="asl-image"><img src="https://res.cloudinary.com/spiralyze/image/upload/f_auto,w_1414/BabySignLanguage/DictionaryPages/hello-webp.webp"></div></div><div class="details">Move your flat hand from your forehead outward in a salute-like motion.</div></div>
+    <div class="phrase-row"><div class="phrase-display"><h3>Please</h3><div class="asl-image"><img src="https://res.cloudinary.com/spiralyze/image/upload/f_auto,w_1414/BabySignLanguage/DictionaryPages/please-webp.webp"></div></div><div class="details">Place your flat palm on your chest and move it in a circular motion.</div></div>
+    <div class="phrase-row"><div class="phrase-display"><h3>Thank You</h3><div class="asl-image"><img src="https://res.cloudinary.com/spiralyze/image/upload/f_auto,w_1414/BabySignLanguage/DictionaryPages/thank_you-webp.webp"></div></div><div class="details">Touch your fingertips to your chin and move your hand forward.</div></div>
+    <div class="phrase-row"><div class="phrase-display"><h3>Sorry</h3><div class="asl-image"><img src="https://res.cloudinary.com/spiralyze/image/upload/f_auto,w_1414/BabySignLanguage/DictionaryPages/sorry-webp.webp"></div></div><div class="details">Make a fist and move it in a circular motion over your heart.</div></div>
+    <div class="phrase-row"><div class="phrase-display"><h3>Yes</h3><div class="asl-image"><img src="https://res.cloudinary.com/spiralyze/image/upload/f_auto,w_1414/BabySignLanguage/DictionaryPages/yes-webp.webp"></div></div><div class="details">Make a fist and "nod" it up and down like a head.</div></div>
+    <div class="phrase-row"><div class="phrase-display"><h3>No</h3><div class="asl-image"><img src="https://res.cloudinary.com/spiralyze/image/upload/f_auto,w_1414/BabySignLanguage/DictionaryPages/no-webp.webp"></div></div><div class="details">Snap your index and middle finger down against your thumb.</div></div>
+    <div class="phrase-row"><div class="phrase-display"><h3>Goodbye</h3><div class="asl-image"><img src="https://res.cloudinary.com/spiralyze/image/upload/f_auto,w_1414/BabySignLanguage/DictionaryPages/goodbye-webp.webp"></div></div><div class="details">A simple open-palm wave.</div></div>
+    <div class="phrase-row"><div class="phrase-display"><h3>Good Morning</h3><div class="asl-image"><img src="https://res.cloudinary.com/spiralyze/image/upload/f_auto,w_1414/BabySignLanguage/DictionaryPages/good_morning-webp.webp"></div></div><div class="details">Sign "Good" then move your dominant hand up from the "horizon" of your other arm.</div></div>
+    <div class="phrase-row"><div class="phrase-display"><h3>Good Night</h3><div class="asl-image"><img src="https://res.cloudinary.com/spiralyze/image/upload/f_auto,w_1414/BabySignLanguage/DictionaryPages/good_night-webp.webp"></div></div><div class="details">Sign "Good" then arch your hand over the other arm like the sun setting.</div></div>
+    <div class="phrase-row"><div class="phrase-display"><h3>Want</h3><div class="asl-image"><img src="https://res.cloudinary.com/spiralyze/image/upload/f_auto,w_1414/BabySignLanguage/DictionaryPages/want-webp.webp"></div></div><div class="details">Bring both hands toward your body with palms up and fingers slightly clawed.</div></div>
+    <div class="phrase-row"><div class="phrase-display"><h3>Excuse Me</h3><div class="asl-image"><img src="https://res.cloudinary.com/spiralyze/image/upload/f_auto,w_1414/BabySignLanguage/DictionaryPages/excuse_me-webp.webp"></div></div><div class="details">Brush the fingertips of your dominant hand across the palm of your non-dominant hand.</div></div>
+    <div class="phrase-row"><div class="phrase-display"><h3>I Love You</h3><div class="asl-image"><img src="http://res.cloudinary.com/spiralyze/image/upload/f_auto,w_1414/BabySignLanguage/DictionaryPages/i_love_you-webp.webp"></div></div><div class="details">The universal sign combining the letters I, L, and Y.</div></div>
   </div>
 
-  <div class="category-title">Family & Pets</div>
-  <div class="phrase-grid">
-    <div class="phrase-card"><img src="https://res.cloudinary.com/spiralyze/image/upload/f_auto,w_1414/BabySignLanguage/DictionaryPages/mommy-webp.webp" class="asl-img"><h3>Mother</h3></div>
-    <div class="phrase-card"><img src="https://res.cloudinary.com/spiralyze/image/upload/f_auto,w_1414/BabySignLanguage/DictionaryPages/daddy-webp.webp" class="asl-img"><h3>Father</h3></div>
-    <div class="phrase-card"><img src = "https://res.cloudinary.com/spiralyze/image/upload/f_auto,w_1414/BabySignLanguage/DictionaryPages/brother-webp.webp" class = "asl-img"><h3>Brother</h3></div>
-    <div class = "phrase-card"><img src = "https://res.cloudinary.com/spiralyze/image/upload/f_auto,w_1414/BabySignLanguage/DictionaryPages/sister-webp.webp" class = "asl-img"><h3>Sister</h3></div>
-    <div class = "phrase-card"><img src = "https://res.cloudinary.com/spiralyze/image/upload/f_auto,w_1414/BabySignLanguage/DictionaryPages/uncle-webp.webp" class = "asl-img"><h3>Uncle</h3></div>
-    <div class = "phrase-card"><img src = "https://res.cloudinary.com/spiralyze/image/upload/f_auto,w_1414/BabySignLanguage/DictionaryPages/aunt-webp.webp" class = "asl-img"><h3>Aunt</h3></div>
-    <div class="phrase-card"><img src = "https://res.cloudinary.com/spiralyze/image/upload/f_auto,w_1414/BabySignLanguage/DictionaryPages/grandmother-webp.webp" class = "asl-img"><h3>Grandmother</h3></div>
-    <div class="phrase-card"><img src = "https://res.cloudinary.com/spiralyze/image/upload/f_auto,w_1414/BabySignLanguage/DictionaryPages/grandfather-webp.webp" class = "asl-img"><h3>Grandfather</h3></div>
-    <div class="phrase-card"><img src="https://res.cloudinary.com/spiralyze/image/upload/f_auto,w_1414/BabySignLanguage/DictionaryPages/dog-webp.webp" class = "asl-img"><h3>Dog</h3></div>
-    <div class="phrase-card"><img src="https://res.cloudinary.com/spiralyze/image/upload/f_auto,w_1414/BabySignLanguage/DictionaryPages/cat-webp.webp" class = "asl-img"><h3>Cat</h3></div>
+  <div class="category-divider"><h2>Family & Pets</h2></div>
+  <div class="phrases-container">
+    <div class="phrase-row"><div class="phrase-display"><h3>Mother</h3><div class="asl-image"><img src="https://res.cloudinary.com/spiralyze/image/upload/f_auto,w_1414/BabySignLanguage/DictionaryPages/mommy-webp.webp"></div></div><div class="details">Tap your thumb to your chin with an open hand.</div></div>
+    <div class="phrase-row"><div class="phrase-display"><h3>Father</h3><div class="asl-image"><img src="https://res.cloudinary.com/spiralyze/image/upload/f_auto,w_1414/BabySignLanguage/DictionaryPages/daddy-webp.webp"></div></div><div class="details">Tap your thumb to your forehead with an open hand.</div></div>
+    <div class="phrase-row"><div class="phrase-display"><h3>Brother</h3><div class="asl-image"><img src="https://res.cloudinary.com/spiralyze/image/upload/f_auto,w_1414/BabySignLanguage/DictionaryPages/brother-webp.webp"></div></div><div class="details">Combine the signs for 'Boy' (cap grab) and 'Same'.</div></div>
+    <div class="phrase-row"><div class="phrase-display"><h3>Sister</h3><div class="asl-image"><img src="https://res.cloudinary.com/spiralyze/image/upload/f_auto,w_1414/BabySignLanguage/DictionaryPages/sister-webp.webp"></div></div><div class="details">Combine the signs for 'Girl' (jaw stroke) and 'Same'.</div></div>
+    <div class="phrase-row"><div class="phrase-display"><h3>Uncle</h3><div class="asl-image"><img src="https://res.cloudinary.com/spiralyze/image/upload/f_auto,w_1414/BabySignLanguage/DictionaryPages/uncle-webp.webp"></div></div><div class="details">Shake a "U" handshape near your temple.</div></div>
+    <div class="phrase-row"><div class="phrase-display"><h3>Aunt</h3><div class="asl-image"><img src="https://res.cloudinary.com/spiralyze/image/upload/f_auto,w_1414/BabySignLanguage/DictionaryPages/aunt-webp.webp"></div></div><div class="details">Shake an "A" handshape near your jaw.</div></div>
+    <div class="phrase-row"><div class="phrase-display"><h3>Grandmother</h3><div class="asl-image"><img src="https://res.cloudinary.com/spiralyze/image/upload/f_auto,w_1414/BabySignLanguage/DictionaryPages/grandmother-webp.webp"></div></div><div class="details">Sign "Mother" but bounce the hand forward away from the chin twice.</div></div>
+    <div class="phrase-row"><div class="phrase-display"><h3>Grandfather</h3><div class="asl-image"><img src="https://res.cloudinary.com/spiralyze/image/upload/f_auto,w_1414/BabySignLanguage/DictionaryPages/grandfather-webp.webp"></div></div><div class="details">Sign "Father" but bounce the hand forward away from the forehead twice.</div></div>
+    <div class="phrase-row"><div class="phrase-display"><h3>Dog</h3><div class="asl-image"><img src="https://res.cloudinary.com/spiralyze/image/upload/f_auto,w_1414/BabySignLanguage/DictionaryPages/dog-webp.webp"></div></div><div class="details">Slap your thigh and then snap your fingers.</div></div>
+    <div class="phrase-row"><div class="phrase-display"><h3>Cat</h3><div class="asl-image"><img src="https://res.cloudinary.com/spiralyze/image/upload/f_auto,w_1414/BabySignLanguage/DictionaryPages/cat-webp.webp"></div></div><div class="details">Use your thumb and index finger to mimic whiskers on your cheek.</div></div>
   </div>
 
-  <div class="category-title">Daily Actions</div>
-  <div class="phrase-grid">
-    <div class="phrase-card"><img src="https://res.cloudinary.com/spiralyze/image/upload/f_auto,w_1414/BabySignLanguage/DictionaryPages/eat-webp.webp" class="asl-img"><h3>Eat</h3></div>
-    <div class="phrase-card"><img src="https://res.cloudinary.com/spiralyze/image/upload/f_auto,w_1414/BabySignLanguage/DictionaryPages/drink-webp.webp" class="asl-img"><h3>Drink</h3></div>
-    <div class="phrase-card"><img src="https://res.cloudinary.com/spiralyze/image/upload/f_auto,w_1414/BabySignLanguage/DictionaryPages/study-webp.webp" class="asl-img"><h3>Study</h3></div>
-    <div class="phrase-card"><img src="https://res.cloudinary.com/spiralyze/image/upload/f_auto,w_1414/BabySignLanguage/DictionaryPages/sleep-webp.webp" class = "asl-img"><h3>Sleep</h3></div>
-    <div class="phrase-card"><img src = "https://res.cloudinary.com/spiralyze/image/upload/f_auto,w_1414/BabySignLanguage/DictionaryPages/potty-webp.webp" class = "asl-img"><h3>Potty</h3></div>
-    <div class = "phrase-card"><img src = "https://res.cloudinary.com/spiralyze/image/upload/f_auto,w_1414/BabySignLanguage/DictionaryPages/shower-webp.webp" class = "asl-img"><h3>Shower</h3></div>
-    <div class = "phrase-card"><img src = "https://res.cloudinary.com/spiralyze/image/upload/f_auto,w_1414/BabySignLanguage/DictionaryPages/brush_teeth-webp.webp" class = "asl-img"><h3>Brush Teeth</h3></div>
-    
-    
+  <div class="category-divider"><h2>Daily Actions</h2></div>
+  <div class="phrases-container">
+    <div class="phrase-row"><div class="phrase-display"><h3>Eat</h3><div class="asl-image"><img src="https://res.cloudinary.com/spiralyze/image/upload/f_auto,w_1414/BabySignLanguage/DictionaryPages/eat-webp.webp"></div></div><div class="details">Tap your mouth with a flattened "O" handshape.</div></div>
+    <div class="phrase-row"><div class="phrase-display"><h3>Drink</h3><div class="asl-image"><img src="https://res.cloudinary.com/spiralyze/image/upload/f_auto,w_1414/BabySignLanguage/DictionaryPages/drink-webp.webp"></div></div><div class="details">Mimic holding and drinking from a cup.</div></div>
+    <div class="phrase-row"><div class="phrase-display"><h3>Study</h3><div class="asl-image"><img src="https://res.cloudinary.com/spiralyze/image/upload/f_auto,w_1414/BabySignLanguage/DictionaryPages/study-webp.webp"></div></div><div class="details">Wiggle your fingers above your other palm as if reading intensely.</div></div>
+    <div class="phrase-row"><div class="phrase-display"><h3>Sleep</h3><div class="asl-image"><img src="https://res.cloudinary.com/spiralyze/image/upload/f_auto,w_1414/BabySignLanguage/DictionaryPages/sleep-webp.webp"></div></div><div class="details">Bring your hand down from your forehead to your chin as your eyes close.</div></div>
+    <div class="phrase-row"><div class="phrase-display"><h3>Potty</h3><div class="asl-image"><img src="https://res.cloudinary.com/spiralyze/image/upload/f_auto,w_1414/BabySignLanguage/DictionaryPages/potty-webp.webp"></div></div><div class="details">Shake a "T" handshape back and forth.</div></div>
+    <div class="phrase-row"><div class="phrase-display"><h3>Shower</h3><div class="asl-image"><img src="https://res.cloudinary.com/spiralyze/image/upload/f_auto,w_1414/BabySignLanguage/DictionaryPages/shower-webp.webp"></div></div><div class="details">Open and close your hand above your head to mimic spraying water.</div></div>
+    <div class="phrase-row"><div class="phrase-display"><h3>Brush Teeth</h3><div class="asl-image"><img src="https://res.cloudinary.com/spiralyze/image/upload/f_auto,w_1414/BabySignLanguage/DictionaryPages/brush_teeth-webp.webp"></div></div><div class="details">Mimic the motion of brushing your teeth with your index finger.</div></div>
   </div>
 
-  <div class="category-title">Common Phrases & Objects</div>
-  <div class="phrase-grid">
-    <div class="phrase-card"><img src="https://res.cloudinary.com/spiralyze/image/upload/f_auto,w_1414/BabySignLanguage/DictionaryPages/hungry-webp.webp" class = "asl-img"><h3>I am hungry</h3></div>
-    <div class="phrase-card"><img src="https://res.cloudinary.com/spiralyze/image/upload/f_auto,w_1414/BabySignLanguage/DictionaryPages/bathroom-webp.webp" class = "asl-img"><h3>Where is the bathroom?</h3></div>
-    <div class="phrase-card"><img src="https://res.cloudinary.com/spiralyze/image/upload/f_auto,w_1414/BabySignLanguage/DictionaryPages/time-webp.webp" class = "asl-img"><h3>What time is it?</h3></div>
-    <div class="phrase-card"><img src="https://res.cloudinary.com/spiralyze/image/upload/f_auto,w_1414/BabySignLanguage/DictionaryPages/don_t_know-webp.webp" class = "asl-img"><h3>I don't know</h3></div>
-    <div class="phrase-card"><img src="https://res.cloudinary.com/spiralyze/image/upload/f_auto,w_1414/BabySignLanguage/DictionaryPages/again-webp.webp" class = "asl-img"><h3>Again, please?</h3></div>
-    </div>
+  <div class="category-divider"><h2>Common Phrases & Objects</h2></div>
+  <div class="phrases-container">
+    <div class="phrase-row"><div class="phrase-display"><h3>I am hungry</h3><div class="asl-image"><img src="https://res.cloudinary.com/spiralyze/image/upload/f_auto,w_1414/BabySignLanguage/DictionaryPages/hungry-webp.webp"></div></div><div class="details">Slide your hand in a "C" shape down the center of your chest.</div></div>
+    <div class="phrase-row"><div class="phrase-display"><h3>Where is the bathroom?</h3><div class="asl-image"><img src="https://res.cloudinary.com/spiralyze/image/upload/f_auto,w_1414/BabySignLanguage/DictionaryPages/bathroom-webp.webp"></div></div><div class="details">Shake the "T" handshape while using a questioning facial expression.</div></div>
+    <div class="phrase-row"><div class="phrase-display"><h3>What time is it?</h3><div class="asl-image"><img src="https://res.cloudinary.com/spiralyze/image/upload/f_auto,w_1414/BabySignLanguage/DictionaryPages/time-webp.webp"></div></div><div class="details">Tap your wrist where a watch would normally be.</div></div>
+    <div class="phrase-row"><div class="phrase-display"><h3>I don't know</h3><div class="asl-image"><img src="https://res.cloudinary.com/spiralyze/image/upload/f_auto,w_1414/BabySignLanguage/DictionaryPages/don_t_know-webp.webp"></div></div><div class="details">Touch your forehead and then flick your hand away.</div></div>
+    <div class="phrase-row"><div class="phrase-display"><h3>Again, please?</h3><div class="asl-image"><img src="https://res.cloudinary.com/spiralyze/image/upload/f_auto,w_1414/BabySignLanguage/DictionaryPages/again-webp.webp"></div></div><div class="details">Arch your dominant hand into the palm of your other hand.</div></div>
+  </div>
 
 </body>
 </html>
