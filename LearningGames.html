@@ -13,9 +13,7 @@
       --text-purple: #4a148c;
       --accent-purple: #9c27b0;
       --success-green: #2e7d32;
-      --error-red: #c62828;
       --timer-gold: #ffd700;
-      --boss-red: #d32f2f;
       --hell-bg: #1a0000;
       --ultra-bg: #000000;
     }
@@ -30,46 +28,74 @@
       transition: all 1s ease;
     }
 
+    /* Mode states for game transition */
     body.hell-mode { background-color: var(--hell-bg); color: #ff4d4d; }
     body.ultra-mode { background: var(--ultra-bg); color: #00ffcc; }
 
-    /* DASHBOARD */
+    /* Dashboard Styling */
     .dashboard {
       background-color: var(--nav-purple);
       padding: 15px 40px;
       display: flex;
-      justify-content: space-between;
+      justify-content: space-between; 
       align-items: center;
       position: sticky;
       top: 0;
       z-index: 1000;
       box-shadow: 0 4px 10px rgba(0,0,0,0.2);
     }
-    .nav-left { display: flex; align-items: center; gap: 20px; }
-    .nav-right { display: flex; gap: 25px; }
-    .nav-link { color: white; text-decoration: none; font-weight: bold; }
-    .home-icon { font-size: 1.8rem; color: white; }
 
+    .home-icon { font-size: 32px; color: white; transition: opacity 0.3s; text-decoration: none; }
+    .home-icon:hover { opacity: 0.8; }
+
+    .nav-links { display: flex; align-items: center; }
+    .nav-links a {
+      color: white;
+      text-decoration: none;
+      font-size: 22px;
+      font-weight: bold;
+      margin-left: 30px;
+      transition: opacity 0.3s;
+    }
+    .nav-links a:hover { opacity: 0.8; }
+
+    header {
+      text-align: center;
+      padding: 40px 20px;
+    }
+
+    header h1 {
+      font-size: 60px;
+      margin: 0;
+      color: var(--text-purple);
+    }
+
+    .hell-mode header h1 { color: #ff4d4d; }
+    .ultra-mode header h1 { color: #00ffcc; }
+
+    /* Game UI */
     .game-container {
       max-width: 900px;
-      margin: 30px auto;
-      padding: 25px;
-      background: white;
+      margin: 0 auto;
+      padding: 40px;
+      background-color: var(--card-purple);
+      border: 4px solid var(--accent-purple);
       border-radius: 25px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-      border: 3px solid var(--accent-purple);
+      box-shadow: 0 8px 20px rgba(74, 20, 140, 0.1);
       text-align: center;
     }
+
     .hell-mode .game-container { background: #2b0000; border-color: #ff0000; }
     .ultra-mode .game-container { background: #0a0a0a; border-color: #00ffcc; box-shadow: 0 0 50px #00ffcc33; }
 
     .boss-container {
-      background: #fafafa;
+      background: white;
       border: 4px solid var(--nav-purple);
       border-radius: 20px;
       padding: 20px;
       margin-bottom: 20px;
     }
+
     .hell-mode .boss-container { background: #400000; border-color: #ff4d4d; }
     .ultra-mode .boss-container { background: #111; border-color: #00ffcc; }
 
@@ -79,7 +105,7 @@
     .timer-bar { width: 100%; height: 15px; background: #ddd; border-radius: 10px; overflow: hidden; margin-bottom: 20px; }
     #timer-fill { width: 100%; height: 100%; background: var(--timer-gold); }
 
-    .stats-row { display: flex; justify-content: space-around; font-weight: bold; margin-bottom: 15px; }
+    .stats-row { display: flex; justify-content: space-around; font-weight: bold; margin-bottom: 15px; font-size: 1.2rem; }
 
     .sequence-tracker { display: flex; justify-content: center; gap: 10px; margin: 15px 0; flex-wrap: wrap; }
     .slot {
@@ -102,37 +128,45 @@
     }
     .attack-btn:active { transform: translateY(3px); box-shadow: none; }
     .attack-btn img { width: 60px; height: 60px; object-fit: contain; }
-    /* Removed letter labels as requested */
 
-    #battle-log { font-weight: bold; font-size: 1.2rem; min-height: 30px; }
-    #score-display { color: #ffd700; font-size: 1.5rem; text-shadow: 0 0 10px rgba(255,215,0,0.5); }
+    #battle-log { font-weight: bold; font-size: 1.2rem; min-height: 30px; margin-bottom: 10px; }
+    #score-display { color: #ffd700; font-size: 1.5rem; text-shadow: 0 0 10px rgba(0,0,0,0.5); font-weight: bold;}
+
+    @media (max-width: 850px) {
+      header h1 { font-size: 40px; }
+      .dashboard { padding: 15px 20px; }
+      .nav-links a { margin-left: 15px; font-size: 18px; }
+    }
   </style>
 </head>
 <body>
 
   <nav class="dashboard">
-    <div class="nav-left">
-      <a href="index.html" class="home-icon"><i class="fas fa-house-chimney"></i></a>
-      <div id="mode-tag" style="font-weight: 900; color: #ffd700;">NORMAL MODE</div>
-    </div>
-    <div id="score-display">SCORE: 0</div>
-    <div class="nav-right">
-      <a href="Alphabet.html" class="nav-link">ALPHABET</a>
-      <a href="Numbers.html" class="nav-link">NUMBERS</a>
-      <a href="WordsPhrases.html" class="nav-link">PHRASES</a>
+    <a href="index.html" class="home-icon"><i class="fas fa-house"></i></a>
+    <div id="mode-tag" style="font-weight: 900; color: #ffd700;">NORMAL MODE</div>
+    <div class="nav-links">
+      <a href="Alphabet.html">Alphabet</a>
+      <a href="Numbers.html">Numbers</a>
+      <a href="WordsPhrases.html">Phrases</a>
     </div>
   </nav>
+
+  <header>
+    <h1>ASL Hero: Ghost Gauntlet</h1>
+    <p>Test your knowledge in the ultimate signing battle.</p>
+  </header>
 
   <div class="game-container">
     <div class="stats-row">
       <div id="stage-text">STAGE: <span id="lvl-display">1</span></div>
+      <div id="score-display">SCORE: 0</div>
       <div>UNLOCKED: <span id="col-count">0</span>/26</div>
     </div>
 
     <div class="timer-bar"><div id="timer-fill"></div></div>
 
     <div class="boss-container" id="boss-box">
-      <h2 id="m-name" style="margin: 0;">??</h2>
+      <h2 id="m-name" style="margin: 0; color: var(--nav-purple);">??</h2>
       <div class="boss-sprite" id="m-sprite">❓</div>
       <div id="battle-log">Choose your starter gesture!</div>
       <div class="sequence-tracker" id="seq-tracker"></div>
@@ -165,8 +199,10 @@
       grid.innerHTML = "";
       const starters = [];
       for(let i=0; i<3; i++) {
-          let idx = Math.floor(Math.random() * alphabetPool.length);
-          starters.push(alphabetPool.splice(idx, 1)[0]);
+          if(alphabetPool.length > 0) {
+            let idx = Math.floor(Math.random() * alphabetPool.length);
+            starters.push(alphabetPool.splice(idx, 1)[0]);
+          }
       }
 
       starters.forEach(l => {
@@ -179,7 +215,6 @@
     }
 
     function startLevel() {
-      // Check for Ultra Mode Transition
       if (level > 26) {
           isUltraMode = true;
           document.body.className = "ultra-mode";
@@ -199,7 +234,6 @@
       document.getElementById('lvl-display').innerText = isUltraMode ? (level - 26) : level;
       document.getElementById('col-count').innerText = unlockedSigns.length;
 
-      // Tighten timer based on score and level
       timeLimit = isUltraMode ? Math.max(2.0, 6 - ((level-26) * 0.2)) : Math.max(2.2, 14 - (level * 0.45));
       timeLeft = timeLimit;
 
@@ -248,7 +282,7 @@
           winLevel();
         }
       } else {
-        timeLeft -= 1.5; // Heavier penalty for no labels
+        timeLeft -= 1.5; 
         document.getElementById('battle-log').innerText = "INCORRECT! -1.5s";
       }
     }
@@ -259,7 +293,7 @@
 
     function winLevel() {
       clearInterval(timerInterval);
-      score += (level * 100); // Level completion bonus
+      score += (level * 100); 
       updateScore();
 
       if(alphabetPool.length > 0) {
