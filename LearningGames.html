@@ -28,11 +28,9 @@
       transition: all 1s ease;
     }
 
-    /* Mode states for game transition */
     body.hell-mode { background-color: var(--hell-bg); color: #ff4d4d; }
     body.ultra-mode { background: var(--ultra-bg); color: #00ffcc; }
 
-    /* Dashboard Styling */
     .dashboard {
       background-color: var(--nav-purple);
       padding: 15px 40px;
@@ -59,21 +57,9 @@
     }
     .nav-links a:hover { opacity: 0.8; }
 
-    header {
-      text-align: center;
-      padding: 40px 20px;
-    }
+    header { text-align: center; padding: 40px 20px; }
+    header h1 { font-size: 60px; margin: 0; color: var(--text-purple); }
 
-    header h1 {
-      font-size: 60px;
-      margin: 0;
-      color: var(--text-purple);
-    }
-
-    .hell-mode header h1 { color: #ff4d4d; }
-    .ultra-mode header h1 { color: #00ffcc; }
-
-    /* Game UI */
     .game-container {
       max-width: 900px;
       margin: 0 auto;
@@ -85,9 +71,6 @@
       text-align: center;
     }
 
-    .hell-mode .game-container { background: #2b0000; border-color: #ff0000; }
-    .ultra-mode .game-container { background: #0a0a0a; border-color: #00ffcc; box-shadow: 0 0 50px #00ffcc33; }
-
     .boss-container {
       background: white;
       border: 4px solid var(--nav-purple);
@@ -95,9 +78,6 @@
       padding: 20px;
       margin-bottom: 20px;
     }
-
-    .hell-mode .boss-container { background: #400000; border-color: #ff4d4d; }
-    .ultra-mode .boss-container { background: #111; border-color: #00ffcc; }
 
     .boss-sprite { font-size: 80px; margin: 10px 0; animation: float 3s ease-in-out infinite; }
     @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
@@ -109,32 +89,44 @@
 
     .sequence-tracker { display: flex; justify-content: center; gap: 10px; margin: 15px 0; flex-wrap: wrap; }
     .slot {
-      width: 45px; height: 60px; border: 2px solid var(--nav-purple);
+      min-width: 60px; height: 70px; border: 2px solid var(--nav-purple);
       border-radius: 10px; display: flex; align-items: center; justify-content: center;
-      font-size: 24px; font-weight: bold; background: #eee; color: transparent;
+      font-size: 24px; font-weight: bold; background: #eee; color: transparent; padding: 0 15px;
     }
     .slot.active { background: white; color: var(--nav-purple); border-width: 4px; }
     .slot.revealed { background: #c8e6c9; color: var(--text-purple); border-color: #4caf50; }
-    .ultra-mode .slot.active { color: #00ffcc; background: #222; }
 
-    .attack-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(80px, 1fr)); gap: 10px; margin-top: 20px; }
+    .attack-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 15px; margin-top: 20px; }
 
     .attack-btn {
       background: white; border: 2px solid var(--accent-purple);
-      border-radius: 12px; padding: 10px; cursor: pointer;
+      border-radius: 12px; padding: 15px; cursor: pointer;
       display: flex; flex-direction: column; align-items: center;
       box-shadow: 0 4px 0 var(--accent-purple);
       transition: 0.1s;
     }
     .attack-btn:active { transform: translateY(3px); box-shadow: none; }
-    .attack-btn img { width: 60px; height: 60px; object-fit: contain; }
+    .attack-btn img { width: 110px; height: 110px; object-fit: contain; }
 
     #battle-log { font-weight: bold; font-size: 1.2rem; min-height: 30px; margin-bottom: 10px; }
-    #score-display { color: #ffd700; font-size: 1.5rem; text-shadow: 0 0 10px rgba(0,0,0,0.5); font-weight: bold;}
+
+    .menu-btn {
+      background: var(--nav-purple); color: white; border: none;
+      padding: 20px 40px; font-size: 24px; border-radius: 15px;
+      margin: 10px; cursor: pointer; font-weight: bold; width: 300px;
+      transition: transform 0.2s;
+    }
+    .menu-btn:hover { background: var(--accent-purple); transform: scale(1.05); }
+
+    .back-btn {
+      background: #666; color: white; border: none;
+      padding: 10px 20px; border-radius: 8px; cursor: pointer;
+      margin-top: 20px; font-weight: bold;
+    }
+    .back-btn:hover { background: #444; }
 
     @media (max-width: 850px) {
       header h1 { font-size: 40px; }
-      .dashboard { padding: 15px 20px; }
       .nav-links a { margin-left: 15px; font-size: 18px; }
     }
   </style>
@@ -143,7 +135,7 @@
 
   <nav class="dashboard">
     <a href="index.html" class="home-icon"><i class="fas fa-house"></i></a>
-    <div id="mode-tag" style="font-weight: 900; color: #ffd700;">NORMAL MODE</div>
+    <div id="mode-tag" style="font-weight: 900; color: #ffd700;">GAME SELECTION</div>
     <div class="nav-links">
       <a href="Alphabet.html">Alphabet</a>
       <a href="Numbers.html">Numbers</a>
@@ -153,160 +145,159 @@
 
   <header>
     <h1>ASL Hero: Ghost Gauntlet</h1>
-    <p>Test your knowledge in the ultimate signing battle.</p>
+    <p id="game-subtitle">Choose your challenge to begin.</p>
   </header>
 
-  <div class="game-container">
-    <div class="stats-row">
-      <div id="stage-text">STAGE: <span id="lvl-display">1</span></div>
-      <div id="score-display">SCORE: 0</div>
-      <div>UNLOCKED: <span id="col-count">0</span>/26</div>
+  <div class="game-container" id="main-area">
+    <div id="game-menu">
+      <button class="menu-btn" onclick="selectMode('alpha')">Alphabet Fighter</button><br>
+      <button class="menu-btn" onclick="selectMode('num')">Number Knight</button><br>
+      <button class="menu-btn" onclick="selectMode('phrase')">Phrase Paladin</button>
     </div>
 
-    <div class="timer-bar"><div id="timer-fill"></div></div>
-
-    <div class="boss-container" id="boss-box">
-      <h2 id="m-name" style="margin: 0; color: var(--nav-purple);">??</h2>
-      <div class="boss-sprite" id="m-sprite">❓</div>
-      <div id="battle-log">Choose your starter gesture!</div>
-      <div class="sequence-tracker" id="seq-tracker"></div>
+    <div id="battle-ui" style="display: none;">
+        <div class="stats-row">
+            <div id="stage-text">STAGE: <span id="lvl-display">1</span></div>
+            <div id="score-display">SCORE: 0</div>
+            <div>UNLOCKED: <span id="col-count">0</span></div>
+        </div>
+        <div class="timer-bar"><div id="timer-fill"></div></div>
+        <div class="boss-container">
+            <h2 id="m-name" style="margin: 0; color: var(--nav-purple);">??</h2>
+            <div class="boss-sprite" id="m-sprite">❓</div>
+            <div id="battle-log">Choose your starter!</div>
+            <div class="sequence-tracker" id="seq-tracker"></div>
+        </div>
+        <div class="attack-grid" id="attack-options"></div>
+        <button class="back-btn" onclick="resetToMenu()">← Back to Menu</button>
     </div>
-
-    <div class="attack-grid" id="attack-options"></div>
   </div>
 
   <script>
-    const alphabetPool = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
-    const monsters = [
-      { name: "Slime", icon: "👾" }, { name: "Gargoyle", icon: "🗿" },
-      { name: "Spike-Plant", icon: "🌵" }, { name: "Ghost", icon: "👻" },
-      { name: "Kraken", icon: "🐙" }, { name: "Hydra", icon: "🐲" },
-      { name: "Void Lord", icon: "👁️" }, { name: "Cyber Demon", icon: "🤖" }
-    ];
+    const dataPools = {
+        alpha: "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("").map(l => ({id: l, img: `https://www.lifeprint.com/asl101/fingerspelling/abc-gifs/${l.toLowerCase()}.gif`})),
+        num: [
+            {id: "1", img: "ASL1.jpg"},
+            {id: "2", img: "ASL2.jpeg"},
+            {id: "3", img: "ASL3.jpeg"},
+            {id: "4", img: "ASL4.jpg"},
+            {id: "5", img: "ASL5.jpg"},
+            {id: "6", img: "ASL6.jpg"},
+            {id: "7", img: "ASL7.jpg"},
+            {id: "8", img: "ASL8.jpg"},
+            {id: "9", img: "ASL9.jpeg"},
+            {id: "10", img: "ASL10.gif"}
+        ],
+        phrase: [
+            {id: "Hello", img: "https://res.cloudinary.com/spiralyze/image/upload/f_auto,w_300/BabySignLanguage/DictionaryPages/hello-webp.webp"},
+            {id: "Please", img: "https://res.cloudinary.com/spiralyze/image/upload/f_auto,w_300/BabySignLanguage/DictionaryPages/please-webp.webp"},
+            {id: "Thanks", img: "https://res.cloudinary.com/spiralyze/image/upload/f_auto,w_300/BabySignLanguage/DictionaryPages/thank_you-webp.webp"},
+            {id: "Sorry", img: "https://res.cloudinary.com/spiralyze/image/upload/f_auto,w_300/BabySignLanguage/DictionaryPages/sorry-webp.webp"},
+            {id: "Yes", img: "https://res.cloudinary.com/spiralyze/image/upload/f_auto,w_300/BabySignLanguage/DictionaryPages/yes-webp.webp"},
+            {id: "No", img: "https://res.cloudinary.com/spiralyze/image/upload/f_auto,w_300/BabySignLanguage/DictionaryPages/no-webp.webp"},
+            {id: "Eat", img: "https://res.cloudinary.com/spiralyze/image/upload/f_auto,w_300/BabySignLanguage/DictionaryPages/eat-webp.webp"},
+            {id: "Drink", img: "https://res.cloudinary.com/spiralyze/image/upload/f_auto,w_300/BabySignLanguage/DictionaryPages/drink-webp.webp"},
+            {id: "More", img: "https://res.cloudinary.com/spiralyze/image/upload/f_auto,w_300/BabySignLanguage/DictionaryPages/more-webp.webp"},
+            {id: "Mother", img: "https://res.cloudinary.com/spiralyze/image/upload/f_auto,w_300/BabySignLanguage/DictionaryPages/mommy-webp.webp"},
+            {id: "Father", img: "https://res.cloudinary.com/spiralyze/image/upload/f_auto,w_300/BabySignLanguage/DictionaryPages/daddy-webp.webp"}
+        ]
+    };
 
-    let unlockedSigns = [];
-    let currentSequence = [];
-    let currentIndex = 0;
-    let level = 1;
-    let score = 0;
-    let isUltraMode = false;
-    let timeLeft = 0;
-    let timeLimit = 10;
-    let timerInterval;
+    const monsters = [{ name: "Slime", icon: "👾" }, { name: "Ghost", icon: "👻" }, { name: "Hydra", icon: "🐲" }];
+    let activePool = [], unlockedSigns = [], currentSequence = [], currentIndex = 0, level = 1, score = 0, timeLeft = 0, timeLimit = 10, timerInterval;
 
-    function init() {
+    function selectMode(mode) {
+        activePool = JSON.parse(JSON.stringify(dataPools[mode])); 
+        unlockedSigns = [];
+        level = 1;
+        score = 0;
+        document.getElementById('game-menu').style.display = 'none';
+        document.getElementById('battle-ui').style.display = 'block';
+        document.getElementById('mode-tag').innerText = mode.toUpperCase() + " MODE";
+        document.getElementById('score-display').innerText = "SCORE: 0";
+        initGame();
+    }
+
+    function resetToMenu() {
+        clearInterval(timerInterval);
+        document.getElementById('game-menu').style.display = 'block';
+        document.getElementById('battle-ui').style.display = 'none';
+        document.getElementById('mode-tag').innerText = "GAME SELECTION";
+        document.getElementById('game-subtitle').innerText = "Choose your challenge to begin.";
+    }
+
+    function initGame() {
       const grid = document.getElementById('attack-options');
       grid.innerHTML = "";
       const starters = [];
-      for(let i=0; i<3; i++) {
-          if(alphabetPool.length > 0) {
-            let idx = Math.floor(Math.random() * alphabetPool.length);
-            starters.push(alphabetPool.splice(idx, 1)[0]);
-          }
+      for(let i=0; i<Math.min(3, activePool.length); i++) {
+            let idx = Math.floor(Math.random() * activePool.length);
+            starters.push(activePool.splice(idx, 1)[0]);
       }
-
-      starters.forEach(l => {
+      starters.forEach(item => {
         const btn = document.createElement('div');
         btn.className = 'attack-btn';
-        btn.innerHTML = `<img src="https://www.lifeprint.com/asl101/fingerspelling/abc-gifs/${l.toLowerCase()}.gif">`;
-        btn.onclick = () => { unlockedSigns.push(l); startLevel(); };
+        btn.innerHTML = `<img src="${item.img}" onerror="this.src='https://via.placeholder.com/110?text=Missing+File'">`;
+        btn.onclick = () => { unlockedSigns.push(item); startLevel(); };
         grid.appendChild(btn);
       });
     }
 
     function startLevel() {
-      if (level > 26) {
-          isUltraMode = true;
-          document.body.className = "ultra-mode";
-          document.getElementById('mode-tag').innerText = "💀 ULTRA MODE: BOSS GAUNTLET 💀";
-          document.getElementById('stage-text').innerText = "WAVE: " + (level - 26);
-      } else if (level >= 21) {
-          document.body.className = "hell-mode";
-          document.getElementById('mode-tag').innerText = "🔥 HELL MODE 🔥";
-      }
-
       currentIndex = 0;
-      const isBoss = isUltraMode || level % 5 === 0;
       const monster = monsters[Math.floor(Math.random() * monsters.length)];
-      
-      document.getElementById('m-name').innerText = isBoss ? "BOSS " + monster.name : monster.name;
-      document.getElementById('m-sprite').innerText = isUltraMode ? "💀" : monster.icon;
-      document.getElementById('lvl-display').innerText = isUltraMode ? (level - 26) : level;
+      document.getElementById('m-name').innerText = monster.name;
+      document.getElementById('m-sprite').innerText = monster.icon;
+      document.getElementById('lvl-display').innerText = level;
       document.getElementById('col-count').innerText = unlockedSigns.length;
-
-      timeLimit = isUltraMode ? Math.max(2.0, 6 - ((level-26) * 0.2)) : Math.max(2.2, 14 - (level * 0.45));
+      timeLimit = Math.max(3, 12 - (level * 0.5));
       timeLeft = timeLimit;
-
-      generateLevelSequence();
+      generateSequence();
       renderUI();
       runTimer();
     }
 
-    function generateLevelSequence() {
+    function generateSequence() {
       currentSequence = [];
-      let len = isUltraMode ? (6 + Math.floor((level-26)/2)) : (2 + Math.floor(level / 3));
-      if (level === 26) len = 12; 
-      
-      for(let i=0; i<len; i++) {
-        currentSequence.push(unlockedSigns[Math.floor(Math.random() * unlockedSigns.length)]);
-      }
+      let len = 2 + Math.floor(level / 4);
+      for(let i=0; i<len; i++) currentSequence.push(unlockedSigns[Math.floor(Math.random() * unlockedSigns.length)]);
     }
 
     function renderUI() {
-      document.getElementById('seq-tracker').innerHTML = currentSequence.map((char, i) => `
-        <div class="slot ${i === 0 ? 'active' : ''}" id="slot-${i}">${char}</div>
-      `).join('');
-
+      document.getElementById('seq-tracker').innerHTML = currentSequence.map((item, i) => `<div class="slot ${i === 0 ? 'active' : ''}" id="slot-${i}">${item.id}</div>`).join('');
       const grid = document.getElementById('attack-options');
       grid.innerHTML = "";
-      unlockedSigns.forEach(char => {
+      unlockedSigns.forEach(item => {
         const btn = document.createElement('div');
         btn.className = 'attack-btn';
-        btn.innerHTML = `<img src="https://www.lifeprint.com/asl101/fingerspelling/abc-gifs/${char.toLowerCase()}.gif">`;
-        btn.onclick = () => handleInput(char);
+        btn.innerHTML = `<img src="${item.img}" onerror="this.src='https://via.placeholder.com/110?text=Error'">`;
+        btn.onclick = () => handleInput(item.id);
         grid.appendChild(btn);
       });
-      document.getElementById('battle-log').innerText = "Match the Gesture!";
     }
 
-    function handleInput(char) {
-      if(char === currentSequence[currentIndex]) {
+    function handleInput(id) {
+      if(id === currentSequence[currentIndex].id) {
         document.getElementById(`slot-${currentIndex}`).className = "slot revealed";
-        score += isUltraMode ? 50 : 10;
-        updateScore();
-        
-        currentIndex++;
-        if(currentIndex < currentSequence.length) {
-          document.getElementById(`slot-${currentIndex}`).className = "slot active";
-        } else {
-          winLevel();
-        }
-      } else {
-        timeLeft -= 1.5; 
-        document.getElementById('battle-log').innerText = "INCORRECT! -1.5s";
-      }
-    }
-
-    function updateScore() {
+        score += 10;
         document.getElementById('score-display').innerText = "SCORE: " + score;
+        currentIndex++;
+        if(currentIndex === currentSequence.length) winLevel();
+        else document.getElementById(`slot-${currentIndex}`).className = "slot active";
+      } else {
+        timeLeft -= 1.0;
+        document.getElementById('battle-log').innerText = "MISS! -1s";
+      }
     }
 
     function winLevel() {
       clearInterval(timerInterval);
-      score += (level * 100); 
-      updateScore();
-
-      if(alphabetPool.length > 0) {
-        const randIdx = Math.floor(Math.random() * alphabetPool.length);
-        const gain = alphabetPool.splice(randIdx, 1)[0];
-        unlockedSigns.push(gain);
-        document.getElementById('battle-log').innerText = "LEARNED NEW GESTURE!";
-      } else {
-        document.getElementById('battle-log').innerText = "BOSS DEFEATED!";
+      if(activePool.length > 0) {
+        unlockedSigns.push(activePool.splice(Math.floor(Math.random() * activePool.length), 1)[0]);
+        document.getElementById('battle-log').innerText = "NEW SIGN UNLOCKED!";
       }
-      
       level++;
-      setTimeout(startLevel, 1200);
+      setTimeout(startLevel, 1000);
     }
 
     function runTimer() {
@@ -316,13 +307,11 @@
         document.getElementById('timer-fill').style.width = (timeLeft / timeLimit) * 100 + "%";
         if(timeLeft <= 0) {
           clearInterval(timerInterval);
-          alert("GAUNTLET FAILED! Final Score: " + score);
-          location.reload();
+          alert("GAME OVER! Score: " + score);
+          resetToMenu();
         }
       }, 100);
     }
-
-    init();
   </script>
 </body>
 </html>
