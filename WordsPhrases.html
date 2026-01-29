@@ -3,37 +3,24 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ASL Hero: Ghost Gauntlet</title>
+  <title>SignLingo - 40 Essential Phrases</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
   <style>
     :root {
       --bg-purple: #f3e5f5;
-      --card-purple: #e1bee7;
       --nav-purple: #7b1fa2;
       --text-purple: #4a148c;
       --accent-purple: #9c27b0;
-      --success-green: #2e7d32;
-      --error-red: #c62828;
-      --timer-gold: #ffd700;
-      --boss-red: #d32f2f;
-      --hell-bg: #1a0000;
-      --ultra-bg: #000000;
     }
 
     body {
-      font-family: 'Segoe UI', Arial, sans-serif;
+      font-family: 'Segoe UI', sans-serif;
       background-color: var(--bg-purple);
       color: var(--text-purple);
       margin: 0;
       padding-bottom: 50px;
-      user-select: none;
-      transition: all 1s ease;
     }
 
-    body.hell-mode { background-color: var(--hell-bg); color: #ff4d4d; }
-    body.ultra-mode { background: var(--ultra-bg); color: #00ffcc; }
-
-    /* DASHBOARD */
     .dashboard {
       background-color: var(--nav-purple);
       padding: 15px 40px;
@@ -43,251 +30,203 @@
       position: sticky;
       top: 0;
       z-index: 1000;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
     }
-    .nav-left { display: flex; align-items: center; gap: 20px; }
-    .nav-right { display: flex; gap: 25px; }
-    .nav-link { color: white; text-decoration: none; font-weight: bold; }
-    .home-icon { font-size: 1.8rem; color: white; }
 
-    .game-container {
-      max-width: 900px;
-      margin: 30px auto;
-      padding: 25px;
+    .nav-links a { color: white; text-decoration: none; margin-left: 20px; font-weight: bold; }
+
+    header { text-align: center; padding: 40px 20px; }
+
+    .category-title {
+      background: var(--nav-purple);
+      color: white;
+      padding: 10px 30px;
+      border-radius: 50px;
+      display: inline-block;
+      margin: 40px 5% 20px;
+      font-size: 1.2rem;
+    }
+
+    .phrase-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 20px;
+      padding: 0 5%;
+    }
+
+    .phrase-card {
       background: white;
-      border-radius: 25px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-      border: 3px solid var(--accent-purple);
+      border-radius: 15px;
+      padding: 15px;
       text-align: center;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
     }
-    .hell-mode .game-container { background: #2b0000; border-color: #ff0000; }
-    .ultra-mode .game-container { background: #0a0a0a; border-color: #00ffcc; box-shadow: 0 0 50px #00ffcc33; }
 
-    .boss-container {
-      background: #fafafa;
-      border: 4px solid var(--nav-purple);
-      border-radius: 20px;
-      padding: 20px;
-      margin-bottom: 20px;
+    .asl-img {
+      width: 100%;
+      height: 180px;
+      object-fit: contain;
+      border-radius: 10px;
+      background: #fff;
     }
-    .hell-mode .boss-container { background: #400000; border-color: #ff4d4d; }
-    .ultra-mode .boss-container { background: #111; border-color: #00ffcc; }
 
-    .boss-sprite { font-size: 80px; margin: 10px 0; animation: float 3s ease-in-out infinite; }
-    @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
-
-    .timer-bar { width: 100%; height: 15px; background: #ddd; border-radius: 10px; overflow: hidden; margin-bottom: 20px; }
-    #timer-fill { width: 100%; height: 100%; background: var(--timer-gold); }
-
-    .stats-row { display: flex; justify-content: space-around; font-weight: bold; margin-bottom: 15px; }
-
-    .sequence-tracker { display: flex; justify-content: center; gap: 10px; margin: 15px 0; flex-wrap: wrap; }
-    .slot {
-      width: 45px; height: 60px; border: 2px solid var(--nav-purple);
-      border-radius: 10px; display: flex; align-items: center; justify-content: center;
-      font-size: 24px; font-weight: bold; background: #eee; color: transparent;
-    }
-    .slot.active { background: white; color: var(--nav-purple); border-width: 4px; }
-    .slot.revealed { background: #c8e6c9; color: var(--text-purple); border-color: #4caf50; }
-    .ultra-mode .slot.active { color: #00ffcc; background: #222; border-color: #00ffcc; }
-
-    .attack-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(80px, 1fr)); gap: 10px; margin-top: 20px; }
-
-    .attack-btn {
-      background: white; border: 2px solid var(--accent-purple);
-      border-radius: 12px; padding: 10px; cursor: pointer;
-      display: flex; flex-direction: column; align-items: center;
-      box-shadow: 0 4px 0 var(--accent-purple);
-      transition: 0.1s;
-    }
-    .attack-btn:active { transform: translateY(3px); box-shadow: none; }
-    .attack-btn img { width: 60px; height: 60px; object-fit: contain; }
-
-    #battle-log { font-weight: bold; font-size: 1.2rem; min-height: 30px; }
-    #score-display { color: #ffd700; font-size: 1.5rem; text-shadow: 0 0 10px rgba(255,215,0,0.5); }
+    h3 { margin: 10px 0 5px; font-size: 1.1rem; }
+    p { font-size: 0.8rem; color: #666; margin: 0; }
   </style>
 </head>
 <body>
 
   <nav class="dashboard">
-    <div class="nav-left">
-      <a href="index.html" class="home-icon"><i class="fas fa-house-chimney"></i></a>
-      <div id="mode-tag" style="font-weight: 900; color: #ffd700;">ARENA MODE</div>
-    </div>
-    <div id="score-display">SCORE: 0</div>
-    <div class="nav-right">
-      <a href="Alphabet.html" class="nav-link">ALPHABET</a>
-      <a href="Numbers.html" class="nav-link">NUMBERS</a>
-      <a href="WordsPhrases.html" class="nav-link">PHRASES</a>
+    <a href="index.html" style="color:white; font-size: 24px;"><i class="fas fa-house"></i></a>
+    <div class="nav-links">
+      <a href="alphabet.html">Alphabet</a>
+      <a href="numbers.html">Numbers</a>
     </div>
   </nav>
 
-  <div class="game-container">
-    <div class="stats-row">
-      <div id="stage-text">STAGE: <span id="lvl-display">1</span></div>
-      <div>UNLOCKED: <span id="col-count">0</span>/26</div>
+  <header>
+    <h1>Essential Words & Phrases</h1>
+    <p>40 core signs using stable, high-quality diagrams.</p>
+  </header>
+
+  <div class="category-title">Greetings & Manners</div>
+  <div class="phrase-grid">
+    <div class="phrase-card">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/00/Sign_language_HELLO.svg/512px-Sign_language_HELLO.svg.png" class="asl-img">
+      <h3>Hello</h3>
     </div>
-
-    <div class="timer-bar"><div id="timer-fill"></div></div>
-
-    <div class="boss-container" id="boss-box">
-      <h2 id="m-name" style="margin: 0;">??</h2>
-      <div class="boss-sprite" id="m-sprite">❓</div>
-      <div id="battle-log">Identify the hand signs to strike!</div>
-      <div class="sequence-tracker" id="seq-tracker"></div>
+    <div class="phrase-card">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bb/Sign_language_PLEASE.svg/512px-Sign_language_PLEASE.svg.png" class="asl-img">
+      <h3>Please</h3>
     </div>
-
-    <div class="attack-grid" id="attack-options"></div>
+    <div class="phrase-card">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/28/Sign_language_THANK_YOU.svg/512px-Sign_language_THANK_YOU.svg.png" class="asl-img">
+      <h3>Thank You</h3>
+    </div>
+    <div class="phrase-card">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Sign_language_SORRY.svg/512px-Sign_language_SORRY.svg.png" class="asl-img">
+      <h3>Sorry</h3>
+    </div>
+    <div class="phrase-card">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/Sign_language_YES.svg/512px-Sign_language_YES.svg.png" class="asl-img">
+      <h3>Yes</h3>
+    </div>
+    <div class="phrase-card">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/02/Sign_language_NO.svg/512px-Sign_language_NO.svg.png" class="asl-img">
+      <h3>No</h3>
+    </div>
   </div>
 
-  <script>
-    const alphabetPool = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
-    const monsters = [
-      { name: "Slime", icon: "👾" }, { name: "Gargoyle", icon: "🗿" },
-      { name: "Spike-Plant", icon: "🌵" }, { name: "Ghost", icon: "👻" },
-      { name: "Kraken", icon: "🐙" }, { name: "Hydra", icon: "🐲" },
-      { name: "Void Lord", icon: "👁️" }, { name: "Cyber Demon", icon: "🤖" }
-    ];
+  <div class="category-title">People & Family</div>
+  <div class="phrase-grid">
+    <div class="phrase-card">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Sign_language_MOTHER.svg/512px-Sign_language_MOTHER.svg.png" class="asl-img">
+      <h3>Mother</h3>
+    </div>
+    <div class="phrase-card">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b1/Sign_language_FATHER.svg/512px-Sign_language_FATHER.svg.png" class="asl-img">
+      <h3>Father</h3>
+    </div>
+    <div class="phrase-card">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/Sign_language_WOMAN.svg/512px-Sign_language_WOMAN.svg.png" class="asl-img">
+      <h3>Woman</h3>
+    </div>
+    <div class="phrase-card">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b3/Sign_language_MAN.svg/512px-Sign_language_MAN.svg.png" class="asl-img">
+      <h3>Man</h3>
+    </div>
+    <div class="phrase-card">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/Sign_language_BOY.svg/512px-Sign_language_BOY.svg.png" class="asl-img">
+      <h3>Boy</h3>
+    </div>
+    <div class="phrase-card">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/Sign_language_GIRL.svg/512px-Sign_language_GIRL.svg.png" class="asl-img">
+      <h3>Girl</h3>
+    </div>
+    <div class="phrase-card">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Sign_language_FRIEND.svg/512px-Sign_language_FRIEND.svg.png" class="asl-img">
+      <h3>Friend</h3>
+    </div>
+  </div>
 
-    let unlockedSigns = [];
-    let currentSequence = [];
-    let currentIndex = 0;
-    let level = 1;
-    let score = 0;
-    let isUltraMode = false;
-    let timeLeft = 0;
-    let timeLimit = 10;
-    let timerInterval;
+  <div class="category-title">Common Actions</div>
+  <div class="phrase-grid">
+    <div class="phrase-card">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/97/Sign_language_EAT.svg/512px-Sign_language_EAT.svg.png" class="asl-img">
+      <h3>Eat / Food</h3>
+    </div>
+    <div class="phrase-card">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0a/Sign_language_DRINK.svg/512px-Sign_language_DRINK.svg.png" class="asl-img">
+      <h3>Drink</h3>
+    </div>
+    <div class="phrase-card">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6d/Sign_language_WATER.svg/512px-Sign_language_WATER.svg.png" class="asl-img">
+      <h3>Water</h3>
+    </div>
+    <div class="phrase-card">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Sign_language_SLEEP.svg/512px-Sign_language_SLEEP.svg.png" class="asl-img">
+      <h3>Sleep</h3>
+    </div>
+    <div class="phrase-card">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/Sign_language_HELP.svg/512px-Sign_language_HELP.svg.png" class="asl-img">
+      <h3>Help</h3>
+    </div>
+    <div class="phrase-card">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d6/Sign_language_WORK.svg/512px-Sign_language_WORK.svg.png" class="asl-img">
+      <h3>Work</h3>
+    </div>
+    <div class="phrase-card">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e3/Sign_language_SCHOOL.svg/512px-Sign_language_SCHOOL.svg.png" class="asl-img">
+      <h3>School</h3>
+    </div>
+  </div>
 
-    function init() {
-      const grid = document.getElementById('attack-options');
-      grid.innerHTML = "";
-      const starters = [];
-      for(let i=0; i<3; i++) {
-          let idx = Math.floor(Math.random() * alphabetPool.length);
-          starters.push(alphabetPool.splice(idx, 1)[0]);
-      }
+  <div class="category-title">Questions</div>
+  <div class="phrase-grid">
+    <div class="phrase-card">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Sign_language_WHO.svg/512px-Sign_language_WHO.svg.png" class="asl-img">
+      <h3>Who</h3>
+    </div>
+    <div class="phrase-card">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/Sign_language_WHAT.svg/512px-Sign_language_WHAT.svg.png" class="asl-img">
+      <h3>What</h3>
+    </div>
+    <div class="phrase-card">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8e/Sign_language_WHERE.svg/512px-Sign_language_WHERE.svg.png" class="asl-img">
+      <h3>Where</h3>
+    </div>
+    <div class="phrase-card">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7b/Sign_language_WHEN.svg/512px-Sign_language_WHEN.svg.png" class="asl-img">
+      <h3>When</h3>
+    </div>
+    <div class="phrase-card">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Sign_language_WHY.svg/512px-Sign_language_WHY.svg.png" class="asl-img">
+      <h3>Why</h3>
+    </div>
+    <div class="phrase-card">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e5/Sign_language_HOW.svg/512px-Sign_language_HOW.svg.png" class="asl-img">
+      <h3>How</h3>
+    </div>
+  </div>
 
-      starters.forEach(l => {
-        const btn = document.createElement('div');
-        btn.className = 'attack-btn';
-        btn.innerHTML = `<img src="https://www.lifeprint.com/asl101/fingerspelling/abc-gifs/${l.toLowerCase()}.gif">`;
-        btn.onclick = () => { unlockedSigns.push(l); startLevel(); };
-        grid.appendChild(btn);
-      });
-    }
+  <div class="category-title">Feelings</div>
+  <div class="phrase-grid">
+    <div class="phrase-card">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Sign_language_HAPPY.svg/512px-Sign_language_HAPPY.svg.png" class="asl-img">
+      <h3>Happy</h3>
+    </div>
+    <div class="phrase-card">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Sign_language_SAD.svg/512px-Sign_language_SAD.svg.png" class="asl-img">
+      <h3>Sad</h3>
+    </div>
+    <div class="phrase-card">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a3/Sign_language_LOVE.svg/512px-Sign_language_LOVE.svg.png" class="asl-img">
+      <h3>Love</h3>
+    </div>
+    <div class="phrase-card">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5b/Sign_language_ANGRY.svg/512px-Sign_language_ANGRY.svg.png" class="asl-img">
+      <h3>Angry</h3>
+    </div>
+  </div>
 
-    function startLevel() {
-      if (level > 26) {
-          isUltraMode = true;
-          document.body.className = "ultra-mode";
-          document.getElementById('mode-tag').innerText = "💀 ULTRA MODE: BOSS GAUNTLET 💀";
-          document.getElementById('stage-text').innerText = "WAVE: " + (level - 26);
-      } else if (level >= 21) {
-          document.body.className = "hell-mode";
-          document.getElementById('mode-tag').innerText = "🔥 HELL MODE 🔥";
-      }
-
-      currentIndex = 0;
-      const isBoss = isUltraMode || level % 5 === 0;
-      const monsterIdx = Math.floor(Math.random() * monsters.length);
-      const monster = monsters[monsterIdx];
-      
-      document.getElementById('m-name').innerText = isBoss ? "BOSS " + monster.name : monster.name;
-      document.getElementById('m-sprite').innerText = isUltraMode ? "💀" : monster.icon;
-      document.getElementById('lvl-display').innerText = isUltraMode ? (level - 26) : level;
-      document.getElementById('col-count').innerText = unlockedSigns.length;
-
-      timeLimit = isUltraMode ? Math.max(2.0, 6 - ((level-26) * 0.2)) : Math.max(2.2, 14 - (level * 0.45));
-      timeLeft = timeLimit;
-
-      generateLevelSequence();
-      renderUI();
-      runTimer();
-    }
-
-    function generateLevelSequence() {
-      currentSequence = [];
-      let len = isUltraMode ? (6 + Math.floor((level-26)/2)) : (2 + Math.floor(level / 3));
-      if (level === 26) len = 12; 
-      
-      for(let i=0; i<len; i++) {
-        currentSequence.push(unlockedSigns[Math.floor(Math.random() * unlockedSigns.length)]);
-      }
-    }
-
-    function renderUI() {
-      document.getElementById('seq-tracker').innerHTML = currentSequence.map((char, i) => `
-        <div class="slot ${i === 0 ? 'active' : ''}" id="slot-${i}">${char}</div>
-      `).join('');
-
-      const grid = document.getElementById('attack-options');
-      grid.innerHTML = "";
-      // Order is preserved by gained sequence
-      unlockedSigns.forEach(char => {
-        const btn = document.createElement('div');
-        btn.className = 'attack-btn';
-        btn.innerHTML = `<img src="https://www.lifeprint.com/asl101/fingerspelling/abc-gifs/${char.toLowerCase()}.gif">`;
-        btn.onclick = () => handleInput(char);
-        grid.appendChild(btn);
-      });
-      document.getElementById('battle-log').innerText = "Sign the letters shown in the sequence slots!";
-    }
-
-    function handleInput(char) {
-      if(char === currentSequence[currentIndex]) {
-        document.getElementById(`slot-${currentIndex}`).className = "slot revealed";
-        score += isUltraMode ? 50 : 10;
-        updateScore();
-        
-        currentIndex++;
-        if(currentIndex < currentSequence.length) {
-          document.getElementById(`slot-${currentIndex}`).className = "slot active";
-        } else {
-          winLevel();
-        }
-      } else {
-        timeLeft -= 1.5;
-        document.getElementById('battle-log').innerText = "WRONG SIGN! -1.5s";
-      }
-    }
-
-    function updateScore() {
-        document.getElementById('score-display').innerText = "SCORE: " + score;
-    }
-
-    function winLevel() {
-      clearInterval(timerInterval);
-      score += (level * 100);
-      updateScore();
-
-      if(alphabetPool.length > 0) {
-        const randIdx = Math.floor(Math.random() * alphabetPool.length);
-        const gain = alphabetPool.splice(randIdx, 1)[0];
-        unlockedSigns.push(gain);
-        document.getElementById('battle-log').innerText = "NEW SIGN GAINED!";
-      } else {
-        document.getElementById('battle-log').innerText = "MONSTER DEFEATED!";
-      }
-      
-      level++;
-      setTimeout(startLevel, 1200);
-    }
-
-    function runTimer() {
-      clearInterval(timerInterval);
-      timerInterval = setInterval(() => {
-        timeLeft -= 0.1;
-        document.getElementById('timer-fill').style.width = (timeLeft / timeLimit) * 100 + "%";
-        if(timeLeft <= 0) {
-          clearInterval(timerInterval);
-          alert("GAME OVER! Final Score: " + score);
-          location.reload();
-        }
-      }, 100);
-    }
-
-    init();
-  </script>
 </body>
 </html>
