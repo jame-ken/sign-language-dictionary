@@ -67,14 +67,15 @@
       padding: 20px;
       text-align: center;
       box-shadow: 0 8px 20px rgba(74, 20, 140, 0.1);
-      justify-content: space-between; /* Ensures even spacing */
+      justify-content: flex-start;
+      align-items: center; /* Centers all content horizontally */
     }
 
     .phrase-display h3 { font-size: 28px; margin: 0 0 15px 0; }
 
     .asl-image {
       width: 100%;
-      height: 160px; /* Fixed height to prevent misalignment */
+      height: 160px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -92,7 +93,15 @@
     .details { 
       font-size: 1rem; 
       line-height: 1.4;
-      min-height: 60px; /* Ensures text rows align */
+      min-height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Move bathroom card to the end of its grid */
+    .bathroom-card {
+      order: 99;
     }
 
     footer {
@@ -171,7 +180,7 @@
   <div class="category-divider"><h2>Common Phrases & Objects</h2></div>
   <div class="phrases-container">
     <div class="phrase-row"><div class="phrase-display"><h3>I am hungry</h3><div class="asl-image"><img src="https://res.cloudinary.com/spiralyze/image/upload/f_auto,w_1414/BabySignLanguage/DictionaryPages/hungry-webp.webp"></div></div><div class="details">Slide your hand in a "C" shape down the center of your chest.</div></div>
-    <div class="phrase-row"><div class="phrase-display"><h3>Where is the bathroom?</h3><div class="asl-image"><img src="https://res.cloudinary.com/spiralyze/image/upload/f_auto,w_1414/BabySignLanguage/DictionaryPages/bathroom-webp.webp"></div></div><div class="details">Shake the "T" handshape while using a questioning facial expression.</div></div>
+    <div class="phrase-row bathroom-card"><div class="phrase-display"><h3>Where is the bathroom?</h3><div class="asl-image"><img src="https://res.cloudinary.com/spiralyze/image/upload/f_auto,w_1414/BabySignLanguage/DictionaryPages/bathroom-webp.webp"></div></div><div class="details">Shake the "T" handshape while using a questioning facial expression.</div></div>
     <div class="phrase-row"><div class="phrase-display"><h3>What time is it?</h3><div class="asl-image"><img src="https://res.cloudinary.com/spiralyze/image/upload/f_auto,w_1414/BabySignLanguage/DictionaryPages/time-webp.webp"></div></div><div class="details">Tap your wrist where a watch would normally be.</div></div>
     <div class="phrase-row"><div class="phrase-display"><h3>I don't know</h3><div class="asl-image"><img src="https://res.cloudinary.com/spiralyze/image/upload/f_auto,w_1414/BabySignLanguage/DictionaryPages/don_t_know-webp.webp"></div></div><div class="details">Touch your forehead and then flick your hand away.</div></div>
     <div class="phrase-row"><div class="phrase-display"><h3>Again, please?</h3><div class="asl-image"><img src="https://res.cloudinary.com/spiralyze/image/upload/f_auto,w_1414/BabySignLanguage/DictionaryPages/again-webp.webp"></div></div><div class="details">Arch your dominant hand into the palm of your other hand.</div></div>
