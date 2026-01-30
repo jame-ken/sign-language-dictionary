@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ASL Hero: Ghost Gauntlet</title>
+  <title>ASL Fighter</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
   <style>
     :root {
@@ -125,6 +125,19 @@
     }
     .back-btn:hover { background: #444; }
 
+    .instructions {
+      max-width: 900px;
+      margin: 40px auto;
+      padding: 30px;
+      background-color: white;
+      border-radius: 20px;
+      border: 2px solid var(--accent-purple);
+      text-align: left;
+    }
+    .instructions h2 { color: var(--nav-purple); margin-top: 0; }
+    .instructions ul { line-height: 1.6; }
+    .instructions li { margin-bottom: 10px; }
+
     @media (max-width: 850px) {
       header h1 { font-size: 40px; }
       .nav-links a { margin-left: 15px; font-size: 18px; }
@@ -144,15 +157,15 @@
   </nav>
 
   <header>
-    <h1>ASL Hero: Ghost Gauntlet</h1>
+    <h1>ASL Fighter</h1>
     <p id="game-subtitle">Choose your challenge to begin.</p>
   </header>
 
   <div class="game-container" id="main-area">
     <div id="game-menu">
-      <button class="menu-btn" onclick="selectMode('alpha')">Alphabet Fighter</button><br>
-      <button class="menu-btn" onclick="selectMode('num')">Number Knight</button><br>
-      <button class="menu-btn" onclick="selectMode('phrase')">Phrase Paladin</button>
+      <button class="menu-btn" onclick="selectMode('alpha')">Alphabet</button><br>
+      <button class="menu-btn" onclick="selectMode('num')">Numbers</button><br>
+      <button class="menu-btn" onclick="selectMode('phrase')">Phrases</button>
     </div>
 
     <div id="battle-ui" style="display: none;">
@@ -171,6 +184,17 @@
         <div class="attack-grid" id="attack-options"></div>
         <button class="back-btn" onclick="resetToMenu()">← Back to Menu</button>
     </div>
+  </div>
+
+  <div class="instructions">
+    <h2>How to Play</h2>
+    <ul>
+      <li><strong>Select a Mode:</strong> Choose between Alphabet, Numbers, or Phrases to start your training.</li>
+      <li><strong>Choose your Starter:</strong> At the beginning, click one of the three random ASL signs to add it to your arsenal.</li>
+      <li><strong>Defeat the Monsters:</strong> Look at the <strong>Sequence Tracker</strong> (the boxes below the monster). You must click the hand gesture buttons that match the words/letters in the sequence.</li>
+      <li><strong>Watch the Timer:</strong> The gold bar is your time! If it runs out, the game is over. Correct answers reset the level, but wrong answers subtract 1 second.</li>
+      <li><strong>Unlock Signs:</strong> Every time you clear a stage, a new sign is added to your collection, making the game more challenging as you go!</li>
+    </ul>
   </div>
 
   <script>
@@ -203,7 +227,22 @@
         ]
     };
 
-    const monsters = [{ name: "Slime", icon: "👾" }, { name: "Ghost", icon: "👻" }, { name: "Hydra", icon: "🐲" }];
+    // Expanded enemy list
+    const monsters = [
+        { name: "Slime", icon: "👾" }, 
+        { name: "Ghost", icon: "👻" }, 
+        { name: "Hydra", icon: "🐲" },
+        { name: "Skeleton", icon: "💀" },
+        { name: "Goblin", icon: "👺" },
+        { name: "Vampire", icon: "🧛" },
+        { name: "Werewolf", icon: "🐺" },
+        { name: "Robot", icon: "🤖" },
+        { name: "Alien", icon: "👽" },
+        { name: "Demon", icon: "👿" },
+        { name: "Wizard", icon: "🧙" },
+        { name: "Zombie", icon: "🧟" }
+    ];
+
     let activePool = [], unlockedSigns = [], currentSequence = [], currentIndex = 0, level = 1, score = 0, timeLeft = 0, timeLimit = 10, timerInterval;
 
     function selectMode(mode) {
