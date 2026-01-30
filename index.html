@@ -5,140 +5,100 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Signlingo - Home</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  
   <style>
-    :root {
-      --bg-purple: #f3e5f5;      /* Lightest purple */
-      --card-purple: #e1bee7;    /* Lavender */
-      --nav-purple: #7b1fa2;     /* Deep purple */
-      --text-purple: #4a148c;    /* Dark purple */
-      --accent-purple: #9c27b0;  /* Amethyst */
-    }
-
+    /* BASIC PAGE STYLES */
     body {
-      font-family: 'Segoe UI', Arial, sans-serif;
-      background-color: var(--bg-purple);
-      color: var(--text-purple);
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f3e5f5; /* Light Purple Background */
+      color: #4a148c;           /* Dark Purple Text */
       margin: 0;
       padding-bottom: 50px;
     }
 
-    /* Dashboard Styling - Maintained size without home button */
+    /* THE NAVIGATION BAR (DASHBOARD) */
     .dashboard {
-      background-color: var(--nav-purple);
+      background-color: #7b1fa2; /* Deep Purple */
       padding: 15px 40px;
       display: flex;
-      justify-content: flex-end; /* Keeps links to the right */
-      align-items: center;
-      position: sticky;
+      justify-content: flex-end; /* Pushes links to the right */
+      position: sticky;          /* Stays at the top when scrolling */
       top: 0;
       z-index: 1000;
       box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-      min-height: 40px; /* Ensures consistent vertical height */
     }
 
     .nav-links a {
       color: white;
       text-decoration: none;
-      font-size: 22px;
+      font-size: 20px;
       font-weight: bold;
       margin-left: 30px;
-      transition: color 0.3s ease;
     }
 
     .nav-links a:hover {
-      color: var(--card-purple);
       text-decoration: underline;
+      color: #e1bee7;
     }
 
+    /* THE HEADER (LOGO AND TITLE) */
     header {
       text-align: center;
-      padding: 60px 20px;
+      padding: 50px 20px;
     }
 
     .logo-container {
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 25px; 
-      margin-bottom: 20px;
+      gap: 20px; 
     }
 
     .logo-container img {
-      height: 110px; 
-      width: auto;
+      height: 100px; 
       border-radius: 15px;
     }
 
     .logo-container h1 {
-      font-size: 100px;
+      font-size: 80px;
       margin: 0;
-      color: var(--text-purple);
     }
 
-    /* Content Rows */
+    /* THE CONTENT SECTION */
     .info-container {
-      display: flex;
-      flex-direction: column;
-      gap: 40px;
-      padding: 0 5%;
-      max-width: 1100px;
-      margin: 0 auto;
+      max-width: 1000px;
+      margin: 0 auto;           /* Centers the container */
+      padding: 0 20px;
     }
 
+    /* THE INFO ROWS (BOXES) */
     .info-row {
       display: flex;
-      background-color: var(--card-purple);
-      border: 4px solid var(--accent-purple);
-      border-radius: 25px;
-      padding: 40px;
-      align-items: center;
-      gap: 50px;
-      box-shadow: 0 8px 20px rgba(74, 20, 140, 0.1);
+      background-color: #e1bee7; /* Lavender Box */
+      border: 4px solid #9c27b0; /* Amethyst Border */
+      border-radius: 20px;
+      padding: 30px;
+      margin-bottom: 30px;
+      align-items: center;       /* Centers items vertically */
+      gap: 30px;
     }
 
-    .info-image-box {
-      flex: 1;
-      text-align: center;
-    }
+    .info-image-box { flex: 1; text-align: center; }
+    .info-text { flex: 2; }
 
     .info-image-box img {
       width: 100%;
-      max-width: 400px;
-      border-radius: 20px;
-      border: 3px solid var(--nav-purple);
-      background-color: white;
+      border-radius: 15px;
+      border: 2px solid #7b1fa2;
     }
 
-    .info-text {
-      flex: 1.5;
-      text-align: left;
-    }
-
-    .info-text h2 {
-      font-size: 32px;
-      color: var(--nav-purple);
-      margin-top: 0;
-    }
-
-    .info-text p {
-      font-size: 20px;
-      line-height: 1.6;
-    }
-
-    .disclaimer {
-      margin-top: 40px;
-      font-size: 16px;
-      opacity: 0.7;
-      text-align: center;
-    }
-
-    @media (max-width: 850px) {
-      .info-row { flex-direction: column; text-align: center; }
-      .info-text { text-align: center; }
-      .logo-container h1 { font-size: 60px; }
-      .logo-container img { height: 70px; } 
-      .dashboard { justify-content: center; }
-      .nav-links a { margin: 0 15px; }
+    /* MOBILE RESPONSIVENESS */
+    @media (max-width: 800px) {
+      .info-row {
+        flex-direction: column; /* Stack image and text on top of each other */
+        text-align: center;
+      }
+      .logo-container h1 { font-size: 50px; }
     }
   </style>
 </head>
@@ -155,10 +115,10 @@
 
   <header>
     <div class="logo-container">
-      <img src="mascot.jpg" alt="Signlingo Mascot">
+      <img src="mascot.jpg" alt="Mascot">
       <h1>Signlingo</h1>
     </div>
-    <p style="font-size: 24px;">Your gateway to learning American Sign Language.</p>
+    <p style="font-size: 20px;">Your gateway to learning American Sign Language.</p>
   </header>
 
   <div class="info-container">
@@ -166,35 +126,35 @@
     <div class="info-row">
       <div class="info-text">
         <h2>Welcome to Signlingo</h2>
-        <p>Signlingo is an interactive platform dedicated to bridging the communication gap between the hearing and Deaf communities. Whether you are a student, a parent, or simply curious about a new culture, our mission is to provide accessible, high-quality ASL resources. From mastering the basic alphabet to navigating complex daily phrases, Signlingo offers a structured and engaging path to fluency for learners of all ages and backgrounds.</p>
+        <p>Signlingo is an interactive platform dedicated to bridging the communication gap between the hearing and Deaf communities. We provide high-quality ASL resources for learners of all ages.</p>
       </div>
     </div>
 
     <div class="info-row">
       <div class="info-image-box">
-        <img src="https://www.startasl.com/wp-content/uploads/elementor/thumbs/history-of-american-sign-language-p19m27nm9v1bdpwy1olp8ouku759o10s16yfu7i6f4.jpg" alt="History of ASL">
+        <img src="https://www.startasl.com/wp-content/uploads/elementor/thumbs/history-of-american-sign-language-p19m27nm9v1bdpwy1olp8ouku759o10s16yfu7i6f4.jpg" alt="History">
       </div>
       <div class="info-text">
         <h2>The Evolution of ASL</h2>
-        <p>American Sign Language is a rich, complex visual language that began its formal journey in 1817. When Thomas Hopkins Gallaudet met Laurent Clerc, a Deaf educator from France, they founded the first permanent school for the Deaf in Hartford, Connecticut. ASL was born from a beautiful blend of French Sign Language (LSF) and various local "home signs" used in America. Today, it stands as a unique language with its own grammar and syntax, serving as the primary language for hundreds of thousands of North Americans.</p>
+        <p>ASL began in 1817 and is a blend of French Sign Language and local American signs. It is a unique language with its own grammar and syntax.</p>
       </div>
     </div>
 
     <div class="info-row">
       <div class="info-text">
-        <h2>Why Learn American Sign Language?</h2>
-        <p>Learning ASL is more than just learning to sign; it is an entry point into a vibrant culture and community. Beyond its practical use for communicating with the Deaf, ASL enhances your cognitive abilities, improves your spatial awareness, and helps you become a more expressive communicator. On Signlingo, we believe that every sign you learn brings us one step closer to a more inclusive world. Start with the alphabet today and see where your hands can take you!</p>
+        <h2>Why Learn ASL?</h2>
+        <p>Learning ASL helps you connect with a vibrant culture, improves brain function, and makes you a more expressive communicator.</p>
       </div>
       <div class="info-image-box">
-        <i class="fas fa-hands-helping" style="font-size: 150px; color: var(--nav-purple);"></i>
+        <i class="fas fa-hands-helping" style="font-size: 100px;"></i>
       </div>
     </div>
 
   </div>
 
-  <div class="disclaimer">
-    <p>(This page is hosted on GitHub Pages. This site is in no way associated with Duolingo)</p>
-  </div>
+  <p style="text-align:center; opacity:0.6; font-size:14px;">
+    (This page is hosted on GitHub Pages. Not associated with Duolingo)
+  </p>
 
 </body>
 </html>
