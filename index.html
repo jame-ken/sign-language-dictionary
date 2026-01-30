@@ -22,17 +22,18 @@
       padding-bottom: 50px;
     }
 
-    /* Dashboard Styling */
+    /* Dashboard Styling - Maintained size without home button */
     .dashboard {
       background-color: var(--nav-purple);
       padding: 15px 40px;
       display: flex;
-      justify-content: flex-end; 
+      justify-content: flex-end; /* Keeps links to the right */
       align-items: center;
       position: sticky;
       top: 0;
       z-index: 1000;
       box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      min-height: 40px; /* Ensures consistent vertical height */
     }
 
     .nav-links a {
