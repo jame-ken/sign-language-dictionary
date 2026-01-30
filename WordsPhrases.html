@@ -51,7 +51,7 @@
 
     .phrases-container {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
       gap: 25px;
       padding: 0 5%;
       max-width: 1100px;
@@ -61,46 +61,54 @@
     .phrase-row {
       display: flex;
       flex-direction: column;
-      align-items: center;
       background-color: var(--card-purple);
       border: 3px solid var(--accent-purple);
       border-radius: 20px;
       padding: 20px;
       text-align: center;
       box-shadow: 0 8px 20px rgba(74, 20, 140, 0.1);
+      justify-content: space-between; /* Ensures even spacing */
     }
 
-    .phrase-display { flex: 1; text-align: center; }
-    .phrase-display h3 { font-size: 32px; margin: 0 0 15px 0; }
+    .phrase-display h3 { font-size: 28px; margin: 0 0 15px 0; }
 
     .asl-image {
-      width: 150px;
-      height: 150px;
-      margin-bottom: 10px;
+      width: 100%;
+      height: 160px; /* Fixed height to prevent misalignment */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 15px;
+      background: rgba(255,255,255,0.2);
+      border-radius: 15px;
     }
 
-    .asl-image img { max-width: 90%; max-height: 90%; object-fit: contain; }
-    .details { flex: 2; font-size: 1.1rem; }
-
-    .example-box {
-      background: rgba(255,255,255,0.4);
-      padding: 15px;
-      border-left: 5px solid var(--nav-purple);
-      margin-top: 10px;
-      border-radius: 4px;
-      
+    .asl-image img { 
+      max-width: 100%; 
+      max-height: 100%; 
+      object-fit: contain; 
     }
-    .rules-section {
-      background-color: white;
-      margin: 50px auto;
-      margin: 50px auto;
-      margin: 50px auto;
-      border-radius: 20px;
-      border: 2px solid var(--nav-purple);
-    }
-    .rules-list { text-align: left; line-height: 1.8; }
     
-   
+    .details { 
+      font-size: 1rem; 
+      line-height: 1.4;
+      min-height: 60px; /* Ensures text rows align */
+    }
+
+    footer {
+      text-align: center;
+      padding: 40px 20px;
+      margin-top: 40px;
+      font-size: 14px;
+      color: var(--nav-purple);
+      border-top: 1px solid var(--card-purple);
+    }
+
+    footer a {
+      color: var(--nav-purple);
+      font-weight: bold;
+      text-decoration: none;
+    }
   </style>
 </head>
 <body>
@@ -168,6 +176,10 @@
     <div class="phrase-row"><div class="phrase-display"><h3>I don't know</h3><div class="asl-image"><img src="https://res.cloudinary.com/spiralyze/image/upload/f_auto,w_1414/BabySignLanguage/DictionaryPages/don_t_know-webp.webp"></div></div><div class="details">Touch your forehead and then flick your hand away.</div></div>
     <div class="phrase-row"><div class="phrase-display"><h3>Again, please?</h3><div class="asl-image"><img src="https://res.cloudinary.com/spiralyze/image/upload/f_auto,w_1414/BabySignLanguage/DictionaryPages/again-webp.webp"></div></div><div class="details">Arch your dominant hand into the palm of your other hand.</div></div>
   </div>
+
+  <footer>
+    Images sourced from <a href="https://www.babysignlanguage.com" target="_blank">BabySignLanguage.com</a>.
+  </footer>
 
 </body>
 </html>
